@@ -1,0 +1,2136 @@
+{
+  "metadata": {
+    "exportedAt": "2026-10-03T09:55:44.575Z",
+    "counts": {
+      "users": 1,
+      "settings": 6,
+      "pages": 15,
+      "media": 42
+    }
+  },
+  "users": [
+    {
+      "id": "cmqrnv67e0000l9y866xlicpj",
+      "username": "admin",
+      "passwordHash": "$2b$12$Tj9zX.bM9kDuWQN4zzaLLeJy/YOehUhcl8PTwUVSKInkL0A7HWw4C",
+      "name": "Ganpat University Admin",
+      "role": "SUPER_ADMIN",
+      "isActive": true,
+      "createdAt": "2026-06-24T05:57:03.124Z",
+      "updatedAt": "2026-06-24T05:57:03.124Z"
+    }
+  ],
+  "settings": [
+    {
+      "id": "cmqrnv69h0001l9y8zljifzlr",
+      "key": "theme",
+      "value": "theme-convocation",
+      "createdAt": "2026-06-24T05:57:03.222Z",
+      "updatedAt": "2026-06-24T05:57:03.222Z"
+    },
+    {
+      "id": "cmqrnv69j0002l9y8bo9tryvz",
+      "key": "fontPairing",
+      "value": "pairing-modern-sans",
+      "createdAt": "2026-06-24T05:57:03.224Z",
+      "updatedAt": "2026-06-24T05:57:03.224Z"
+    },
+    {
+      "id": "cmqrnv69l0003l9y82ygnrf70",
+      "key": "siteName",
+      "value": "19th Convocation",
+      "createdAt": "2026-06-24T05:57:03.225Z",
+      "updatedAt": "2026-06-24T05:57:03.225Z"
+    },
+    {
+      "id": "cmqrnv69n0004l9y81rktvp8f",
+      "key": "global_header",
+      "value": "{\"siteName\":\"19th Convocation\",\"subheading\":\"Ganpat University\",\"logoUrl\":\"/uploads/logo.png\",\"logoSize\":\"lg\",\"navLinks\":[{\"label\":\"Home\",\"href\":\"/\"},{\"label\":\"Guests\",\"href\":\"#\",\"children\":[{\"label\":\"Chief Guest\",\"href\":\"/chief-guest\"},{\"label\":\"Guest of Honour\",\"href\":\"/guest-of-honour-2026\"},{\"label\":\"President Profile\",\"href\":\"/president-ganpat-university\"},{\"label\":\"Director General\",\"href\":\"/director-general\"}]},{\"label\":\"Schedules\",\"href\":\"#\",\"children\":[{\"label\":\"Convocation Schedule\",\"href\":\"/convocation-schedule\"},{\"label\":\"Gold Medalists & PhD\",\"href\":\"/schedule-for-gold-medalists-and-phd-awardees\"},{\"label\":\"Awardees Schedule\",\"href\":\"/schedule-for-the-awardees\"},{\"label\":\"Group Photography\",\"href\":\"/group-photography\"},{\"label\":\"Bus Transportation\",\"href\":\"/bus-transportation\"}]},{\"label\":\"Guidelines\",\"href\":\"#\",\"children\":[{\"label\":\"Invitation for Attendees\",\"href\":\"/19th-convocation-3\"},{\"label\":\"General Guidelines\",\"href\":\"/guideline-for-convocation\"},{\"label\":\"Campus Venues Map\",\"href\":\"/layout-for-awardees\"}]},{\"label\":\"Academic Lists\",\"href\":\"#\",\"children\":[{\"label\":\"Scholastic Medals\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Gold-Medal-details.pdf\"},{\"label\":\"Faculty of Pharmacy\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Pharmacy.pdf\"},{\"label\":\"Engineering & Tech\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Engineering-Technology.pdf\"},{\"label\":\"Computer Applications\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Computer-Applications.pdf\"},{\"label\":\"Management Studies\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Management-Studies.pdf\"},{\"label\":\"Faculty of Science\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Science.pdf\"},{\"label\":\"Social Science\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-Social-Sciences-Humanities.pdf\"},{\"label\":\"Architecture & Design\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Architecture-Design-and-Planning.pdf\"},{\"label\":\"Agriculture\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Agriculture-Allied-Sciences-Technology.pdf\"}]},{\"label\":\"Gallery\",\"href\":\"/gallery\"}],\"ctaLabel\":\"Contact Us\",\"ctaUrl\":\"/contact\",\"contact\":{\"email\":\"convocation@ganpatuniversity.ac.in\",\"phone\":\"+ 02762226021\",\"workingHours\":\"9:00 AM – 4:00 PM\"},\"socials\":{\"facebook\":\"https://www.facebook.com/ganpatuni\",\"twitter\":\"https://twitter.com/Ganpat_Uni\",\"linkedin\":\"https://www.linkedin.com/school/ganpat-university/\"}}",
+      "createdAt": "2026-06-24T05:57:03.228Z",
+      "updatedAt": "2026-06-24T05:57:03.228Z"
+    },
+    {
+      "id": "cmqrnv69p0005l9y8a4kaa3fd",
+      "key": "global_footer",
+      "value": "{\"tagline\":\"The 19th Convocation of Ganpat University marks a milestone celebrating student excellence, academic achievements, and the journey forward into career excellence.\",\"copyright\":\"© 2026 Ganpat University. All rights reserved. 19th Convocation - Ganpat University.\",\"email\":\"convocation@ganpatuniversity.ac.in\",\"address\":\"Ganpat Vidyanagar, Mehsana-Gandhinagar Highway, PO - 384012, Gujarat, India\",\"columns\":[{\"heading\":\"Guests & Patrons\",\"links\":[{\"label\":\"Chief Guest\",\"href\":\"/chief-guest\"},{\"label\":\"Guest of Honour\",\"href\":\"/guest-of-honour-2026\"},{\"label\":\"President\",\"href\":\"/president-ganpat-university\"},{\"label\":\"Director General\",\"href\":\"/director-general\"}]},{\"heading\":\"Quick Access\",\"links\":[{\"label\":\"Schedules\",\"href\":\"/convocation-schedule\"},{\"label\":\"Attendees Invite\",\"href\":\"/19th-convocation-3\"},{\"label\":\"Bus Details\",\"href\":\"/bus-transportation\"},{\"label\":\"Gallery Archive\",\"href\":\"/gallery\"}]}],\"socials\":[{\"platform\":\"facebook\",\"url\":\"https://www.facebook.com/ganpatuni\"},{\"platform\":\"twitter\",\"url\":\"https://twitter.com/Ganpat_Uni\"},{\"platform\":\"linkedin\",\"url\":\"https://www.linkedin.com/school/ganpat-university/\"}]}",
+      "createdAt": "2026-06-24T05:57:03.230Z",
+      "updatedAt": "2026-06-24T05:57:03.230Z"
+    },
+    {
+      "id": "cmqrnv69s0006l9y8rwjzrlhk",
+      "key": "app_settings",
+      "value": "{\"siteName\":\"19th Convocation\",\"siteDescription\":\"19th Convocation - Ganpat University\",\"contactEmail\":\"convocation@ganpatuniversity.ac.in\",\"defaultMetaTitle\":\"19th Convocation - Ganpat University\",\"defaultMetaDescription\":\"Official website for the 19th Convocation of Ganpat University (GUNI). Guidelines, schedules, guest bio, layout, and logistics for awardees and guests.\",\"maintenanceMode\":false,\"maintenanceMessage\":\"Website is updating. Please try again soon.\"}",
+      "createdAt": "2026-06-24T05:57:03.232Z",
+      "updatedAt": "2026-06-24T05:57:03.232Z"
+    }
+  ],
+  "pages": [
+    {
+      "id": "cmqrnv6a40007l9y8wzgenuvq",
+      "slug": "home",
+      "title": "Home",
+      "metaTitle": "19th Convocation - Ganpat University",
+      "metaDescription": "19th Convocation of Ganpat University. Celebrated on 8th Jan 2026. Schedule, guest biographies, bus details, and attendance confirmation.",
+      "sections": [
+        {
+          "id": "home-hero",
+          "data": {
+            "title": "19th Convocation.",
+            "bgImage": "/uploads/convocation-08-158a3767.jpg",
+            "tagline": "विद्यया विन्दतेऽमृतम् • Excellence Through Knowledge & Service",
+            "bgImages": [
+              "/uploads/convocation-14-158a9227.jpg",
+              "/uploads/convocation-12-158a9209.jpg",
+              "/uploads/convocation-21-mhdv5790.jpg",
+              "/uploads/convocation-01-0u3a0768.jpg",
+              "/uploads/convocation-14-158a9227.jpg",
+              "/uploads/convocation-04-0u3a1809.jpg"
+            ],
+            "subtitle": "January 8, 2026 • 4:30 PM onwards",
+            "badgeText": "19TH CONVOCATION • 2026",
+            "infoPills": {
+              "date": "January 8, 2026 • 4:30 PM Onwards",
+              "venue": "Ganpat Vidyanagar, Mehsana-Gandhinagar Highway",
+              "classSize": "Class of 2026 • 4,250+ Graduating Scholars",
+              "chiefGuest": "Chief Guest: Dr. Pradyuman Vaja • Guest of Honour: Dr. V. Narayanan"
+            },
+            "primaryCTA": {
+              "url": "/19th-convocation-3",
+              "label": "Download Invitation & Schedule"
+            },
+            "rightImage": "/uploads/hero-student-right.png",
+            "description": "Celebrating the perseverance, dedication and scholastic milestones of our graduating cohort. Welcoming awardees, parents, distinguished patrons, and world leaders to the grand ceremonial dais.",
+            "secondaryCTA": {
+              "url": "/convocation-schedule",
+              "label": "Schedules & Protocols"
+            },
+            "studentImage": "/uploads/hero-student-right.png",
+            "layoutVariant": "maritime-cinematic",
+            "titleHighlight": "Academic Triumph.",
+            "universityName": "Ganpat University"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "home-hero-info",
+          "data": {
+            "title": "19th Convocation",
+            "tagline": "Ganpat University",
+            "subtitle": "January 8, 2026 • 4:30 PM onwards",
+            "heroStats": [
+              {
+                "icon": "Calendar",
+                "label": "Ceremony Date",
+                "value": "8th Jan"
+              },
+              {
+                "icon": "Clock",
+                "label": "Procession Starts",
+                "value": "4:30 PM"
+              },
+              {
+                "icon": "GraduationCap",
+                "label": "Graduating Batch",
+                "value": "2026"
+              }
+            ],
+            "primaryCTA": {
+              "url": "/19th-convocation-3",
+              "label": "Invitation details"
+            },
+            "description": "Celebrating the dedication, persistence and academic triumphs of our graduating batch. Welcome awardees, parents, and distinguished guests to the grand ceremony.",
+            "secondaryCTA": {
+              "url": "/convocation-schedule",
+              "label": "Logistics & Schedule"
+            }
+          },
+          "type": "hero_info"
+        },
+        {
+          "id": "home-guests",
+          "data": {
+            "items": [
+              {
+                "url": "/chief-guest",
+                "name": "Dr. Pradyuman Vaja",
+                "role": "Hon'ble Minister for Higher & Technical Education",
+                "image": "/uploads/guest-dr-pradyuman-vaja.png",
+                "category": "The Chief Guest",
+                "description": "Government of Gujarat"
+              },
+              {
+                "url": "/guest-of-honour-2026",
+                "name": "Dr. V. Narayanan",
+                "role": "Hon'ble Chairman",
+                "image": "/uploads/guest-dr-v-narayanan.png",
+                "category": "The Guest of Honour",
+                "description": "Indian Space Research Organisation (ISRO)"
+              },
+              {
+                "url": "#",
+                "name": "Shri Ashok Chaudhary",
+                "role": "Chairman",
+                "image": "/uploads/guest-shri-ashok-chaudhary.png",
+                "category": "The Special Guest",
+                "description": "AMUL (GCMMF) & Dudhsagar Dairy"
+              }
+            ],
+            "title": "Our Distinguished Dignitaries",
+            "category": "19th Convocation",
+            "subtitle": "Welcoming the eminent dignitaries and visionary leaders gracing the 19th Convocation Ceremony."
+          },
+          "type": "guests"
+        },
+        {
+          "id": "home-awardees-metrics",
+          "data": {
+            "title": "19th Convocation at a Glance",
+            "bgImage": "/uploads/convocation-08-158a3767.jpg",
+            "variant": "balanced-split",
+            "subtitle": "Academic highlights and achievements of the graduating batch."
+          },
+          "type": "awardees_stats"
+        },
+        {
+          "id": "home-dg-message",
+          "data": {
+            "align": "left",
+            "image": "/assets/images/portrait.png",
+            "quote": "Education is not merely the acquisition of knowledge; it is the transformation of character, the cultivation of wisdom, and the ignition of a lifelong passion for excellence. Today marks not an end, but a magnificent beginning for every graduate.",
+            "author": "Dr. Mahendra Sharma",
+            "layout": "editorial",
+            "category": "Director General's Message",
+            "citation": "Pro-Chancellor & Director General, Ganpat University",
+            "fontStyle": "serif",
+            "imageSize": "medium",
+            "signature": "",
+            "showAccents": true,
+            "imagePosition": "right",
+            "backgroundTheme": "cream"
+          },
+          "type": "quote"
+        },
+        {
+          "id": "home-president-message",
+          "data": {
+            "align": "left",
+            "image": "/uploads/president-ganpatbhai-patel.png",
+            "quote": "\"Knowledge will take you to the places you want to go. Make sure that you recognize the significance of knowledge as a part of life and what it can do for you. If the fish is taken out of the water, they would have no life. Knowledge is very similar to you.\"",
+            "author": "Ganpatbhai Patel (Padma Shri)",
+            "layout": "editorial",
+            "category": "President's Message",
+            "citation": "Patron-in-Chief, President\nGanpat University",
+            "fontStyle": "serif",
+            "imageSize": "medium",
+            "signature": "",
+            "showAccents": true,
+            "imagePosition": "left",
+            "backgroundTheme": "parchment"
+          },
+          "type": "quote"
+        },
+        {
+          "id": "home-awardees-corner",
+          "data": {
+            "items": [
+              {
+                "icon": "Mail",
+                "year": "Action Required",
+                "title": "Official Invitation",
+                "category": "Invitation",
+                "highlights": [
+                  "Confirm by January 2nd",
+                  "Robe cash deposit: Rs. 500",
+                  "Strict formal dress code"
+                ],
+                "description": "Invitation letter to graduating batch. Check robe collection deposit, timing, dress codes, and confirm attendance."
+              },
+              {
+                "icon": "Calendar",
+                "year": "Schedules",
+                "title": "Event Schedules",
+                "category": "Schedules",
+                "highlights": [
+                  "Reporting: 9:00 - 10:00 AM",
+                  "Procession: 4:30 PM",
+                  "Dinner: 7:00 PM onwards"
+                ],
+                "description": "Complete timetable for reporting, Gown collection, photoshoots, procession timings, and certificate distribution."
+              },
+              {
+                "icon": "FileText",
+                "year": "Guidelines",
+                "title": "Robe & Venue Guidelines",
+                "category": "Guidelines",
+                "highlights": [
+                  "Parents seated by 3:30 PM",
+                  "Robe returning & refund",
+                  "Keep campus clean & green"
+                ],
+                "description": "Discipline, safety rules, seating arrangements, robing spots and instructions for attendees and parents."
+              },
+              {
+                "icon": "Truck",
+                "year": "Logistics",
+                "title": "Bus Transportation",
+                "category": "Transport",
+                "highlights": [
+                  "Ahmedabad: Jivabhai",
+                  "Gandhinagar: Amarsing",
+                  "Mehsana: Ashwinbhai"
+                ],
+                "description": "Complimentary bus routes, pick-up points, timings and coordinator details from major hubs (Ahmedabad, Gandhinagar, Mehsana)."
+              },
+              {
+                "icon": "Camera",
+                "year": "Memories",
+                "title": "Photography Timelines",
+                "category": "Photography",
+                "highlights": [
+                  "Awardees Group: 10:30 AM",
+                  "PhDs & Gold: 3:30 PM",
+                  "UVPCE Garden Venue"
+                ],
+                "description": "Timetable for class group photos, gold medalists and PhD interactions with university patrons and guests."
+              },
+              {
+                "icon": "MapPin",
+                "year": "Directions",
+                "title": "Concern Locations Map",
+                "category": "Locations Map",
+                "highlights": [
+                  "Open Air Theater",
+                  "Sports Complex Pandal",
+                  "Individual Institutes"
+                ],
+                "description": "Exact coordinates and maps for key venues, certificate tables, photoshoots, and dinner counters."
+              }
+            ],
+            "title": "Awardees & Attendees Corner",
+            "columns": 3,
+            "cardType": "academic",
+            "category": "Graduation Central",
+            "subtitle": "Everything you need to know about attendance, schedules, dress codes, transport and venue locations."
+          },
+          "type": "card_grid"
+        },
+        {
+          "id": "home-past-convocation-guests",
+          "data": {
+            "items": [
+              {
+                "icon": "Award",
+                "year": "Jan 8, 2026",
+                "title": "Dr. Pradyuman Vaja",
+                "category": "19th Convocation",
+                "subtitle": "Chief Guest",
+                "description": "• Dr. V. Narayanan • Shri Ashok Chaudhary"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 16, 2025",
+                "title": "Shri Amit Shah",
+                "category": "18th Convocation",
+                "subtitle": "Hon'ble Union Minister of Home Affairs & Cooperation, Govt. of India",
+                "description": "• Shri Rushikesh Patel • Shri Harsh Sanghavi"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 2024",
+                "title": "Dr. Pradyuman Vaja",
+                "category": "17th Convocation",
+                "subtitle": "Chief Guest",
+                "description": "• Smt. Rutvi Sheth"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 5, 2023",
+                "title": "Shri Bhupendrabhai Patel",
+                "category": "16th Convocation",
+                "subtitle": "Hon'ble Chief Minister of Gujarat",
+                "description": "• Shri Rushikeshbhai Patel • Swami Sachhidanand Maharaj"
+              },
+              {
+                "icon": "Award",
+                "year": "Dec 4, 2021",
+                "title": "Shri Bhupendrabhai Patel",
+                "category": "15th Convocation",
+                "subtitle": "Hon'ble Chief Minister of Gujarat",
+                "description": "• Shri Rushikeshbhai Patel"
+              },
+              {
+                "icon": "Award",
+                "year": "Dec 22, 2020",
+                "title": "Dr. Soraya M. Coley",
+                "category": "14th Convocation",
+                "subtitle": "President, Cal Poly Pomona (Virtual Ceremony)",
+                "description": "Virtual Ceremony (No physical guests due to COVID-19 safety measures)"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 5, 2020",
+                "title": "Shri Mansukh Mandaviya",
+                "category": "13th Convocation",
+                "subtitle": "Hon'ble Union Minister of State for Shipping & Chemicals/Fertilizers",
+                "description": "• Shri Mahendra Patel • Shri Raju Shah"
+              },
+              {
+                "icon": "Award",
+                "year": "Dec 2018",
+                "title": "Shri O. P. Kohli",
+                "category": "12th Convocation",
+                "subtitle": "Hon'ble Governor of Gujarat",
+                "description": "• Local State & Industry Representatives"
+              },
+              {
+                "icon": "Award",
+                "year": "Dec 19, 2017",
+                "title": "Dr. Malini V. Shankar, IAS",
+                "category": "11th Convocation",
+                "subtitle": "Director General of Shipping, Ministry of Shipping, Govt. of India",
+                "description": "• Maritime & University Academic Deans"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 4, 2017",
+                "title": "Shri Vijay Rupani",
+                "category": "10th Convocation",
+                "subtitle": "Hon'ble Chief Minister of Gujarat",
+                "description": "• Shri Ganpatbhai Patel"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 12, 2016",
+                "title": "Shri Pratul Shroff",
+                "category": "9th Convocation",
+                "subtitle": "Founder & CEO, eInfochips",
+                "description": "• Corporate Leaders from Gujarat Tech Ecosystem"
+              },
+              {
+                "icon": "Award",
+                "year": "Late 2014",
+                "title": "Shri Saurabh Patel",
+                "category": "8th Convocation",
+                "subtitle": "Hon'ble Minister of Finance & Energy, Govt. of Gujarat",
+                "description": "• Prominent State Tech Entrepreneurs"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 2014",
+                "title": "Prof. S. S. Mantha",
+                "category": "7th Convocation",
+                "subtitle": "Hon'ble Chairman, AICTE",
+                "description": "• Smt. Lata Singh • Dr. Huzaifa Khorakiwala"
+              },
+              {
+                "icon": "Award",
+                "year": "Mid 2012",
+                "title": "Shri S. R. Rao / S. Jagadeesan, IAS",
+                "category": "6th Convocation",
+                "subtitle": "Senior Civil Services & Industry Leadership",
+                "description": "• Shri S. D. Rajgopalan"
+              },
+              {
+                "icon": "Award",
+                "year": "Feb 25, 2012",
+                "title": "Shri Pankajbhai R. Patel",
+                "category": "5th Convocation",
+                "subtitle": "Chairman & Managing Director, Zydus Cadila",
+                "description": "• Executive Board Members"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 22, 2011",
+                "title": "Justice S. J. Mukhopadhaya",
+                "category": "4th Convocation",
+                "subtitle": "Hon'ble Chief Justice, High Court of Gujarat",
+                "description": "• Judicial & Legal Heads"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 4, 2010",
+                "title": "Shri Narendra Modi",
+                "category": "3rd Convocation",
+                "subtitle": "Hon'ble Chief Minister of Gujarat",
+                "description": "• Shri Anilbhai Patel"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 3, 2009",
+                "title": "Dr. D. P. Agrawal",
+                "category": "2nd Convocation",
+                "subtitle": "Hon'ble Chairman, Union Public Service Commission (UPSC)",
+                "description": "• National Level Education Board Administrators"
+              },
+              {
+                "icon": "Award",
+                "year": "Jan 19, 2008",
+                "title": "Dr. Bakulbhai Dholakia",
+                "category": "1st Convocation",
+                "subtitle": "Director, Indian Institute of Management Ahmedabad (IIM-A)",
+                "description": "• Shri Ganpatbhai Patel"
+              }
+            ],
+            "title": "Eminent Guests of Past Convocations",
+            "columns": 3,
+            "cardType": "guest_marquee",
+            "category": "Convocation Heritage",
+            "subtitle": "Honouring the visionary leaders, statesmen, and scientists who have graced Ganpat University's ceremonies across all 19 editions."
+          },
+          "type": "card_grid"
+        },
+        {
+          "id": "home-testimonials",
+          "data": {
+            "items": [
+              {
+                "icon": "Quote",
+                "title": "Mit Patel",
+                "rating": 5,
+                "subtitle": "Graduating Student (SKPCPER)",
+                "description": "It was my immense fortune to be the part of Ganpat University-SKPCPER. The institute has always been excellent in imparting knowledge through industry replicate infrastructure and practical approaches."
+              },
+              {
+                "icon": "Quote",
+                "title": "Lavina Agarwal",
+                "rating": 5,
+                "subtitle": "Graduating Student (Dept of Computer Science)",
+                "description": "I consider myself fortunate for being a part of this 5-Star International Ganpat University. For Me, Life in Ganpat University - Department of Computer Science has been awesome and inspirational. Safest, greenest and cleanest campus."
+              },
+              {
+                "icon": "Quote",
+                "title": "Muskan Khoja",
+                "rating": 5,
+                "subtitle": "Graduating Student (SKPCPER)",
+                "description": "SKPCPER has been nothing less than what I had hoped for. It has nurtured me and made me what I am today. Four years spent here was splendid. It broadens my knowledge and endured me with career excellence."
+              },
+              {
+                "icon": "Quote",
+                "title": "Poojan Kulshreshtha",
+                "rating": 5,
+                "subtitle": "Graduating Student (GUNI-ICT)",
+                "description": "It was my great experience to learn Big Data Analytics at Ganpat University-Institute of Computer Technology. I found professors were highly experienced and cooperative. They taught us various concepts with theoretical and practical perceptions."
+              },
+              {
+                "icon": "Quote",
+                "title": "Mitesh Gajjar",
+                "rating": 5,
+                "subtitle": "Graduating Student (CyberSecurity)",
+                "description": "CyberSecurity is a growing field and getting a master's degree from GUNI helped me a lot. The best thing about this University is the cross-culture interaction between students from various parts of the world. I am grateful."
+              },
+              {
+                "icon": "Quote",
+                "title": "Kirti Prajapati",
+                "rating": 5,
+                "subtitle": "Graduating Student (MSW Department)",
+                "description": "It was a great experience studying at Ganpat University, a memory to cherish for lifetime. My experience at Ganpat University was full of learning and grooming. I am thankful to all the faculties, mentors and entire MSW department."
+              }
+            ],
+            "title": "Graduating Students' Testimonial",
+            "columns": 3,
+            "cardType": "testimonial",
+            "category": "GUNVAN Voices",
+            "subtitle": "Reflections and experiences of our graduating scholars on their journey at Ganpat University."
+          },
+          "type": "card_grid"
+        },
+        {
+          "id": "home-gallery",
+          "data": {
+            "title": "Moments of Glory & Celebration",
+            "images": [
+              {
+                "id": "img-1",
+                "url": "/uploads/convocation-01-0u3a0768.jpg",
+                "title": "Grand Convocation Procession",
+                "category": "ceremony"
+              },
+              {
+                "id": "img-2",
+                "url": "/uploads/convocation-02-0u3a0868.jpg",
+                "title": "Lighting the Ceremonial Lamp",
+                "category": "ceremony"
+              },
+              {
+                "id": "img-3",
+                "url": "/uploads/convocation-03-0u3a0987.jpg",
+                "title": "Dignitaries on the Grand Dais",
+                "category": "ceremony"
+              },
+              {
+                "id": "img-4",
+                "url": "/uploads/convocation-04-0u3a1809.jpg",
+                "title": "Presidential Address to Scholars",
+                "category": "guests"
+              },
+              {
+                "id": "img-5",
+                "url": "/uploads/convocation-05-0u3a1942.jpg",
+                "title": "Gold Medal Award Presentation",
+                "category": "awardees"
+              },
+              {
+                "id": "img-6",
+                "url": "/uploads/convocation-06-0u3a1946.jpg",
+                "title": "Doctoral Degree Conferral",
+                "category": "awardees"
+              },
+              {
+                "id": "img-7",
+                "url": "/uploads/convocation-07-0u3a1947.jpg",
+                "title": "Scholastic Excellence Recognition",
+                "category": "awardees"
+              },
+              {
+                "id": "img-8",
+                "url": "/uploads/convocation-08-158a3767.jpg",
+                "title": "Graduation Cap Toss Celebrations",
+                "category": "campus"
+              },
+              {
+                "id": "img-9",
+                "url": "/uploads/convocation-09-158a3954.jpg",
+                "title": "Faculty & Student Group Portrait",
+                "category": "campus"
+              },
+              {
+                "id": "img-10",
+                "url": "/uploads/convocation-10-158a3965.jpg",
+                "title": "Joyous Moments with Parents",
+                "category": "campus"
+              },
+              {
+                "id": "img-11",
+                "url": "/uploads/convocation-11-158a3966.jpg",
+                "title": "Proud Awardees with Degree Folios",
+                "category": "awardees"
+              },
+              {
+                "id": "img-12",
+                "url": "/uploads/convocation-12-158a9209.jpg",
+                "title": "Ceremonial Academic Robes",
+                "category": "ceremony"
+              },
+              {
+                "id": "img-13",
+                "url": "/uploads/convocation-13-158a9214.jpg",
+                "title": "Honourable Chief Guest Address",
+                "category": "guests"
+              },
+              {
+                "id": "img-14",
+                "url": "/uploads/convocation-14-158a9227.jpg",
+                "title": "Grand Open-Air Convocation Arena",
+                "category": "campus"
+              },
+              {
+                "id": "img-15",
+                "url": "/uploads/convocation-15-dsc02474.jpg",
+                "title": "Cheering Cohort of 2026",
+                "category": "awardees"
+              },
+              {
+                "id": "img-16",
+                "url": "/uploads/convocation-16-dsc02488.jpg",
+                "title": "Valedictorian Scholastic Medal",
+                "category": "awardees"
+              },
+              {
+                "id": "img-17",
+                "url": "/uploads/convocation-17-img_0782.jpg",
+                "title": "Standing Ovation for Graduates",
+                "category": "ceremony"
+              },
+              {
+                "id": "img-18",
+                "url": "/uploads/convocation-18-img_0803.jpg",
+                "title": "Memorable Campus Celebrations",
+                "category": "campus"
+              },
+              {
+                "id": "img-19",
+                "url": "/uploads/convocation-19-img_0804.jpg",
+                "title": "Family & Friends Felicitations",
+                "category": "campus"
+              },
+              {
+                "id": "img-20",
+                "url": "/uploads/convocation-20-img_0901.jpg",
+                "title": "Evening Convocation Illumination",
+                "category": "ceremony"
+              },
+              {
+                "id": "img-21",
+                "url": "/uploads/convocation-21-mhdv5790.jpg",
+                "title": "Scholars in Traditional Robes",
+                "category": "awardees"
+              },
+              {
+                "id": "img-22",
+                "url": "/uploads/convocation-22-_2001672.jpg",
+                "title": "Special Recognition for PhD Scholars",
+                "category": "awardees"
+              },
+              {
+                "id": "img-23",
+                "url": "/uploads/convocation-23-_2001729.jpg",
+                "title": "Convocation Final Procession",
+                "category": "ceremony"
+              }
+            ],
+            "variant": "marquee",
+            "category": "Convocation Moments",
+            "subtitle": "Capturing unforgettable memories, triumphant achievements, and the grand ceremonial spirit of Ganpat University.",
+            "categories": [
+              {
+                "id": "all",
+                "label": "All Moments"
+              },
+              {
+                "id": "ceremony",
+                "label": "Ceremony"
+              },
+              {
+                "id": "awardees",
+                "label": "Awardees"
+              },
+              {
+                "id": "guests",
+                "label": "Dignitaries"
+              },
+              {
+                "id": "campus",
+                "label": "Campus Life"
+              }
+            ]
+          },
+          "type": "gallery"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 1,
+      "createdAt": "2026-06-24T05:57:03.245Z",
+      "updatedAt": "2026-10-03T08:49:36.298Z"
+    },
+    {
+      "id": "cmqrnv6bh0008l9y8xn10rcby",
+      "slug": "chief-guest",
+      "title": "Chief Guest Profile",
+      "metaTitle": "Chief Guest - Dr. Pradyuman Vaja | 19th Convocation GUNI",
+      "metaDescription": "Biography of Dr. Pradyuman Vaja, Hon'ble Minister for Higher and Technical Education, Gujarat.",
+      "sections": [
+        {
+          "id": "cg-hero",
+          "data": {
+            "title": "Dr. Pradyuman Vaja",
+            "variant": "subpage-light",
+            "subtitle": "Hon'ble Minister for Higher & Technical Education, Government of Gujarat",
+            "isSubpage": true,
+            "description": "Introducing our esteemed Chief Guest for the 19th Convocation of Ganpat University.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "short",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "cg-bio",
+          "data": {
+            "body": [
+              "Dr. Pradyuman Ganubhai Vaja is an esteemed leader, dedicated public servant, and medical professional serving as the Cabinet Minister for Higher & Technical Education in the Government of Gujarat.",
+              "Born in Gujarat, he completed his MBBS, DGO, and MD degrees, establishing himself as a distinguished medical practitioner before dedicating his life to public welfare, social justice, and educational transformation.",
+              "Inspired by public service, Dr. Pradyuman Ganubhai Vaja entered active politics with the Bharatiya Janata Party (BJP). He was elected as a Member of the Gujarat Legislative Assembly from the Kodinar Assembly constituency in the Gir Somnath district.",
+              "In the 2022 Gujarat Legislative Assembly elections, he achieved a decisive victory by securing 77,794 votes, defeating his nearest opponent by a historic margin of 19,386 votes.",
+              "With a rare combination of experience in medicine, law, and visionary governance, Dr. Pradyuman Ganubhai Vaja continues to steer Gujarat's higher education system towards academic excellence, industry innovation, and holistic student development."
+            ],
+            "role": "Hon'ble Minister for Higher & Technical Education",
+            "title": "Dr. Pradyuman Vaja",
+            "layout": "editorial",
+            "category": "The Chief Guest",
+            "imageAlt": "Dr. Pradyuman Vaja Portrait",
+            "imageUrl": "/uploads/guest-dr-pradyuman-vaja.png",
+            "sidePanel": {
+              "type": "list",
+              "items": [],
+              "title": "Government of Gujarat",
+              "subtitle": "Hon'ble Minister for Higher & Technical Education"
+            },
+            "organization": "Government of Gujarat"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 2,
+      "createdAt": "2026-06-24T05:57:03.294Z",
+      "updatedAt": "2026-10-03T04:50:25.934Z"
+    },
+    {
+      "id": "cmqrnv6bj0009l9y8bo3j6aze",
+      "slug": "guest-of-honour-2026",
+      "title": "Guest of Honour Profile",
+      "metaTitle": "Guest of Honour - Dr. V. Narayanan | 19th Convocation GUNI",
+      "metaDescription": "Biography of Dr. V. Narayanan, Secretary, Department of Space and Chairman, ISRO.",
+      "sections": [
+        {
+          "id": "goh-hero",
+          "data": {
+            "title": "Dr. V. Narayanan",
+            "variant": "subpage-light",
+            "subtitle": "Hon'ble Chairman, Indian Space Research Organisation (ISRO)",
+            "isSubpage": true,
+            "description": "Introducing our esteemed Guest of Honour for the 19th Convocation of Ganpat University.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "short",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "goh-bio",
+          "data": {
+            "body": [
+              "Dr. V. Narayanan is a world-renowned Rocket and Spacecraft Propulsion Expert serving as the Secretary of the Department of Space and Chairman of the Indian Space Research Organisation (ISRO).",
+              "Joining ISRO in 1984, Dr. Narayanan has dedicated over four decades to India's space program. In the initial phase of his career at the Vikram Sarabhai Space Centre (VSSC), he made foundational contributions to Solid Propulsion across Sounding Rockets, ASLV, and PSLV launch vehicles.",
+              "After completing his M.Tech in Cryogenic Engineering with First Rank from IIT Kharagpur in 1989, he joined the Cryogenic Propulsion Programme at LPSC, playing a pivotal role in the development and operationalisation of indigenous cryogenic subsystems for GSLV Mk-II and GSLV Mk-III.",
+              "As Project Director of the prestigious C25 Cryogenic Project, Dr. Narayanan provided visionary techno-managerial leadership in the realization of the 25-tonne cryogenic propulsion system for GSLV Mk-III, placing India among the select group of nations possessing advanced cryogenic capability.",
+              "Dr. Narayanan played central leadership roles in flagship national missions including Chandrayaan-2, Chandrayaan-3, and the Gaganyaan Human Spaceflight Programme, delivering critical propulsion reliability for launch vehicles, landers, and crew modules.",
+              "He earned his Ph.D. in Aerospace Engineering from IIT Kharagpur in 2001 and has received prestigious national accolades including the Astronautical Society of India Gold Medal, Distinguished Alumnus Award from IIT Kharagpur, and an Honorary Doctorate (D.Sc.)."
+            ],
+            "role": "Hon'ble Chairman",
+            "title": "Dr. V. Narayanan",
+            "layout": "editorial",
+            "category": "The Guest of Honour",
+            "imageAlt": "Dr. V. Narayanan Portrait",
+            "imageUrl": "/uploads/guest-dr-v-narayanan.png",
+            "sidePanel": {
+              "type": "list",
+              "items": [],
+              "title": "Indian Space Research Organisation (ISRO)",
+              "subtitle": "Hon'ble Chairman"
+            },
+            "organization": "Indian Space Research Organisation (ISRO)"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 3,
+      "createdAt": "2026-06-24T05:57:03.296Z",
+      "updatedAt": "2026-10-03T04:50:25.940Z"
+    },
+    {
+      "id": "cmqrnv6bt000al9y82xn5qf4e",
+      "slug": "president-ganpat-university",
+      "title": "President Profile",
+      "metaTitle": "President - Shri Ganpatbhai Patel (Padma Shri) | GUNI",
+      "metaDescription": "Profile and philanthropic work of Shree Ganpat Bhai Patel, President & Patron-in-Chief of Ganpat University.",
+      "sections": [
+        {
+          "id": "pres-hero",
+          "data": {
+            "title": "Padmashri Ganpat Patel (D.Lit.)",
+            "variant": "subpage-light",
+            "subtitle": "President & Patron-in-Chief, Ganpat University",
+            "isSubpage": true,
+            "description": "The visionary founder and patron guiding the ethos of Ganpat University.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "short",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "pres-bio",
+          "data": {
+            "body": [
+              "Padmashri Ganpat Patel (D.Lit.) is a visionary philanthropist, industrialist, and the revered President & Patron-in-Chief of Ganpat University.",
+              "Born in a rural agrarian family in Mehsana district, Gujarat, his journey from humble beginnings to founding Cherokee International in the United States exemplifies extraordinary perseverance, technical brilliance, and entrepreneurial grit.",
+              "Driven by a profound conviction that education is the ultimate catalyst for human elevation and rural prosperity, Shri Ganpatbhai Patel channeled his life's resources and global goodwill into establishing Ganpat University in 2005.",
+              "Under his visionary stewardship, Ganpat Vidyanagar has flourished into a world-class high-tech campus empowering tens of thousands of scholars with experiential learning, research excellence, and global opportunities.",
+              "In recognition of his distinguished contributions to literature and education, the Government of India conferred upon him the prestigious Padma Shri in 2019."
+            ],
+            "role": "President & Patron-in-Chief",
+            "title": "Padmashri Ganpat Patel (D.Lit.)",
+            "layout": "editorial",
+            "category": "Patron-in-Chief",
+            "imageAlt": "Padmashri Ganpat Patel Portrait",
+            "imageUrl": "/uploads/ganpat-bhai-patel.png",
+            "sidePanel": {
+              "type": "list",
+              "items": [],
+              "title": "Ganpat University",
+              "subtitle": "President & Patron-in-Chief"
+            },
+            "organization": "Ganpat University"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 4,
+      "createdAt": "2026-06-24T05:57:03.305Z",
+      "updatedAt": "2026-10-03T04:50:25.942Z"
+    },
+    {
+      "id": "cmqrnv6bv000bl9y8myvbwtoy",
+      "slug": "director-general",
+      "title": "Director General Profile",
+      "metaTitle": "Director General - Dr. Mahendra Sharma | GUNI",
+      "metaDescription": "Academic profile and message of Dr. Mahendra Sharma, Pro-Chancellor and Director General, Ganpat University.",
+      "sections": [
+        {
+          "id": "dg-hero",
+          "data": {
+            "title": "Prof. (Dr.) Mahendra Sharma",
+            "variant": "subpage-light",
+            "subtitle": "Joint President & Group Pro Chancellor, Ganpat University",
+            "isSubpage": true,
+            "description": "Leading the academic excellence and global initiatives of Ganpat University.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "short",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "dg-bio",
+          "data": {
+            "body": [
+              "Prof. (Dr.) Mahendra Sharma is an eminent academician, higher education strategist, and the Joint President & Group Pro Chancellor of Ganpat University.",
+              "With over three decades of distinguished leadership across premier universities and technical institutes, Dr. Sharma has championed industry-aligned curricula, interdisciplinary research ecosystems, and international academic partnerships.",
+              "Under his academic guidance, Ganpat University has achieved stellar national accreditations, five-star state rankings, and cutting-edge centers of excellence in emerging technologies and applied sciences."
+            ],
+            "role": "Joint President & Group Pro Chancellor",
+            "title": "Prof. (Dr.) Mahendra Sharma",
+            "layout": "editorial",
+            "category": "Leadership",
+            "imageAlt": "Prof. (Dr.) Mahendra Sharma Portrait",
+            "imageUrl": "/uploads/mahendra-sharma.png",
+            "sidePanel": {
+              "type": "list",
+              "items": [],
+              "title": "Ganpat University",
+              "subtitle": "Joint President & Group Pro Chancellor"
+            },
+            "organization": "Ganpat University"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 5,
+      "createdAt": "2026-06-24T05:57:03.307Z",
+      "updatedAt": "2026-10-03T04:50:26.082Z"
+    },
+    {
+      "id": "cmqrnv6by000cl9y8ifjdpmjv",
+      "slug": "19th-convocation-3",
+      "title": "Invitation for Attendees",
+      "metaTitle": "19th Convocation Invitation | Ganpat University",
+      "metaDescription": "Official convocation invitation, robe deposit details, hashtags, and dress code rules for graduating students.",
+      "sections": [
+        {
+          "id": "invite-hero",
+          "data": {
+            "title": "Invitation for Attendees",
+            "bgImage": "/uploads/convocation-08-158a3767.jpg",
+            "variant": "subpage-light",
+            "subtitle": "19th Convocation of Ganpat University",
+            "isSubpage": true,
+            "description": "Official invitation and instructions for our graduating students.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "invite-details",
+          "data": {
+            "body": [
+              "Dear Graduating Student,",
+              "Greetings from Ganpat University!!!",
+              "We are pleased to inform you that the 19th Convocation of Ganpat University is scheduled on 8th January 2026 at Ganpat University.",
+              "You are cordially invited to attend the Convocation Ceremony and receive your Degree/Diploma \"In-Person\".",
+              "Kindly confirm your presence on or before 2nd January 2026 through the convocation attendance confirmation link - Click Here",
+              "Non-submission of consent will be considered as your agreement to remain Absent.",
+              "Kindly refer the website https://convocation.guni.ac.in frequently for the detailed schedule, profile of guests and guidelines for attending the 19th convocation. You have to pay INR Rs. 500/- (Five Hundred Only) in cash as a deposit for the Convocation Rob (Gown) at your respective institute, which will be refunded on returning the Gown after the event. You are requested to take your seat in the pandal before 02:00 pm.",
+              "Selfie / Experience Zones and Social Media Posts",
+              "Ganpat University is set in serene campus with exquisite natural beauty. On the occasion of Convocation, we have created several special selfie and experience zones at various locations in the campus for the graduating students to click the photos for life-long memory and post them on your social medial accounts using the following hashtags - #GanpatUniversity #GanpatConvocation #GUNIConvocation #19thConvocation #ConvocationDay #GraduationDay #ClassOf2025 #GUNI #GUNVAN",
+              "Still interested further to share your experiences, feedback, or photographs on Ganpat University's official Social Media platforms, please feel free to WhatsApp on (+91) 99743 38707, (+91) 99241 97787.",
+              "Dress Code for the Awardees",
+              "Male Students - Formal attire preferably a light-coloured plain shirt, dark-coloured full trouser, and black shoes. (Kindly avoid stripes, printed, check shirts, and T-Shirts).",
+              "Female Students - Saree of sober colour and decent design or Official/Formal Attire suiting to the occasion. [Kindly avoid Jeans, T-Shirts, etc.].",
+              "For any assistance, write to us at \"convocation@ganpatuniversity.ac.in\" or the following helpline numbers:",
+              "University Reception - (+91) 8200788446",
+              "Examination Section - (+91) 9328801750",
+              "Kindly feel free to interact with the Faculty/Institute wise Contact Numbers appended herewith in case you have further query.",
+              "Looking forward to welcoming you to your own campus.",
+              "We are proudly endorsing you as GUNVAN (GUNI) ALUMNI.",
+              "Best Wishes"
+            ],
+            "title": "Dear Graduating Students,",
+            "layout": "centered",
+            "category": "Official Invite"
+          },
+          "type": "narrative"
+        },
+        {
+          "id": "invite-cards",
+          "data": {
+            "items": [
+              {
+                "icon": "Clock",
+                "title": "Schedule Summary",
+                "description": "Start Date:January 8, 2026 • Start Time:4:30pm • End Date:January 8, 2026 • Location:Ganpat University"
+              },
+              {
+                "icon": "Phone",
+                "title": "Helpline contacts",
+                "description": "University Reception: +91 8200788446 \n Examination Section: +91 9328801750"
+              }
+            ],
+            "title": "Event & Logistics Info",
+            "columns": 2,
+            "cardType": "standard",
+            "category": "Event Info"
+          },
+          "type": "card_grid"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 6,
+      "createdAt": "2026-06-24T05:57:03.310Z",
+      "updatedAt": "2026-10-01T10:26:11.770Z"
+    },
+    {
+      "id": "cmqrnv6c1000dl9y8okkjvqh8",
+      "slug": "guideline-for-convocation",
+      "title": "Guidelines for Convocation",
+      "metaTitle": "Guidelines for Convocation | 19th Convocation GUNI",
+      "metaDescription": "Important rules, robe collection locations, discipline codes, and guidelines to be followed during the ceremony.",
+      "sections": [
+        {
+          "id": "guides-hero",
+          "data": {
+            "title": "Guideline for Convocation",
+            "variant": "subpage-light",
+            "subtitle": "Attendee Discipline & Code of Conduct",
+            "isSubpage": true,
+            "description": "Please read and follow these guidelines to maintain decorum during the ceremony.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "guides-list",
+          "data": {
+            "body": [
+              "Awardees are requested to review and strictly adhere to the following rules regarding registration, procession, photography, and dining during the event."
+            ],
+            "title": "Ceremony & Robing Rules",
+            "layout": "principles",
+            "category": "Discipline",
+            "sidePanel": {
+              "items": [
+                "Robe Collection: Get your registration and collect your Robe from the designated places at your respective institutes.",
+                "Procession Discipline: Maintain proper distance and discipline during the procession.",
+                "Seating: Occupy your pre-allocated seat at the Ceremony Venue before the procession enters the pandal. Do not move the chairs.",
+                "Parents Seating: Parents and companions will directly occupy their seats at the Venue by 03:30 PM.",
+                "Disbursal Discipline: Maintain discipline, silence, and social distancing while leaving the venue after completion of the ceremony.",
+                "Group Photo: Students shall maintain social distance before, during, and after group photos.",
+                "Experience & Dining: Capture your memories in the experience zone and have dinner at designated counters in the Dinner Zone."
+              ]
+            },
+            "categoryIcon": "FileText"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 7,
+      "createdAt": "2026-06-24T05:57:03.314Z",
+      "updatedAt": "2026-06-24T06:32:35.854Z"
+    },
+    {
+      "id": "cmqrnv6c7000el9y89us8t3ry",
+      "slug": "layout-for-awardees",
+      "title": "Venue Locations Map",
+      "metaTitle": "Campus Layout & Locations Map | 19th Convocation GUNI",
+      "metaDescription": "Layout map of Ganpat University campus showing the ceremony tent, photography zones, and dining areas.",
+      "sections": [
+        {
+          "id": "layout-hero",
+          "data": {
+            "title": "Concern Locations Map",
+            "bgImage": "/uploads/convocation-08-158a3767.jpg",
+            "variant": "subpage-light",
+            "subtitle": "Ganpat Vidyanagar Campus Layout",
+            "isSubpage": true,
+            "description": "Interactive map showing the exact layouts for the Convocation ceremony.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "layout-map",
+          "data": {
+            "title": "Campus Seating & Locations Layout Map",
+            "mediaUrl": "/uploads/convocation-15-dsc02474.jpg",
+            "mediaType": "image",
+            "aspectRatio": "video",
+            "description": "Complete visual map of the Open Air Theater, parking, robing centers, and dining complexes."
+          },
+          "type": "media"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 8,
+      "createdAt": "2026-06-24T05:57:03.316Z",
+      "updatedAt": "2026-10-01T10:27:46.361Z"
+    },
+    {
+      "id": "cmqrnv6cb000fl9y8akmbu69d",
+      "slug": "convocation-schedule",
+      "title": "Convocation Schedule",
+      "metaTitle": "Convocation Ceremony Schedule | 19th Convocation GUNI",
+      "metaDescription": "Detailed schedule and timings of the 19th Convocation procession, welcoming remarks, guest addresses, and medal distributions.",
+      "sections": [
+        {
+          "id": "schedule-hero",
+          "data": {
+            "title": "Convocation Schedule",
+            "bgImage": "/uploads/convocation-15-dsc02474.jpg",
+            "variant": "subpage-light",
+            "subtitle": "Official Procession & Ceremony Timeline",
+            "isSubpage": true,
+            "description": "Follow the sequence of events during the 19th Convocation Ceremony.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "schedule-table-block",
+          "data": {
+            "body": "<div class=\"overflow-x-auto my-8 border border-slate-200/60 rounded-xl shadow-sm bg-white\"><table class=\"min-w-full divide-y divide-slate-200 font-sans text-xs md:text-sm\"><tr class=\"bg-slate-50 border-b font-semibold text-slate-700\"><th class=\"px-6 py-3 text-left border-b border-slate-200\">TIMING</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">DETAILED SCHEDULE</th></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">04.30 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Convocation Procession Starts</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">04.40 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Declaring the Convocation Open by the President and Invocation</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">04.42 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Welcome Address by the Group Pro Chancellor (Dr. Mahendra Sharma)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">04.55 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Address by the Special Guest (Shri Ashok Chaudhary)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">05.00 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Conferment of Degrees and Diplomas</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">05.10 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Address by the President, Ganpat University (Dr. Ganpat I. Patel)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">05.15 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Award of Scholastic Medals</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">05.30 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Address by the Guest of Honour (Dr. V. Narayanan)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">05.45 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Convocation Address by the Chief Guest (Dr. Pradyuman Vaja)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">06.00 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Concluding Address by the Acting Director General (Dr. Rakesh Patel)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">06.05 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Declaring the Convocation Close by the President, Ganpat University</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">06.10 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">National Anthem</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">06.15 PM</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Convocation Procession Returns</td></tr></table></div>",
+            "title": "Procession Timeline (January 8, 2026)",
+            "subtitle": "Exact timing and sequence of the official convocation activities.",
+            "fullWidth": false
+          },
+          "type": "custom"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 9,
+      "createdAt": "2026-06-24T05:57:03.324Z",
+      "updatedAt": "2026-10-01T10:26:11.882Z"
+    },
+    {
+      "id": "cmqrnv6cf000gl9y86yxqeo8f",
+      "slug": "schedule-for-gold-medalists-and-phd-awardees",
+      "title": "Gold Medalists & PhD Schedule",
+      "metaTitle": "Gold Medalist & PhD Schedule | 19th Convocation GUNI",
+      "metaDescription": "Rehearsal timing, pre-convocation studio interviews, group photography, and coordinator contacts for PhD and Gold Medalists.",
+      "sections": [
+        {
+          "id": "gold-hero",
+          "data": {
+            "title": "Gold Medalists & PhD",
+            "bgImage": "/uploads/convocation-15-dsc02474.jpg",
+            "variant": "subpage-light",
+            "subtitle": "Timetable & Rehearsal Guidelines",
+            "isSubpage": true,
+            "description": "Reporting, rehearsals, photoshoot, and ISRO Chairman interaction schedule for distinguished awardees.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "gold-table-block",
+          "data": {
+            "body": "<div class=\"overflow-x-auto my-8 border border-slate-200/60 rounded-xl shadow-sm bg-white\"><table class=\"min-w-full divide-y divide-slate-200 font-sans text-xs md:text-sm\"><tr class=\"bg-slate-50 border-b font-semibold text-slate-700\"><th class=\"px-6 py-3 text-left border-b border-slate-200\">Time</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Particulars</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Venue</th></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">09.00 am - 09.30 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Reporting and Collection of Gown-cum-Apron & Scarf by Ph. D & Gold Medal Awardees</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">UVPCE Building (For UVPCE, ICT, KKIASR) BSPP Building (For BSPP & IOT) SKPCPER (For SKPCPER, CHAS & MUIS) VMPCMS (for VMPCMS) AMPICS (For AMPICS & DCS) MBA New Building (For VMPIM, DSW, CMS, CMSR & FADP)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">09.30 am - 10.00 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Registration for rehearsal of convocation Procession & collection of Badge by Ph. D & Gold Medal Awardees</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">GUNI- Incubation Centre ,GUNI - Studio Room, New Engineering Building, Ground Floor</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">09:30 am - 01:00 pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Interview for Live-webcasting (with gown & scarf dressed up) pre-convocation recording of Ph. D & Gold Medal Awardees</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">GUNI- Incubation Centre ,GUNI - Studio Room, NEW UVPCE Building , Ground Floor</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">10.30 am - 11.30 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Participation in Rehearsal of Convocation Procession</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Opp. UVPCE Main Building, in front of B. S. Patel Polytechnic (BSPP) building</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">2.30 pm - 3.30 pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Interaction with Dr. V. Narayanan, Hon'ble Chairman, ISRO</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">MBA Seminar Hall</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">3.30 pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Group Photo: All Ph.D. & Gold Medal Awardees with Hon. President, Hon. Group Pro-Chancellor, Pro Vice-Chancellors, Executive Registrar, Executive Deans & Deans.</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">UVPCE Garden front of UVPCE Building: More Details</td></tr></table></div>",
+            "title": "Schedule of Activities",
+            "subtitle": "Timings for Gold Medalists & Doctorates.",
+            "fullWidth": false
+          },
+          "type": "custom"
+        },
+        {
+          "id": "gold-contacts",
+          "data": {
+            "items": [
+              {
+                "icon": "Phone",
+                "title": "Mr. Y. B. Patel",
+                "description": "Mobile Contact: 9824537072"
+              },
+              {
+                "icon": "Phone",
+                "title": "Mr. Pranav Khamar",
+                "description": "Mobile Contact: 9904266041"
+              }
+            ],
+            "title": "Route & Rehearsal Coordinators",
+            "columns": 2,
+            "cardType": "standard",
+            "category": "Support Team"
+          },
+          "type": "card_grid"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 10,
+      "createdAt": "2026-06-24T05:57:03.327Z",
+      "updatedAt": "2026-10-01T10:26:11.997Z"
+    },
+    {
+      "id": "cmqrnv6ch000hl9y8brfpnnms",
+      "slug": "schedule-for-the-awardees",
+      "title": "Schedule for the Awardees",
+      "metaTitle": "General Awardees Schedule | 19th Convocation GUNI",
+      "metaDescription": "Reporting, gown distribution, seating timelines, degree distributions, and dinner timings for graduating students.",
+      "sections": [
+        {
+          "id": "awardees-hero",
+          "data": {
+            "title": "Schedule for the Awardees",
+            "variant": "subpage-light",
+            "subtitle": "Student Timeline & Logistics",
+            "isSubpage": true,
+            "description": "Ensure you arrive on time to collect your gown and take your pre-allocated seat.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "awardees-table-block",
+          "data": {
+            "body": "<div class=\"overflow-x-auto my-8 border border-slate-200/60 rounded-xl shadow-sm bg-white\"><table class=\"min-w-full divide-y divide-slate-200 font-sans text-xs md:text-sm\"><tr class=\"bg-slate-50 border-b font-semibold text-slate-700\"><th class=\"px-6 py-3 text-left border-b border-slate-200\">Time</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Particulars</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Venue</th></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">9.00am - 10.00am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Reporting and Collection of Gown-cum-Apron & scarf by Graduands (Awardees)</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">UVPCE Building ((For UVPCE, ICT,KKIASR) BSPP Library (For BSPP & IOT) SKPCPER (for SKPCPER, CHAS & MUIS ) VMPCMS (for VMPCMS) AMPICS (For AMPICS & DCS) MBA New Building (For VMPIM, DSW, CMS, CMSR & FADP)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">10:30am - 01:00pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Group Photos: Graduating Batch 2025 All Classmates, Executive Dean, Principal, Faculty members</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">More Details Click Here</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">3.00pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Occupy your pre-allocated seat at the Ceremony Venue</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Open Air Theater</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">04.30pm - 06.15pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">19th Convocation Ceremony</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Open Air Theater</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">05.30pm - 06.30pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Distribution of Degree Certificate</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">UVPCE Building (For UVPCE, ICT,KKIASR) BSPP Library (For BSPP & IOT) SKPCPER (for SKPCPER, CHAS & MUIS) VMPCMS (for VMPCMS) AMPICS (For AMPICS & DCS) MBA New Building (For VMPIM, DSW, CMS, CMSR & FADP)</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">07:00pm onwards</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Dinner - Awardees, Parents And Invited Guests</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Dinner Venue: Pandal @ Sports Complex</td></tr></table></div>",
+            "title": "Timetable of Events",
+            "subtitle": "General awardee activities starting from 9:00 AM.",
+            "fullWidth": false
+          },
+          "type": "custom"
+        },
+        {
+          "id": "awardees-notes",
+          "data": {
+            "body": [
+              "Photography is prohibited once the convocation procession starts",
+              "Movement from the seating area is strictly prohibited in the convocation pandal during the ceremony",
+              "Use restrooms before seating in the pandal and take a seat before the procession starts"
+            ],
+            "title": "Important Instructions",
+            "layout": "personal_message",
+            "category": "Notice Board",
+            "categoryIcon": "Info"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 11,
+      "createdAt": "2026-06-24T05:57:03.330Z",
+      "updatedAt": "2026-06-24T06:32:35.901Z"
+    },
+    {
+      "id": "cmqrnv6ck000il9y8td7a5k5f",
+      "slug": "group-photography",
+      "title": "Group Photography Schedule",
+      "metaTitle": "Class Group Photo Schedule | 19th Convocation GUNI",
+      "metaDescription": "Timing schedule and location guidelines for graduating batch group photoshoots with faculty members.",
+      "sections": [
+        {
+          "id": "photo-hero",
+          "data": {
+            "title": "Group Photography",
+            "variant": "subpage-light",
+            "subtitle": "Classroom & Distinguished Photoshoots",
+            "isSubpage": true,
+            "description": "Timings and venues for capturing graduation batch photographs.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "photo-table-1",
+          "data": {
+            "body": "<div class=\"overflow-x-auto my-8 border border-slate-200/60 rounded-xl shadow-sm bg-white\"><table class=\"min-w-full divide-y divide-slate-200 font-sans text-xs md:text-sm\"><tr class=\"bg-gradient-to-r from-[#002147] to-[#0a3563] text-white font-bold text-sm tracking-wide\"><td colspan=\"4\" class=\"px-6 py-4 border-b border-slate-200/50\">Gold Medalists and PhD Awardees Group Photography</td></tr><tr class=\"bg-slate-50 border-b font-semibold text-slate-700\"><th class=\"px-6 py-3 text-left border-b border-slate-200\">Time</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Particulars</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Venue</th></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">3:30 pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Group Photos: All PhD. & Gold Medal Awardees with Hon. President, Hon. Group Pro-Chancellor, Pro Vice-Chancellors, Executive Registrar, Executive Deans & Deans.</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">UVPCE Garden front of UVPCE Building</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\"></td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Gold Medalist</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">More Details Click Here</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Ph.D. Awardees</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">More Details Click Here</td></tr></table></div>",
+            "title": "Doctorates & Medalists Photoshoot",
+            "subtitle": "Timing: 3:30 PM",
+            "fullWidth": false
+          },
+          "type": "custom"
+        },
+        {
+          "id": "photo-table-2",
+          "data": {
+            "body": "<div class=\"overflow-x-auto my-8 border border-slate-200/60 rounded-xl shadow-sm bg-white\"><table class=\"min-w-full divide-y divide-slate-200 font-sans text-xs md:text-sm\"><tr class=\"bg-gradient-to-r from-[#002147] to-[#0a3563] text-white font-bold text-sm tracking-wide\"><td colspan=\"4\" class=\"px-6 py-4 border-b border-slate-200/50\">Awardees Group Photography</td></tr><tr class=\"bg-slate-50 border-b font-semibold text-slate-700\"><th class=\"px-6 py-3 text-left border-b border-slate-200\">Time</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Particulars</th><th class=\"px-6 py-3 text-left border-b border-slate-200\">Venue</th></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">10:30 am - 01:00 pm</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Group Photos: Graduating Batch 2025 All Classmates, Executive Dean, Principal, Faculty members</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">UVPCE Garden front of UVPCE Building: UVPCE, ICT, BSPP</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">More Details Click Here</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">New MBA building front-VMPIM: VMPIM, VMPCMS, CMSR, DSW KKIASR, IOT, IOA, IOD</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">More Details Click Here</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Main Gate of AMPICS Building: AMPICS, DCS, SKPCPER, MUIS, CHAS</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">More Details Click Here</td></tr></table></div>",
+            "title": "Faculty Class Photoshoot",
+            "subtitle": "Timing: 10:30 AM to 1:00 PM",
+            "fullWidth": false
+          },
+          "type": "custom"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 12,
+      "createdAt": "2026-06-24T05:57:03.332Z",
+      "updatedAt": "2026-06-24T06:32:35.903Z"
+    },
+    {
+      "id": "cmqrnv6cp000jl9y8v38oenoc",
+      "slug": "bus-transportation",
+      "title": "Bus Transportation",
+      "metaTitle": "Bus Transportation Routes & Contacts | 19th Convocation GUNI",
+      "metaDescription": "Complimentary bus routes, departure timings, and coordinator phone numbers from Ahmedabad, Gandhinagar, and Mehsana.",
+      "sections": [
+        {
+          "id": "bus-hero",
+          "data": {
+            "title": "Bus Transportation",
+            "bgImage": "/uploads/convocation-01-0u3a0768.jpg",
+            "variant": "subpage-light",
+            "subtitle": "Complimentary Pick-up Routes",
+            "isSubpage": true,
+            "description": "Ganpat University provides transportation from major hubs. Check pick-up details below.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "bus-table-block",
+          "data": {
+            "body": "<div class=\"overflow-x-auto my-8 border border-slate-200/60 rounded-xl shadow-sm bg-white\"><table class=\"min-w-full divide-y divide-slate-200 font-sans text-xs md:text-sm\"><tr class=\"bg-gradient-to-r from-[#002147] to-[#0a3563] text-white font-bold text-sm tracking-wide\"><td colspan=\"5\" class=\"px-6 py-4 border-b border-slate-200/50\">Ahmedabad/Gandhinagar to Ganpat University Bus Route</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Departure time from the first stand</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Return time from GNU</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Bus</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Route</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Contact</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">6:50 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Isanpur, Godasar, Jasodanagar, Baroda Express, CTM, Wonder Point, Rabari Colony, Rajendra Nagar, Soni-ni-Chali, Virat Nagar, Khodiyarnagar, Thakkarnagar, Bajrang Ashram, Vijaypark, Krishnanagar, Galaxy, Kotarpur, India Bridge, Bhat Circle, Koba, PDPU, Raysan, Raksha Shakti C/R, CH0 to CH7, Charedi, Pethapur to GUNI.</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Jivabhai-9924203080</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Shyamal, Shivranjani, Keshavbaug, Andhjan Mandal, Topa Circle, AEC, Pallav, Akhbarnagar, RTO, Sabarmati ST, Vishat, Chandkhda, Zundal, Gandhinagar GH0 to GH7 (ઘ ) Road, Randheja to GUNI.</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Amarsing-9824304179</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Iskcon, Pakvana, Thaltej, Zudas, Highcourt, Gota, Vaishnav Devi, Adalaj, Kh0 To KH 6, Radheja to GUNI.</td></tr><tr class=\"bg-gradient-to-r from-[#002147] to-[#0a3563] text-white font-bold text-sm tracking-wide\"><td colspan=\"5\" class=\"px-6 py-4 border-b border-slate-200/50\">Mehsana to Ganpat University Bus Route</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Departure time from the first stand</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Return time from GNU</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Bus</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Route</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Contact</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">10:00 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Mehsana (Radhanpur Road): Golden Circle, Rajdhani, Sai Krishna, Radhanpur C/R, Bus Stand, Para Towar to GUNI.</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Ashwinbhai-9924340192 Satishbhai-9428386420</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">10:00 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Mehsana (Modhera Road): Man Pharma, Avsar Party Plot, Nirma/FCI, Rajkamal Petrol pump, Gayatri Mandir, Nagalpur, Wide Angle, Palavasna C/R to GUNI</td></tr><tr class=\"bg-gradient-to-r from-[#002147] to-[#0a3563] text-white font-bold text-sm tracking-wide\"><td colspan=\"5\" class=\"px-6 py-4 border-b border-slate-200/50\">North Gujarat & Surrounding Areas to the Ganpat University Bus Route</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Departure time from the first stand</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Return time from GNU</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Bus</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Route</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Contact</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">6:15 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Himmatnagar - Gadhoda Circle, Mahavir Nagar, Post office, Mehta Pura, RTO, Vijapur, Dabhala</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Kuldeepbhai-9714093939</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">6:45 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Palanpur / Siddhpur - Gathaman Gate, ST workshop, Aroma Circle, Kanodar, Chhapi, Dhethli Road, BinduSarovar</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Patan - GEB, GayatriMandir, Bus Stand, Uni. Road, Balisana</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:50 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Visnagar - Kansa Circle, ITI, Bus Stand</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:30 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Unjha - Bus Stand, Highway Circle</td></tr><tr class=\"hover:bg-slate-50/50 transition-colors border-b border-slate-150\"><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:30 am</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">7:00 pm or Completion of function</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">1</td><td class=\"px-6 py-4 text-slate-650 font-medium leading-relaxed\">Kadi - Bhagyoday Circle, Vadwala Hanuman, Paninitaki, Pajarapol, Nandasan</td></tr></table></div>",
+            "title": "Bus Routes, Schedules & Coordinators",
+            "subtitle": "Ahmedabad, Gandhinagar, Mehsana and surrounding areas.",
+            "fullWidth": false
+          },
+          "type": "custom"
+        },
+        {
+          "id": "bus-notes",
+          "data": {
+            "body": [
+              "Keep in touch with the respective route coordinator for assistance.",
+              "Kindly reach the respective bus stop on time."
+            ],
+            "title": "Coordination Guidelines",
+            "layout": "personal_message",
+            "category": "General instructions",
+            "categoryIcon": "Info"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 13,
+      "createdAt": "2026-06-24T05:57:03.337Z",
+      "updatedAt": "2026-10-01T10:26:12.087Z"
+    },
+    {
+      "id": "cmqrnv6dq000kl9y8i6ngacb1",
+      "slug": "gallery",
+      "title": "Gallery Archive",
+      "metaTitle": "Convocation Gallery Archive | Ganpat University",
+      "metaDescription": "Visual archive of graduation ceremony snapshots spanning 12th to 18th convocations of Ganpat University.",
+      "sections": [
+        {
+          "id": "gallery-hero",
+          "data": {
+            "title": "Gallery Archive",
+            "bgImage": "/uploads/convocation-01-0u3a0768.jpg",
+            "variant": "subpage-light",
+            "subtitle": "Visual History of Excellence",
+            "isSubpage": true,
+            "description": "Review images of pride and joy from our past convocation ceremonies.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "gallery-photos",
+          "data": {
+            "title": "Visual Memories",
+            "images": [
+              {
+                "id": 1,
+                "url": "/uploads/convocation-01-0u3a0768.jpg",
+                "title": "Convocation Ceremony Moment 1",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-01-0u3a0768.jpg"
+              },
+              {
+                "id": 2,
+                "url": "/uploads/convocation-02-0u3a0868.jpg",
+                "title": "Degrees & Medal Awardees 2",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-02-0u3a0868.jpg"
+              },
+              {
+                "id": 3,
+                "url": "/uploads/convocation-03-0u3a0987.jpg",
+                "title": "Campus & Event Atmosphere 3",
+                "aspect": "wide",
+                "category": "campus",
+                "imageUrl": "/uploads/convocation-03-0u3a0987.jpg"
+              },
+              {
+                "id": 4,
+                "url": "/uploads/convocation-04-0u3a1809.jpg",
+                "title": "Convocation Ceremony Moment 4",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-04-0u3a1809.jpg"
+              },
+              {
+                "id": 5,
+                "url": "/uploads/convocation-05-0u3a1942.jpg",
+                "title": "Degrees & Medal Awardees 5",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-05-0u3a1942.jpg"
+              },
+              {
+                "id": 6,
+                "url": "/uploads/convocation-06-0u3a1946.jpg",
+                "title": "Campus & Event Atmosphere 6",
+                "aspect": "wide",
+                "category": "campus",
+                "imageUrl": "/uploads/convocation-06-0u3a1946.jpg"
+              },
+              {
+                "id": 7,
+                "url": "/uploads/convocation-07-0u3a1947.jpg",
+                "title": "Convocation Ceremony Moment 7",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-07-0u3a1947.jpg"
+              },
+              {
+                "id": 8,
+                "url": "/uploads/convocation-08-158a3767.jpg",
+                "title": "Degrees & Medal Awardees 8",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-08-158a3767.jpg"
+              },
+              {
+                "id": 9,
+                "url": "/uploads/convocation-09-158a3954.jpg",
+                "title": "Campus & Event Atmosphere 9",
+                "aspect": "wide",
+                "category": "campus",
+                "imageUrl": "/uploads/convocation-09-158a3954.jpg"
+              },
+              {
+                "id": 10,
+                "url": "/uploads/convocation-10-158a3965.jpg",
+                "title": "Convocation Ceremony Moment 10",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-10-158a3965.jpg"
+              },
+              {
+                "id": 11,
+                "url": "/uploads/convocation-11-158a3966.jpg",
+                "title": "Degrees & Medal Awardees 11",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-11-158a3966.jpg"
+              },
+              {
+                "id": 12,
+                "url": "/uploads/convocation-12-158a9209.jpg",
+                "title": "Campus & Event Atmosphere 12",
+                "aspect": "wide",
+                "category": "campus",
+                "imageUrl": "/uploads/convocation-12-158a9209.jpg"
+              },
+              {
+                "id": 13,
+                "url": "/uploads/convocation-13-158a9214.jpg",
+                "title": "Convocation Ceremony Moment 13",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-13-158a9214.jpg"
+              },
+              {
+                "id": 14,
+                "url": "/uploads/convocation-14-158a9227.jpg",
+                "title": "Degrees & Medal Awardees 14",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-14-158a9227.jpg"
+              },
+              {
+                "id": 15,
+                "url": "/uploads/convocation-15-dsc02474.jpg",
+                "title": "Campus & Event Atmosphere 15",
+                "aspect": "wide",
+                "category": "campus",
+                "imageUrl": "/uploads/convocation-15-dsc02474.jpg"
+              },
+              {
+                "id": 16,
+                "url": "/uploads/convocation-16-dsc02488.jpg",
+                "title": "Convocation Ceremony Moment 16",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-16-dsc02488.jpg"
+              },
+              {
+                "id": 17,
+                "url": "/uploads/convocation-17-img_0782.jpg",
+                "title": "Degrees & Medal Awardees 17",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-17-img_0782.jpg"
+              },
+              {
+                "id": 18,
+                "url": "/uploads/convocation-18-img_0803.jpg",
+                "title": "Campus & Event Atmosphere 18",
+                "aspect": "wide",
+                "category": "campus",
+                "imageUrl": "/uploads/convocation-18-img_0803.jpg"
+              },
+              {
+                "id": 19,
+                "url": "/uploads/convocation-19-img_0804.jpg",
+                "title": "Convocation Ceremony Moment 19",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-19-img_0804.jpg"
+              },
+              {
+                "id": 20,
+                "url": "/uploads/convocation-20-img_0901.jpg",
+                "title": "Degrees & Medal Awardees 20",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-20-img_0901.jpg"
+              },
+              {
+                "id": 21,
+                "url": "/uploads/convocation-21-mhdv5790.jpg",
+                "title": "Campus & Event Atmosphere 21",
+                "aspect": "wide",
+                "category": "campus",
+                "imageUrl": "/uploads/convocation-21-mhdv5790.jpg"
+              },
+              {
+                "id": 22,
+                "url": "/uploads/convocation-22-_2001672.jpg",
+                "title": "Convocation Ceremony Moment 22",
+                "aspect": "wide",
+                "category": "ceremony",
+                "imageUrl": "/uploads/convocation-22-_2001672.jpg"
+              },
+              {
+                "id": 23,
+                "url": "/uploads/convocation-23-_2001729.jpg",
+                "title": "Degrees & Medal Awardees 23",
+                "aspect": "wide",
+                "category": "awardees",
+                "imageUrl": "/uploads/convocation-23-_2001729.jpg"
+              }
+            ],
+            "subtitle": "Grouped by convocation years.",
+            "categories": [
+              {
+                "id": "all",
+                "label": "All Photos"
+              },
+              {
+                "id": "ceremony",
+                "label": "Ceremony & Stage"
+              },
+              {
+                "id": "awardees",
+                "label": "Awardees & Medals"
+              },
+              {
+                "id": "campus",
+                "label": "Campus & Memories"
+              }
+            ]
+          },
+          "type": "gallery"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 14,
+      "createdAt": "2026-06-24T05:57:03.374Z",
+      "updatedAt": "2026-10-03T06:45:47.819Z"
+    },
+    {
+      "id": "cmqrnv6em000ll9y813ob7je2",
+      "slug": "contact",
+      "title": "Contact Us",
+      "metaTitle": "Contact Convocation Office | Ganpat University",
+      "metaDescription": "Contact numbers, official email, campus addresses, and support helplines for the 19th Convocation.",
+      "sections": [
+        {
+          "id": "contact-hero",
+          "data": {
+            "title": "Contact Us",
+            "variant": "subpage-light",
+            "subtitle": "Support & Helplines",
+            "isSubpage": true,
+            "description": "Get in touch with the coordination committee for any queries.",
+            "lightBgStyle": "grid-dots",
+            "subpageAlign": "center",
+            "subpageHeight": "medium",
+            "lightGradientPos": "none"
+          },
+          "type": "hero"
+        },
+        {
+          "id": "contact-main",
+          "data": {
+            "title": "Send a Message",
+            "subtitle": "Fill out the form below or reach us directly via email/phone."
+          },
+          "type": "contact"
+        },
+        {
+          "id": "contact-text",
+          "data": {
+            "body": [
+              "Please keep in touch with the support coordinators or examination department for immediate assistance."
+            ],
+            "title": "Official Address & Support",
+            "layout": "principles",
+            "category": "Contact Details",
+            "sidePanel": {
+              "items": [
+                "Official Address: Ganpat University, Ganpat Vidyanagar, Mehsana-Gandhinagar Highway, PO - 384012",
+                "Office Email: convocation@ganpatuniversity.ac.in",
+                "Office Phone: + 02762226021",
+                "Working Hours: 9:00 AM – 4:00 PM"
+              ]
+            },
+            "categoryIcon": "Mail"
+          },
+          "type": "narrative"
+        }
+      ],
+      "isPublished": true,
+      "isMaintenance": false,
+      "order": 15,
+      "createdAt": "2026-06-24T05:57:03.406Z",
+      "updatedAt": "2026-06-24T06:32:35.945Z"
+    }
+  ],
+  "media": [
+    {
+      "id": "cmurx85tj0000l9zsczjac9e5",
+      "filename": "ashok-chaudhary-source.webp",
+      "originalName": "ashok-chaudhary-source.webp",
+      "mimeType": "image/webp",
+      "size": 21014,
+      "url": "/uploads/ashok-chaudhary-source.webp",
+      "alt": "Ashok Chaudhary Source",
+      "createdAt": "2026-10-03T04:31:29.768Z",
+      "updatedAt": "2026-10-03T04:31:29.768Z"
+    },
+    {
+      "id": "cmurx85wi0001l9zs015dgosq",
+      "filename": "ashok-chaudhary.png",
+      "originalName": "ashok-chaudhary.png",
+      "mimeType": "image/png",
+      "size": 201642,
+      "url": "/uploads/ashok-chaudhary.png",
+      "alt": "Ashok Chaudhary",
+      "createdAt": "2026-09-30T09:28:45.917Z",
+      "updatedAt": "2026-09-30T09:28:45.917Z"
+    },
+    {
+      "id": "cmurx85wo0004l9zsyaakapp8",
+      "filename": "convocation-01-0u3a0768.jpg",
+      "originalName": "convocation-01-0u3a0768.jpg",
+      "mimeType": "image/jpeg",
+      "size": 638870,
+      "url": "/uploads/convocation-01-0u3a0768.jpg",
+      "alt": "Convocation 01 0u3a0768",
+      "createdAt": "2026-10-01T10:15:39.397Z",
+      "updatedAt": "2026-10-01T10:15:39.397Z"
+    },
+    {
+      "id": "cmurx85wu0007l9zsng4niu28",
+      "filename": "convocation-02-0u3a0868.jpg",
+      "originalName": "convocation-02-0u3a0868.jpg",
+      "mimeType": "image/jpeg",
+      "size": 408086,
+      "url": "/uploads/convocation-02-0u3a0868.jpg",
+      "alt": "Convocation 02 0u3a0868",
+      "createdAt": "2026-10-01T10:16:14.523Z",
+      "updatedAt": "2026-10-01T10:16:14.523Z"
+    },
+    {
+      "id": "cmurx85x0000al9zskmgg23q7",
+      "filename": "convocation-03-0u3a0987.jpg",
+      "originalName": "convocation-03-0u3a0987.jpg",
+      "mimeType": "image/jpeg",
+      "size": 399362,
+      "url": "/uploads/convocation-03-0u3a0987.jpg",
+      "alt": "Convocation 03 0u3a0987",
+      "createdAt": "2026-10-01T10:16:34.628Z",
+      "updatedAt": "2026-10-01T10:16:34.628Z"
+    },
+    {
+      "id": "cmurx85x3000dl9zsdhy8y4lh",
+      "filename": "convocation-04-0u3a1809.jpg",
+      "originalName": "convocation-04-0u3a1809.jpg",
+      "mimeType": "image/jpeg",
+      "size": 415139,
+      "url": "/uploads/convocation-04-0u3a1809.jpg",
+      "alt": "Convocation 04 0u3a1809",
+      "createdAt": "2026-10-01T10:16:50.029Z",
+      "updatedAt": "2026-10-01T10:16:50.029Z"
+    },
+    {
+      "id": "cmurx85x8000gl9zsfjf67xfj",
+      "filename": "convocation-05-0u3a1942.jpg",
+      "originalName": "convocation-05-0u3a1942.jpg",
+      "mimeType": "image/jpeg",
+      "size": 323046,
+      "url": "/uploads/convocation-05-0u3a1942.jpg",
+      "alt": "Convocation 05 0u3a1942",
+      "createdAt": "2026-10-01T10:17:06.316Z",
+      "updatedAt": "2026-10-01T10:17:06.316Z"
+    },
+    {
+      "id": "cmurx85xc000jl9zsq1ixog5i",
+      "filename": "convocation-06-0u3a1946.jpg",
+      "originalName": "convocation-06-0u3a1946.jpg",
+      "mimeType": "image/jpeg",
+      "size": 338170,
+      "url": "/uploads/convocation-06-0u3a1946.jpg",
+      "alt": "Convocation 06 0u3a1946",
+      "createdAt": "2026-10-01T10:17:19.481Z",
+      "updatedAt": "2026-10-01T10:17:19.481Z"
+    },
+    {
+      "id": "cmurx85xg000ml9zsvskxv9jr",
+      "filename": "convocation-07-0u3a1947.jpg",
+      "originalName": "convocation-07-0u3a1947.jpg",
+      "mimeType": "image/jpeg",
+      "size": 345471,
+      "url": "/uploads/convocation-07-0u3a1947.jpg",
+      "alt": "Convocation 07 0u3a1947",
+      "createdAt": "2026-10-01T10:17:32.824Z",
+      "updatedAt": "2026-10-01T10:17:32.824Z"
+    },
+    {
+      "id": "cmurx85xl000pl9zs3jpcrj7x",
+      "filename": "convocation-08-158a3767.jpg",
+      "originalName": "convocation-08-158a3767.jpg",
+      "mimeType": "image/jpeg",
+      "size": 537304,
+      "url": "/uploads/convocation-08-158a3767.jpg",
+      "alt": "Convocation 08 158a3767",
+      "createdAt": "2026-10-01T10:17:46.367Z",
+      "updatedAt": "2026-10-01T10:17:46.367Z"
+    },
+    {
+      "id": "cmurx85xp000sl9zsv1sugqr5",
+      "filename": "convocation-09-158a3954.jpg",
+      "originalName": "convocation-09-158a3954.jpg",
+      "mimeType": "image/jpeg",
+      "size": 638976,
+      "url": "/uploads/convocation-09-158a3954.jpg",
+      "alt": "Convocation 09 158a3954",
+      "createdAt": "2026-10-01T10:18:15.578Z",
+      "updatedAt": "2026-10-01T10:18:15.578Z"
+    },
+    {
+      "id": "cmurx85xu000vl9zsh7wvck97",
+      "filename": "convocation-10-158a3965.jpg",
+      "originalName": "convocation-10-158a3965.jpg",
+      "mimeType": "image/jpeg",
+      "size": 505716,
+      "url": "/uploads/convocation-10-158a3965.jpg",
+      "alt": "Convocation 10 158a3965",
+      "createdAt": "2026-10-01T10:18:47.738Z",
+      "updatedAt": "2026-10-01T10:18:47.738Z"
+    },
+    {
+      "id": "cmurx85xy000yl9zswy5cwlsf",
+      "filename": "convocation-11-158a3966.jpg",
+      "originalName": "convocation-11-158a3966.jpg",
+      "mimeType": "image/jpeg",
+      "size": 471421,
+      "url": "/uploads/convocation-11-158a3966.jpg",
+      "alt": "Convocation 11 158a3966",
+      "createdAt": "2026-10-01T10:19:13.990Z",
+      "updatedAt": "2026-10-01T10:19:13.990Z"
+    },
+    {
+      "id": "cmurx85y20011l9zs50h207kd",
+      "filename": "convocation-12-158a9209.jpg",
+      "originalName": "convocation-12-158a9209.jpg",
+      "mimeType": "image/jpeg",
+      "size": 595068,
+      "url": "/uploads/convocation-12-158a9209.jpg",
+      "alt": "Convocation 12 158a9209",
+      "createdAt": "2026-10-01T10:19:38.170Z",
+      "updatedAt": "2026-10-01T10:19:38.170Z"
+    },
+    {
+      "id": "cmurx85y80014l9zsqn5njneh",
+      "filename": "convocation-13-158a9214.jpg",
+      "originalName": "convocation-13-158a9214.jpg",
+      "mimeType": "image/jpeg",
+      "size": 620654,
+      "url": "/uploads/convocation-13-158a9214.jpg",
+      "alt": "Convocation 13 158a9214",
+      "createdAt": "2026-10-01T10:20:09.171Z",
+      "updatedAt": "2026-10-01T10:20:09.171Z"
+    },
+    {
+      "id": "cmurx85yc0017l9zs4urgqn9x",
+      "filename": "convocation-14-158a9227.jpg",
+      "originalName": "convocation-14-158a9227.jpg",
+      "mimeType": "image/jpeg",
+      "size": 709183,
+      "url": "/uploads/convocation-14-158a9227.jpg",
+      "alt": "Convocation 14 158a9227",
+      "createdAt": "2026-10-01T10:20:39.675Z",
+      "updatedAt": "2026-10-01T10:20:39.675Z"
+    },
+    {
+      "id": "cmurx85yg001al9zs372vv4h6",
+      "filename": "convocation-15-dsc02474.jpg",
+      "originalName": "convocation-15-dsc02474.jpg",
+      "mimeType": "image/jpeg",
+      "size": 832694,
+      "url": "/uploads/convocation-15-dsc02474.jpg",
+      "alt": "Convocation 15 Dsc02474",
+      "createdAt": "2026-10-01T10:21:12.968Z",
+      "updatedAt": "2026-10-01T10:21:12.968Z"
+    },
+    {
+      "id": "cmurx85yk001dl9zs2oe45zz9",
+      "filename": "convocation-16-dsc02488.jpg",
+      "originalName": "convocation-16-dsc02488.jpg",
+      "mimeType": "image/jpeg",
+      "size": 797344,
+      "url": "/uploads/convocation-16-dsc02488.jpg",
+      "alt": "Convocation 16 Dsc02488",
+      "createdAt": "2026-10-01T10:21:50.206Z",
+      "updatedAt": "2026-10-01T10:21:50.206Z"
+    },
+    {
+      "id": "cmurx85yo001gl9zs85cdzxhi",
+      "filename": "convocation-17-img_0782.jpg",
+      "originalName": "convocation-17-img_0782.jpg",
+      "mimeType": "image/jpeg",
+      "size": 463589,
+      "url": "/uploads/convocation-17-img_0782.jpg",
+      "alt": "Convocation 17 Img 0782",
+      "createdAt": "2026-10-01T10:22:36.448Z",
+      "updatedAt": "2026-10-01T10:22:36.448Z"
+    },
+    {
+      "id": "cmurx85ys001jl9zskpc4b3xt",
+      "filename": "convocation-18-img_0803.jpg",
+      "originalName": "convocation-18-img_0803.jpg",
+      "mimeType": "image/jpeg",
+      "size": 404350,
+      "url": "/uploads/convocation-18-img_0803.jpg",
+      "alt": "Convocation 18 Img 0803",
+      "createdAt": "2026-10-01T10:23:08.557Z",
+      "updatedAt": "2026-10-01T10:23:08.557Z"
+    },
+    {
+      "id": "cmurx85yw001ml9zskp9xlrjm",
+      "filename": "convocation-19-img_0804.jpg",
+      "originalName": "convocation-19-img_0804.jpg",
+      "mimeType": "image/jpeg",
+      "size": 433320,
+      "url": "/uploads/convocation-19-img_0804.jpg",
+      "alt": "Convocation 19 Img 0804",
+      "createdAt": "2026-10-01T10:23:37.088Z",
+      "updatedAt": "2026-10-01T10:23:37.088Z"
+    },
+    {
+      "id": "cmurx85z1001pl9zsuo0puimc",
+      "filename": "convocation-20-img_0901.jpg",
+      "originalName": "convocation-20-img_0901.jpg",
+      "mimeType": "image/jpeg",
+      "size": 364476,
+      "url": "/uploads/convocation-20-img_0901.jpg",
+      "alt": "Convocation 20 Img 0901",
+      "createdAt": "2026-10-01T10:24:04.267Z",
+      "updatedAt": "2026-10-01T10:24:04.267Z"
+    },
+    {
+      "id": "cmurx85z5001sl9zsxq77pnrd",
+      "filename": "convocation-21-mhdv5790.jpg",
+      "originalName": "convocation-21-mhdv5790.jpg",
+      "mimeType": "image/jpeg",
+      "size": 545392,
+      "url": "/uploads/convocation-21-mhdv5790.jpg",
+      "alt": "Convocation 21 Mhdv5790",
+      "createdAt": "2026-10-01T10:24:31.257Z",
+      "updatedAt": "2026-10-01T10:24:31.257Z"
+    },
+    {
+      "id": "cmurx85za001vl9zsok2f01fg",
+      "filename": "convocation-22-_2001672.jpg",
+      "originalName": "convocation-22-_2001672.jpg",
+      "mimeType": "image/jpeg",
+      "size": 341114,
+      "url": "/uploads/convocation-22-_2001672.jpg",
+      "alt": "Convocation 22  2001672",
+      "createdAt": "2026-10-01T10:25:05.531Z",
+      "updatedAt": "2026-10-01T10:25:05.531Z"
+    },
+    {
+      "id": "cmurx85ze001yl9zs2ljh48ly",
+      "filename": "convocation-23-_2001729.jpg",
+      "originalName": "convocation-23-_2001729.jpg",
+      "mimeType": "image/jpeg",
+      "size": 712799,
+      "url": "/uploads/convocation-23-_2001729.jpg",
+      "alt": "Convocation 23  2001729",
+      "createdAt": "2026-10-01T10:25:36.745Z",
+      "updatedAt": "2026-10-01T10:25:36.745Z"
+    },
+    {
+      "id": "cmurx85zh0020l9zs91w18i5q",
+      "filename": "ganpat-bhai-patel.png",
+      "originalName": "ganpat-bhai-patel.png",
+      "mimeType": "image/png",
+      "size": 1405283,
+      "url": "/uploads/ganpat-bhai-patel.png",
+      "alt": "Ganpat Bhai Patel",
+      "createdAt": "2026-10-03T04:22:17.269Z",
+      "updatedAt": "2026-09-07T11:31:15.962Z"
+    },
+    {
+      "id": "cmurx85zi0021l9zsxxy6clu8",
+      "filename": "guest-chaudhary-cutout.png",
+      "originalName": "guest-chaudhary-cutout.png",
+      "mimeType": "image/png",
+      "size": 133098,
+      "url": "/uploads/guest-chaudhary-cutout.png",
+      "alt": "Guest Chaudhary Cutout",
+      "createdAt": "2026-10-03T04:31:50.941Z",
+      "updatedAt": "2026-10-03T04:31:50.961Z"
+    },
+    {
+      "id": "cmurx85zk0022l9zsggqivboq",
+      "filename": "guest-dr-pradyuman-vaja.png",
+      "originalName": "guest-dr-pradyuman-vaja.png",
+      "mimeType": "image/png",
+      "size": 477031,
+      "url": "/uploads/guest-dr-pradyuman-vaja.png",
+      "alt": "Guest Dr Pradyuman Vaja",
+      "createdAt": "2026-10-03T04:32:16.306Z",
+      "updatedAt": "2026-10-03T04:44:40.548Z"
+    },
+    {
+      "id": "cmurx85zl0023l9zssev4pshr",
+      "filename": "guest-dr-v-narayanan.png",
+      "originalName": "guest-dr-v-narayanan.png",
+      "mimeType": "image/png",
+      "size": 594035,
+      "url": "/uploads/guest-dr-v-narayanan.png",
+      "alt": "Guest Dr V Narayanan",
+      "createdAt": "2026-10-03T04:32:16.414Z",
+      "updatedAt": "2026-10-03T04:55:49.491Z"
+    },
+    {
+      "id": "cmurx85zn0024l9zs8rtp0vpu",
+      "filename": "guest-narayanan-cutout.png",
+      "originalName": "guest-narayanan-cutout.png",
+      "mimeType": "image/png",
+      "size": 565126,
+      "url": "/uploads/guest-narayanan-cutout.png",
+      "alt": "Guest Narayanan Cutout",
+      "createdAt": "2026-10-03T04:31:49.466Z",
+      "updatedAt": "2026-10-03T04:31:49.582Z"
+    },
+    {
+      "id": "cmurx85zo0025l9zsc4ydbv8c",
+      "filename": "guest-shri-ashok-chaudhary.png",
+      "originalName": "guest-shri-ashok-chaudhary.png",
+      "mimeType": "image/png",
+      "size": 227213,
+      "url": "/uploads/guest-shri-ashok-chaudhary.png",
+      "alt": "Guest Shri Ashok Chaudhary",
+      "createdAt": "2026-10-03T04:32:16.523Z",
+      "updatedAt": "2026-10-03T04:41:51.643Z"
+    },
+    {
+      "id": "cmurx85zq0026l9zshebxmn4u",
+      "filename": "guest-vaja-cutout-new.png",
+      "originalName": "guest-vaja-cutout-new.png",
+      "mimeType": "image/png",
+      "size": 1823570,
+      "url": "/uploads/guest-vaja-cutout-new.png",
+      "alt": "Guest Vaja Cutout New",
+      "createdAt": "2026-10-03T04:41:14.270Z",
+      "updatedAt": "2026-10-03T04:41:15.290Z"
+    },
+    {
+      "id": "cmurx85zr0027l9zskkalgatk",
+      "filename": "guest-vaja-cutout.png",
+      "originalName": "guest-vaja-cutout.png",
+      "mimeType": "image/png",
+      "size": 929909,
+      "url": "/uploads/guest-vaja-cutout.png",
+      "alt": "Guest Vaja Cutout",
+      "createdAt": "2026-10-03T04:31:47.711Z",
+      "updatedAt": "2026-10-03T04:31:47.834Z"
+    },
+    {
+      "id": "cmurx85zs0028l9zsddipo3ba",
+      "filename": "hero-student-right.png",
+      "originalName": "hero-student-right.png",
+      "mimeType": "image/png",
+      "size": 1357515,
+      "url": "/uploads/hero-student-right.png",
+      "alt": "Hero Student Right",
+      "createdAt": "2026-10-03T04:03:51.348Z",
+      "updatedAt": "2026-10-03T04:36:02.900Z"
+    },
+    {
+      "id": "cmurx85zt0029l9zsutajp4sy",
+      "filename": "hero-student-updated.png",
+      "originalName": "hero-student-updated.png",
+      "mimeType": "image/png",
+      "size": 1357515,
+      "url": "/uploads/hero-student-updated.png",
+      "alt": "Hero Student Updated",
+      "createdAt": "2026-10-03T04:37:44.352Z",
+      "updatedAt": "2026-10-03T04:36:02.900Z"
+    },
+    {
+      "id": "cmurx85zv002bl9zszpcdgil8",
+      "filename": "logo.png",
+      "originalName": "logo.png",
+      "mimeType": "image/png",
+      "size": 161886,
+      "url": "/uploads/logo.png",
+      "alt": "Logo",
+      "createdAt": "2026-06-23T10:51:55.319Z",
+      "updatedAt": "2026-06-23T10:53:17.131Z"
+    },
+    {
+      "id": "cmurx85zy002dl9zscqjw6roe",
+      "filename": "mahendra-sharma.png",
+      "originalName": "mahendra-sharma.png",
+      "mimeType": "image/png",
+      "size": 1909563,
+      "url": "/uploads/mahendra-sharma.png",
+      "alt": "Mahendra Sharma",
+      "createdAt": "2026-10-03T04:22:03.394Z",
+      "updatedAt": "2026-08-17T09:42:40.598Z"
+    },
+    {
+      "id": "cmurx8601002fl9zsg5q7y98e",
+      "filename": "pra-vaja-1781068508584.png",
+      "originalName": "pra-vaja-1781068508584.png",
+      "mimeType": "image/png",
+      "size": 1745048,
+      "url": "/uploads/pra-vaja-1781068508584.png",
+      "alt": "Pra Vaja",
+      "createdAt": "2026-09-30T09:27:50.690Z",
+      "updatedAt": "2026-09-30T09:27:50.690Z"
+    },
+    {
+      "id": "cmurx8604002hl9zszzzdktz1",
+      "filename": "president-ganpatbhai-patel.png",
+      "originalName": "president-ganpatbhai-patel.png",
+      "mimeType": "image/png",
+      "size": 22849,
+      "url": "/uploads/president-ganpatbhai-patel.png",
+      "alt": "President Ganpatbhai Patel",
+      "createdAt": "2026-09-30T09:29:12.734Z",
+      "updatedAt": "2026-09-30T09:29:12.734Z"
+    },
+    {
+      "id": "cmurx8606002jl9zsos57wevi",
+      "filename": "shri-shyam-jagannathan.png",
+      "originalName": "shri-shyam-jagannathan.png",
+      "mimeType": "image/png",
+      "size": 1376726,
+      "url": "/uploads/shri-shyam-jagannathan.png",
+      "alt": "Shri Shyam Jagannathan",
+      "createdAt": "2026-10-03T04:22:03.362Z",
+      "updatedAt": "2026-09-07T11:31:15.845Z"
+    },
+    {
+      "id": "cmurx8607002kl9zs5ul51zlg",
+      "filename": "v-narayanan-cutout.png",
+      "originalName": "v-narayanan-cutout.png",
+      "mimeType": "image/png",
+      "size": 570334,
+      "url": "/uploads/v-narayanan-cutout.png",
+      "alt": "V Narayanan Cutout",
+      "createdAt": "2026-10-03T04:26:35.211Z",
+      "updatedAt": "2026-10-03T04:26:35.212Z"
+    },
+    {
+      "id": "cmurx8608002ll9zs7fa2vdl0",
+      "filename": "v-narayanan.png",
+      "originalName": "v-narayanan.png",
+      "mimeType": "image/png",
+      "size": 2366907,
+      "url": "/uploads/v-narayanan.png",
+      "alt": "V Narayanan",
+      "createdAt": "2026-09-30T09:28:14.746Z",
+      "updatedAt": "2026-09-30T09:28:14.747Z"
+    }
+  ]
+}
