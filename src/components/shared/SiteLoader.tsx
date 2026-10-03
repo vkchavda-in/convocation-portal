@@ -40,26 +40,11 @@ export default function SiteLoader() {
         backgroundColor: '#ffffff',
       }}
     >
-      {/* Simple, Pure Elegant Dual Spinner */}
-      <div className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
-        {/* Outer Navy Ring */}
-        <div
-          className="absolute inset-0 rounded-full border-[3px] border-slate-100 border-t-[#0A2540] animate-spin"
-          style={{ animationDuration: '0.85s' }}
-        />
-        {/* Inner Golden Ring */}
-        <div
-          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-[2.5px] border-amber-100 border-t-[#f9c53c] animate-spin"
-          style={{ animationDirection: 'reverse', animationDuration: '1.1s' }}
-        />
-      </div>
-
-      {/* Subtle Convocation Brand Label */}
-      <div className="mt-5 text-center">
-        <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.22em] text-[#0A2540]/60 block font-sans">
-          Ganpat University
-        </span>
-      </div>
+      {/* Single Clean Spinner */}
+      <div
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-[3px] border-slate-100 border-t-[#0A2540] animate-spin"
+        style={{ animationDuration: '0.8s' }}
+      />
     </div>
   );
 }
