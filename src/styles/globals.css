@@ -1,0 +1,175 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* ─── Hydration Safety ────────────────────────────────────────────────────────
+   Ensures content is ALWAYS visible, even before JS hydrates.
+   Next.js SSR outputs full HTML — this prevents any flash of invisible content
+   caused by CSS-in-JS or theme hydration mismatches.
+*/
+html {
+  /* Prevent flash of unstyled background — GUNI white */
+  background-color: #ffffff;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* Ensure the app body uses the GUNI white theme background */
+body {
+  background-color: var(--parchment, #ffffff);
+  color: var(--ink, #002147);
+  scrollbar-gutter: stable;
+}
+
+:root {
+  --container-padding: clamp(1.25rem, 4vw, 4rem);
+}
+@media (min-width: 1440px) {
+  :root {
+    --container-padding: clamp(2rem, 5vw, 5.5rem);
+  }
+}
+@media (min-width: 1600px) {
+  :root {
+    --container-padding: clamp(2.5rem, 6vw, 7rem);
+  }
+}
+
+/* ─── Section Container — Fluid Edge-to-Edge System (No Max-Width Constraint) ──
+   Allows full-bleed visual grandeur across modern wide/landscape displays
+   with ergonomic fluid padding that adapts seamlessly from mobile to 4K.
+*/
+.section-container {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* ─── Content Visibility — defer rendering of below-fold sections ───────────
+   Saves ~200ms of layout/paint work on mobile by skipping off-screen sections.
+   'contain-intrinsic-size' prevents layout shift when sections enter the viewport.
+*/
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ─── Skeleton / Loading Pulse ───────────────────────────────────────────────
+   Ensure the shimmer skeletons shown during dynamic chunk loading are always
+   visible — even on slow connections where CSS might not have loaded yet.
+*/
+@keyframes pulse-shimmer {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.animate-pulse {
+  animation: pulse-shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ─── Prefers Reduced Motion — accessibility + mobile battery ────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Mobile Typography Baseline ─────────────────────────────────────────────
+   Prevent tiny text on iOS (default browser auto-size behavior).
+   Prevents "content too small" Lighthouse flag on mobile.
+*/
+@media (max-width: 767px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Ensure tap targets are large enough — minimum 44px per WCAG */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Exception: inline links in text don't need min-height */
+  p a, li a, span a {
+    min-height: unset;
+    min-width: unset;
+  }
+}
+
+/* ─── CSS Scroll-Reveal System — replaces Framer Motion whileInView ───────────────
+   FadeIn component adds data-animate attribute on render, data-visible on enter.
+   Server renders content fully visible (no flash of invisible content).
+   Client adds transition after hydration via the FadeIn component.
+*/
+[data-animate] {
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-animate='up']    { opacity: 0; transform: translateY(22px); filter: blur(2px); }
+[data-animate='left']  { opacity: 0; transform: translateX(-22px); filter: blur(2px); }
+[data-animate='right'] { opacity: 0; transform: translateX(22px); filter: blur(2px); }
+[data-animate='scale'] { opacity: 0; transform: scale(0.96); filter: blur(2px); }
+[data-animate='none']  { opacity: 0; }
+
+[data-animate][data-visible] {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Staggered children — add data-stagger to parent, direct children auto-delay */
+[data-stagger] > [data-animate]:nth-child(1) { transition-delay: 0ms; }
+[data-stagger] > [data-animate]:nth-child(2) { transition-delay: 60ms; }
+[data-stagger] > [data-animate]:nth-child(3) { transition-delay: 120ms; }
+[data-stagger] > [data-animate]:nth-child(4) { transition-delay: 180ms; }
+[data-stagger] > [data-animate]:nth-child(5) { transition-delay: 240ms; }
+[data-stagger] > [data-animate]:nth-child(6) { transition-delay: 300ms; }
+[data-stagger] > [data-animate]:nth-child(n+7) { transition-delay: 340ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── Global Gold CTA Button & Yellow Text Styles (Hero CTA Standard) ──────── */
+.btn-gold-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background: linear-gradient(90deg, #e9a800, #f9c53c, #f59e0b);
+  color: #060f24 !important;
+  font-weight: 700;
+  border-radius: 0.875rem; /* 14px */
+  box-shadow: 0 8px 24px rgba(249, 197, 60, 0.35);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-gold-cta:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 12px 30px rgba(249, 197, 60, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-gold-cta:active {
+  transform: scale(0.98);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(90deg, #fde68a, #f9c53c, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

@@ -1,0 +1,389 @@
+﻿[
+  {
+    "id": "home-hero",
+    "data": {
+      "title": "Dr. Mahendra Sharma",
+      "tagline": "Nationally Respected Educational Leader",
+      "portrait": {
+        "imageAlt": "Professional Portrait of Dr. Mahendra Sharma",
+        "imageUrl": "/assets/images/portrait.png"
+      },
+      "subtitle": "Group Pro Chancellor & Educational Visionary",
+      "isSubpage": false,
+      "primaryCTA": {
+        "url": "/leadership",
+        "label": "Explore Leadership Journey"
+      },
+      "description": "Pioneering the transformation of Indian higher education through innovation, industry collaboration, and student-centric excellence.",
+      "taglineIcon": "Award",
+      "secondaryCTA": {
+        "url": "/vision",
+        "label": "Vision 2035"
+      }
+    },
+    "type": "hero"
+  },
+  {
+    "id": "home-narrative-divider",
+    "data": {
+      "images": [
+        "/uploads/sm-1780759825336.png"
+      ],
+      "callout": "A Legacy of Transformation",
+      "headline": "Internalizing Humanity and Purpose",
+      "description": "This chapter introduces the foundational values driving Dr. Sharma's educational mission, framing academic metrics through the lens of human impact.",
+      "subheadline": "The leader before the Leader, whose intrinsic leadership philosophy-rooted in personal ethos, emotional intelligence, and a strong moral compass-preceded and enabled transformational change in higher education.",
+      "sectionLabel": "Philosophy",
+      "layoutVariant": "vision-chapter"
+    },
+    "type": "narrative_divider"
+  },
+  {
+    "id": "home-future-education",
+    "data": {
+      "items": [
+        {
+          "icon": "Brain",
+          "title": "AI-Powered Learning",
+          "highlights": [
+            "Smart Curriculum Design",
+            "Predictive Analytics",
+            "Personalized Mentorship"
+          ],
+          "description": "Personalized education pathways driven by artificial intelligence and adaptive learning technologies."
+        },
+        {
+          "icon": "Network",
+          "title": "Seamless Industry Integration",
+          "highlights": [
+            "Live Industry Projects",
+            "Corporate Co-Creation",
+            "Workplace Immersion"
+          ],
+          "description": "Breaking down silos between academia and industry for real-world relevance and employment readiness."
+        },
+        {
+          "icon": "Sparkles",
+          "title": "Innovation-First Culture",
+          "highlights": [
+            "Research to Market",
+            "Student Startups",
+            "Failure as Learning"
+          ],
+          "description": "Cultivating an ecosystem where curiosity, experimentation, and entrepreneurship thrive."
+        }
+      ],
+      "title": "Future of Education",
+      "isDark": false,
+      "columns": 3,
+      "cardType": "pillar",
+      "category": "Vision",
+      "subtitle": "Three foundational pillars driving the transformation of higher education",
+      "categoryIcon": "Telescope"
+    },
+    "type": "card_grid"
+  },
+  {
+    "id": "home-leadership-statement",
+    "data": {
+      "body": [
+        "Leads the academic and executive functions of the University, spearheading institutional scaling, multidisciplinary expansions, and curriculum innovation."
+      ],
+      "quote": {
+        "text": "True educational leadership lies not in preserving the status quo, but in courageously reimagining what higher education can achieve when innovation, industry collaboration, and student empowerment converge."
+      },
+      "title": "Leadership Philosophy",
+      "layout": "centered",
+      "category": "Philosophy",
+      "categoryIcon": "Lightbulb"
+    },
+    "type": "narrative"
+  },
+  {
+    "id": "home-national-leadership",
+    "data": {
+      "items": [
+        {
+          "title": "Dialogue with PM Narendra Modi (2018)",
+          "impact": "National Skill Blueprint",
+          "status": "Completed",
+          "category": "Prime Minister's Office",
+          "description": "Presented on aligning university-level skill development frameworks with national growth priorities and vocational integration in New Delhi."
+        },
+        {
+          "title": "State Policy Dialogue with PM Narendra Modi (2022)",
+          "impact": "Higher Education Policy",
+          "status": "Completed",
+          "category": "National Policy",
+          "description": "Reviewed progressive implementation of higher education policies, skilling benchmarks, and university-industry integration pathways."
+        },
+        {
+          "title": "Hosting Union Home Minister Shri Amit Shah (2025)",
+          "impact": "Skilling Model Verification",
+          "status": "Completed",
+          "category": "National Security & Skilling",
+          "description": "Welcomed Shri Amit Shah to Ganpat University to review GUNI's skill development blueprints, incubation achievements, and next-generation labs."
+        },
+        {
+          "title": "Global Leadership & Policy Dialogues",
+          "impact": "International Partnerships",
+          "status": "Active",
+          "category": "Global Diplomacy",
+          "description": "Strategic educational diplomacy with HH Sheikh Nahyan of UAE, former Sri Lankan President Ranil Wickremesinghe, and Australian education ministers."
+        }
+      ],
+      "title": "National & Global Policy Dialogues",
+      "columns": 4,
+      "cardType": "initiative",
+      "category": "National Leadership & Diplomacy",
+      "subtitle": "Strategic engagements with national and international leadership, shaping education and skilling policy",
+      "categoryIcon": "Compass"
+    },
+    "type": "card_grid"
+  },
+  {
+    "id": "home-areas-influence",
+    "data": {
+      "items": [
+        {
+          "icon": "Building2",
+          "title": "National Additive Manufacturing Centre-West (NAMCW)",
+          "description": "Additive Manufacturing & 3D Prototyping. Industry Partner: Stratasys & Ministry of Electronics and IT. A prestigious national center focusing on advanced 3D printing and additive manufacturing technologies to support engineering prototyping."
+        },
+        {
+          "icon": "Building2",
+          "title": "Japan India Institute of Manufacturing (JIIM)",
+          "description": "Automobile Assembly & Japanese Shop-Floor Practices. Industry Partner: Maruti Suzuki India Limited & Government of Japan. Established under a collaboration between the Governments of India and Japan, featuring a fully functional automobile assembly training line in a university set-up."
+        },
+        {
+          "icon": "Building2",
+          "title": "GUNI-Bosch Rexroth Centre for Automation Technology",
+          "description": "Industrial Automation, Pneumatics & Hydraulics. Industry Partner: Bosch Rexroth & Bosch Foundation. A state-of-the-art facility featuring industrial-grade hardware in pneumatics, hydraulics, mechatronics, and electrical automation systems."
+        },
+        {
+          "icon": "Building2",
+          "title": "Centre of Advanced Technology for Next-Generation Networks (5G & Beyond)",
+          "description": "5G Architecture, IoT & Next-Gen Wireless Systems. Industry Partner: eInfochips & local telecom consortia. Focuses on network software design, network security protocols, IoT integration, and wireless communication standards."
+        },
+        {
+          "icon": "Building2",
+          "title": "AAK-FICSI-GUNI Centre of Excellence for Choco Bakery",
+          "description": "Food Processing Technology & Professional Baking Systems. Industry Partner: AAK India & Food Industry Capacity & Skill Initiative (FICSI). An advanced culinary and food technology center targeting training, product development, and skill certification in chocolate and baking technology."
+        },
+        {
+          "icon": "Building2",
+          "title": "GUNI - Centre for Bharatiya Knowledge System & Ancient Wisdom (BKS & AW)",
+          "description": "Traditional Knowledge, Philosophy & Sanskrit Studies. Industry Partner: Academic & Spiritual Institutions. Curates, preserves, and disseminates traditional Indian science, architecture, philosophy, and historical structures."
+        }
+      ],
+      "title": "Centres of Excellence & Areas of Influence",
+      "columns": 3,
+      "cardType": "standard",
+      "category": "Leadership Focus",
+      "subtitle": "Strategic domains where visionary leadership is driving systemic change",
+      "categoryIcon": "Target"
+    },
+    "type": "card_grid"
+  },
+  {
+    "id": "home-impact-metrics",
+    "data": {
+      "items": [
+        {
+          "icon": "Award",
+          "label": "Awards & Recognitions",
+          "value": "27+",
+          "description": "From national and international bodies"
+        },
+        {
+          "icon": "Users",
+          "label": "Transformational Initiatives",
+          "value": "15+",
+          "description": "Pioneered in higher education"
+        },
+        {
+          "icon": "Building2",
+          "label": "Centres of Excellence",
+          "value": "10+",
+          "description": "Built with industry leaders"
+        },
+        {
+          "icon": "TrendingUp",
+          "label": "Global Partnerships",
+          "value": "7+",
+          "description": "With top companies and universities"
+        }
+      ]
+    },
+    "type": "metrics"
+  },
+  {
+    "id": "home-featured-initiatives",
+    "data": {
+      "items": [
+        {
+          "title": "Outcome-Based Education & Continuous Evaluation",
+          "impact": "Brief Resume",
+          "status": "Active",
+          "category": "Academic Reform",
+          "description": "A shift from traditional rote learning assessment to a system measuring actual skill and knowledge acquisition continuously."
+        },
+        {
+          "title": "Audit Courses for Holistic Development",
+          "impact": "Brief Resume",
+          "status": "Active",
+          "category": "Academic Reform",
+          "description": "Provides opportunities for students to pursue non-academic interests outside their core degrees."
+        },
+        {
+          "title": "Integrated Educational Pathways",
+          "impact": "Brief Resume",
+          "status": "Active",
+          "category": "Academic Reform",
+          "description": "Pioneered pathways such as the 5-year Integrated B.Tech+M.Tech and 6-year Integrated Diploma+Degree programs."
+        }
+      ],
+      "title": "Featured Initiatives",
+      "columns": 3,
+      "cardType": "initiative",
+      "category": "Impact Areas",
+      "subtitle": "Transformative programs shaping the future of education",
+      "viewAllLink": {
+        "url": "/initiatives",
+        "label": "View All Initiatives"
+      },
+      "categoryIcon": "Activity"
+    },
+    "type": "card_grid"
+  },
+  {
+    "id": "home-thought-leadership",
+    "data": {
+      "items": [
+        {
+          "year": "2020",
+          "title": "Evaluating the Role of Health Consciousness in Organic Food Product Consumption: Mediating Role of Attitude",
+          "category": "Consumer Behaviour",
+          "subtitle": "Ganpat University Faculty of Management Studies Journal of Management Studies (GFJMR), Volume-20, Issue 1, January-June 2020, ISSN: 2229-4651",
+          "description": "Research paper focusing on Evaluating the Role of Health Consciousness in Organic Food Product Consumption: Mediating Role of Attitude."
+        },
+        {
+          "year": "2020",
+          "title": "Examining The Influence Of Compensation On Turnover  Intention  Of  Employees  For  ITes  Industry  Of  Gujarat",
+          "category": "Consumer Behaviour",
+          "subtitle": "CLIO:Annual Interdisciplinary Journal of History, Volume-6, No.14, June 2020, ISSN:0976-075X",
+          "description": "Research paper focusing on Examining The Influence Of Compensation On Turnover  Intention  Of  Employees  For  ITes  Industry  Of  Gujarat."
+        },
+        {
+          "year": "2019",
+          "title": "Job Satisfaction Dimensions and Organizational Commitments: Tools to Understand Employee Turnover Intention of IT/ITES Industry of Gujarat State with a Focus on BPO Segment",
+          "category": "Consumer Behaviour",
+          "subtitle": "International Journal of Recent Technology and Engineering, Volume-8, No. 4, November 2019, ISSN (Online):22773878",
+          "description": "Research paper focusing on Job Satisfaction Dimensions and Organizational Commitments: Tools to Understand Employee Turnover Intention of IT/ITES Industry of Gujarat State with a Focus on BPO Segment."
+        }
+      ],
+      "title": "Latest Insights & Publications",
+      "columns": 3,
+      "cardType": "thought_leadership",
+      "category": "Thought Leadership",
+      "subtitle": "Perspectives on education policy, innovation, and leadership",
+      "categoryIcon": "BookOpen"
+    },
+    "type": "card_grid"
+  },
+  {
+    "id": "home-media-highlights",
+    "data": {
+      "items": [
+        {
+          "title": "Reimagining Academic Governance for the 21st Century",
+          "category": "speech",
+          "description": "16th International Education Leadership Summit"
+        },
+        {
+          "title": "The Future of Maritime Engineering and Officer Training",
+          "category": "speech",
+          "description": "India Maritime Week 2025"
+        }
+      ],
+      "title": "Media Highlights & Speeches",
+      "columns": 3,
+      "cardType": "media_highlight",
+      "subtitle": "Featured appearances, speeches, and coverage",
+      "viewAllLink": {
+        "url": "/media",
+        "label": "View All Media"
+      }
+    },
+    "type": "card_grid"
+  },
+  {
+    "id": "home-testimonials",
+    "data": {
+      "items": [
+        {
+          "title": "Prof. Rajesh Kumar",
+          "rating": 5,
+          "subtitle": "Dean, Faculty of Engineering",
+          "description": "Dr. Sharma's visionary leadership transformed our institution into a hub of innovation. His ability to bridge academia and industry is unparalleled."
+        },
+        {
+          "title": "Priya Mehta",
+          "rating": 5,
+          "subtitle": "Alumni Entrepreneur, Batch 2022",
+          "description": "Under his guidance, we've seen a 300% increase in student entrepreneurship initiatives. He doesn't just talk about changeΓÇöhe makes it happen."
+        },
+        {
+          "title": "Dr. Anita Singh",
+          "rating": 5,
+          "subtitle": "Director, Research & Innovation",
+          "description": "A true thought leader who understands the pulse of modern education. His strategic partnerships have opened countless opportunities for our students."
+        }
+      ],
+      "title": "What People Say",
+      "columns": 3,
+      "cardType": "testimonial",
+      "subtitle": "Perspectives from colleagues, faculty, and students"
+    },
+    "type": "card_grid"
+  },
+  {
+    "id": "home-legacy-preview",
+    "data": {
+      "body": [
+        "Led the university through a decade of unparalleled growth, bridging the industry-academia gap through strategic alliances and world-class infrastructure.",
+        "Over two decades, he has built, restructured, and scaled world-class learning centers in India, setting academic standards that continue to yield talent and research breakthroughs."
+      ],
+      "quote": {
+        "text": "The measure of leadership is not the positions held, but the lives transformed, the institutions strengthened, and the future possibilities unlocked for generations to come."
+      },
+      "title": "A Legacy of Institution Building",
+      "layout": "editorial",
+      "category": "Legacy & Impact",
+      "sidePanel": {
+        "type": "list",
+        "items": [
+          "Institutional Blueprint Framework",
+          "Mentoring Future Vice Chancellors",
+          "State & National Policy Leadership",
+          "Sustainable Research Endowments"
+        ],
+        "title": "Legacy Foundations"
+      },
+      "categoryIcon": "History"
+    },
+    "type": "narrative"
+  },
+  {
+    "id": "home-signature-quote",
+    "data": {
+      "image": "/uploads/s-m-1780737794909.png",
+      "quote": "Education\nis a job of\nresponsibility and\npious commitment to\nenlighten human lives",
+      "author": "",
+      "citation": "",
+      "imageSize": "xl",
+      "signature": "/uploads/singh-s-m-guni-1780737591941.png"
+    },
+    "type": "quote"
+  }
+]

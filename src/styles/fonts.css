@@ -1,0 +1,4 @@
+/* 
+  Fonts are dynamically optimized, self-hosted, and preloaded via Next.js next/font/google inside src/app/layout.tsx.
+  The duplicate Google Fonts CSS @import that was previously here has been removed to eliminate render-blocking stylesheet requests.
+*/

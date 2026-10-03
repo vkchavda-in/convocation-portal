@@ -1,0 +1,857 @@
+=========================================
+Step 87: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Add .theme-convocation block to the end of theme.css
+Description: Added .theme-convocation theme styles to theme.css defining Navy Blue and Golden Yellow variables.
+-----------------------------------------
+TARGET CONTENT:
+.theme-am-coe {
+  --midnight-navy: #0F172A;
+  --royal-blue: #1556B2;
+  --champagne-gold: #15B1D8;
+  --warm-white: #FFFFFF;
+  --dark-surface: #0F172A;
+  --border: rgba(15, 23, 42, 0.12);
+}
+
+
+
+-----------------------------------------
+REPLACEMENT CONTENT:
+.theme-am-coe {
+  --midnight-navy: #0F172A;
+  --royal-blue: #1556B2;
+  --champagne-gold: #15B1D8;
+  --warm-white: #FFFFFF;
+  --dark-surface: #0F172A;
+  --border: rgba(15, 23, 42, 0.12);
+}
+
+.theme-convocation {
+  --midnight-navy: #002147;
+  --royal-blue: #002147;
+  --champagne-gold: #fdc800;
+  --warm-white: #ffffff;
+  --dark-surface: #001229;
+  --border: rgba(0, 33, 71, 0.12);
+}
+
+=========================================
+
+=========================================
+Step 1102: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Update :root to the Ganpat University convocation theme — navy + gold, pure white background, proper light mode tokens. Also update .theme-convocation to match perfectly, and suppress the dark {} block so it never activates.
+Description: Set root theme to GUNI Convocation colors: #002147 navy, #fdc800 gold, pure white background. Ensures light-only mode — no dark mode activation. Refined all design tokens to feel clean, academic, and prestigious.
+-----------------------------------------
+TARGET CONTENT:
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Ivy League Crimson & Warm Ivory Color Palette */
+  --midnight-navy: #3A0E15;   /* Deep Crimson */
+  --royal-blue: #611C24;      /* Rich Burgundy */
+  --champagne-gold: #C89E4C;  /* Rich Gold */
+  --warm-white: #FCFAF5;      /* Warm Ivory */
+  --dark-surface: #24060A;    /* Darkest Crimson Surface */
+
+  /* Design System Tokens */
+  --font-size: 16px;
+  --background: var(--warm-white);
+  --foreground: var(--midnight-navy);
+  --card: #ffffff;
+  --card-foreground: var(--midnight-navy);
+  --popover: #ffffff;
+  --popover-foreground: var(--midnight-navy);
+  --primary: var(--royal-blue);
+  --primary-foreground: var(--warm-white);
+  --secondary: var(--champagne-gold);
+  --secondary-foreground: var(--midnight-navy);
+  --muted: #E5E5E0;
+  --muted-foreground: #5A5A52;
+  --accent: var(--champagne-gold);
+  --accent-foreground: var(--midnight-navy);
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(8, 23, 45, 0.12);
+  --input: transparent;
+  --input-background: #F5F5F2;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--royal-blue);
+  --chart-1: var(--royal-blue);
+  --chart-2: var(--champagne-gold);
+  --chart-3: var(--midnight-navy);
+  --chart-4: #2A5A9E;
+  --chart-5: #E6D4A0;
+  --radius: 0.6rem;
+  --sidebar: var(--dark-surface);
+  --sidebar-foreground: var(--warm-white);
+  --sidebar-primary: var(--royal-blue);
+  --sidebar-primary-foreground: var(--warm-white);
+  --sidebar-accent: var(--champagne-gold);
+  --sidebar-accent-foreground: var(--midnight-navy);
+  --sidebar-border: rgba(250, 250, 248, 0.1);
+  --sidebar-ring: var(--champagne-gold);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+-----------------------------------------
+REPLACEMENT CONTENT:
+/* ─── GUNI Convocation — Light Mode Only ──────────────────────────────────── */
+/* No dark mode. The .dark class is intentionally a no-op on the public site.  */
+
+:root {
+  /* ── Ganpat University Brand Colors ── */
+  --midnight-navy:   #002147;   /* GUNI Deep Navy — primary dark color */
+  --royal-blue:      #003580;   /* GUNI Royal Blue — secondary dark tone */
+  --champagne-gold:  #fdc800;   /* GUNI Gold — accent / highlight */
+  --warm-white:      #ffffff;   /* Pure White — main background */
+  --surface-subtle:  #f7f9fc;   /* Very light blue-tinted white — section alt bg */
+  --surface-muted:   #eef2f8;   /* Subtle navy-tinted muted bg */
+  --dark-surface:    #001229;   /* Near-black navy — footers / deep sections */
+
+  /* ── Design System Tokens ── */
+  --font-size: 16px;
+  --background:            var(--warm-white);
+  --foreground:            var(--midnight-navy);
+  --card:                  #ffffff;
+  --card-foreground:       var(--midnight-navy);
+  --popover:               #ffffff;
+  --popover-foreground:    var(--midnight-navy);
+  --primary:               var(--midnight-navy);
+  --primary-foreground:    #ffffff;
+  --secondary:             var(--champagne-gold);
+  --secondary-foreground:  var(--midnight-navy);
+  --muted:                 var(--surface-muted);
+  --muted-foreground:      #4a5568;
+  --accent:                var(--champagne-gold);
+  --accent-foreground:     var(--midnight-navy);
+  --destructive:           #d4183d;
+  --destructive-foreground:#ffffff;
+  --border:                rgba(0, 33, 71, 0.10);
+  --input:                 transparent;
+  --input-background:      #f0f4f9;
+  --switch-background:     #c5cdd8;
+  --font-weight-medium:    500;
+  --font-weight-normal:    400;
+  --ring:                  var(--midnight-navy);
+
+  /* ── Chart colors ── */
+  --chart-1: var(--midnight-navy);
+  --chart-2: var(--champagne-gold);
+  --chart-3: var(--royal-blue);
+  --chart-4: #1a6b9a;
+  --chart-5: #f7d96b;
+
+  /* ── Border radius ── */
+  --radius: 0.5rem;
+
+  /* ── Admin Sidebar (stays dark navy) ── */
+  --sidebar:                    var(--dark-surface);
+  --sidebar-foreground:         #e8edf4;
+  --sidebar-primary:            var(--champagne-gold);
+  --sidebar-primary-foreground: var(--midnight-navy);
+  --sidebar-accent:             rgba(253, 200, 0, 0.12);
+  --sidebar-accent-foreground:  var(--champagne-gold);
+  --sidebar-border:             rgba(255, 255, 255, 0.07);
+  --sidebar-ring:               var(--champagne-gold);
+
+  /* ── Typography ── */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ── Dark mode is intentionally disabled for the convocation site ── */
+/* The .dark class is a no-op — all values mirror :root light mode */
+.dark {
+  --background:         var(--warm-white);
+  --foreground:         var(--midnight-navy);
+  --card:               #ffffff;
+  --card-foreground:    var(--midnight-navy);
+  --popover:            #ffffff;
+  --popover-foreground: var(--midnight-navy);
+  --primary:            var(--midnight-navy);
+  --primary-foreground: #ffffff;
+  --secondary:          var(--champagne-gold);
+  --secondary-foreground: var(--midnight-navy);
+  --muted:              var(--surface-muted);
+  --muted-foreground:   #4a5568;
+  --accent:             var(--champagne-gold);
+  --accent-foreground:  var(--midnight-navy);
+  --destructive:        #d4183d;
+  --destructive-foreground: #ffffff;
+  --border:             rgba(0, 33, 71, 0.10);
+  --input:              transparent;
+  --ring:               var(--midnight-navy);
+  --chart-1: var(--midnight-navy);
+  --chart-2: var(--champagne-gold);
+  --chart-3: var(--royal-blue);
+  --chart-4: #1a6b9a;
+  --chart-5: #f7d96b;
+  --sidebar:                    var(--dark-surface);
+  --sidebar-foreground:         #e8edf4;
+  --sidebar-primary:            var(--champagne-gold);
+  --sidebar-primary-foreground: var(--midnight-navy);
+  --sidebar-accent:             rgba(253, 200, 0, 0.12);
+  --sidebar-accent-foreground:  var(--champagne-gold);
+  --sidebar-border:             rgba(255, 255, 255, 0.07);
+  --sidebar-ring:               var(--champagne-gold);
+}
+=========================================
+
+=========================================
+Step 1104: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Update theme-convocation class and theme-midnight-navy to use the GUNI colors that match root
+Description: Updated .theme-convocation to match the new :root GUNI light mode exactly, and added --surface-subtle and --surface-muted variables. Also updated .theme-midnight-navy (pure navy) to be the convocation theme's variation.
+-----------------------------------------
+TARGET CONTENT:
+.theme-midnight-navy {
+  --midnight-navy: #08172D;
+  --royal-blue: #103C75;
+  --champagne-gold: #CBA85A;
+  --warm-white: #FAFAF8;
+  --dark-surface: #07111F;
+  --border: rgba(8, 23, 45, 0.12);
+}
+
+
+-----------------------------------------
+REPLACEMENT CONTENT:
+.theme-midnight-navy {
+  --midnight-navy: #002147;
+  --royal-blue:    #003580;
+  --champagne-gold: #fdc800;
+  --warm-white:    #ffffff;
+  --surface-subtle: #f7f9fc;
+  --surface-muted:  #eef2f8;
+  --dark-surface:  #001229;
+  --border: rgba(0, 33, 71, 0.10);
+}
+
+
+=========================================
+
+=========================================
+Step 1108: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Update theme-convocation to match root exactly with all tokens
+Description: Updated .theme-convocation to add surface-subtle, surface-muted and use the correct royal-blue value for the GUNI brand.
+-----------------------------------------
+TARGET CONTENT:
+.theme-convocation {
+  --midnight-navy: #002147;
+  --royal-blue: #002147;
+  --champagne-gold: #fdc800;
+  --warm-white: #ffffff;
+  --dark-surface: #001229;
+  --border: rgba(0, 33, 71, 0.12);
+}
+
+-----------------------------------------
+REPLACEMENT CONTENT:
+.theme-convocation {
+  --midnight-navy:   #002147;
+  --royal-blue:      #003580;
+  --champagne-gold:  #fdc800;
+  --warm-white:      #ffffff;
+  --surface-subtle:  #f7f9fc;
+  --surface-muted:   #eef2f8;
+  --dark-surface:    #001229;
+  --border:          rgba(0, 33, 71, 0.10);
+}
+
+=========================================
+
+=========================================
+Step 1110: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\globals.css
+Instruction: Update html and body background colors to use the new clean white theme
+Description: Updated globals.css body/html background to use pure white GUNI convocation colors.
+-----------------------------------------
+TARGET CONTENT:
+html {
+  /* Prevent flash of unstyled background on mobile */
+  background-color: #FFFFFF;
+  /* Native smooth scrolling — zero JS, works everywhere */
+  scroll-behavior: smooth;
+  /* Offset for the 80px sticky header to prevent overlap when scrolling to anchor tags */
+  scroll-padding-top: 5rem;
+}
+
+/* Ensure the app body never flashes white from a hydration boundary */
+body {
+  /* Use a stable background during hydration */
+  background-color: var(--warm-white, #FFFFFF);
+  /* Prevent content jumping from scrollbar appearing after hydration */
+  scrollbar-gutter: stable;
+}
+
+-----------------------------------------
+REPLACEMENT CONTENT:
+html {
+  /* Prevent flash of unstyled background — GUNI white */
+  background-color: #ffffff;
+  /* Native smooth scrolling — zero JS, works everywhere */
+  scroll-behavior: smooth;
+  /* Offset for the 80px sticky header to prevent overlap when scrolling to anchor tags */
+  scroll-padding-top: 5rem;
+}
+
+/* Ensure the app body uses the convocation white theme */
+body {
+  /* Use a stable background during hydration */
+  background-color: var(--warm-white, #ffffff);
+  color: var(--midnight-navy, #002147);
+  /* Prevent content jumping from scrollbar appearing after hydration */
+  scrollbar-gutter: stable;
+}
+
+=========================================
+
+=========================================
+Step 1158: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Replace the entire :root and .dark blocks with a new premium Presidential Ceremony token system
+Description: Complete premium token redesign — "Presidential Ceremony" palette. Replaces plain GUNI navy+yellow with a sophisticated antique-gold + midnight-ink + parchment system. New named semantic tokens (--ink, --slate, --gold, --parchment, --cream, --mist) give each color intentional purpose. Section backgrounds alternate between warm parchment and cool mist for visual rhythm without feeling jarring.
+-----------------------------------------
+TARGET CONTENT:
+/* ─── GUNI Convocation — Light Mode Only ──────────────────────────────────── */
+/* No dark mode. The .dark class is intentionally a no-op on the public site.  */
+
+:root {
+  /* ── Ganpat University Brand Colors ── */
+  --midnight-navy:   #002147;   /* GUNI Deep Navy — primary dark color */
+  --royal-blue:      #003580;   /* GUNI Royal Blue — secondary dark tone */
+  --champagne-gold:  #fdc800;   /* GUNI Gold — accent / highlight */
+  --warm-white:      #ffffff;   /* Pure White — main background */
+  --surface-subtle:  #f7f9fc;   /* Very light blue-tinted white — section alt bg */
+  --surface-muted:   #eef2f8;   /* Subtle navy-tinted muted bg */
+  --dark-surface:    #001229;   /* Near-black navy — footers / deep sections */
+
+  /* ── Design System Tokens ── */
+  --font-size: 16px;
+  --background:            var(--warm-white);
+  --foreground:            var(--midnight-navy);
+  --card:                  #ffffff;
+  --card-foreground:       var(--midnight-navy);
+  --popover:               #ffffff;
+  --popover-foreground:    var(--midnight-navy);
+  --primary:               var(--midnight-navy);
+  --primary-foreground:    #ffffff;
+  --secondary:             var(--champagne-gold);
+  --secondary-foreground:  var(--midnight-navy);
+  --muted:                 var(--surface-muted);
+  --muted-foreground:      #4a5568;
+  --accent:                var(--champagne-gold);
+  --accent-foreground:     var(--midnight-navy);
+  --destructive:           #d4183d;
+  --destructive-foreground:#ffffff;
+  --border:                rgba(0, 33, 71, 0.10);
+  --input:                 transparent;
+  --input-background:      #f0f4f9;
+  --switch-background:     #c5cdd8;
+  --font-weight-medium:    500;
+  --font-weight-normal:    400;
+  --ring:                  var(--midnight-navy);
+
+  /* ── Chart colors ── */
+  --chart-1: var(--midnight-navy);
+  --chart-2: var(--champagne-gold);
+  --chart-3: var(--royal-blue);
+  --chart-4: #1a6b9a;
+  --chart-5: #f7d96b;
+
+  /* ── Border radius ── */
+  --radius: 0.5rem;
+
+  /* ── Admin Sidebar (stays dark navy) ── */
+  --sidebar:                    var(--dark-surface);
+  --sidebar-foreground:         #e8edf4;
+  --sidebar-primary:            var(--champagne-gold);
+  --sidebar-primary-foreground: var(--midnight-navy);
+  --sidebar-accent:             rgba(253, 200, 0, 0.12);
+  --sidebar-accent-foreground:  var(--champagne-gold);
+  --sidebar-border:             rgba(255, 255, 255, 0.07);
+  --sidebar-ring:               var(--champagne-gold);
+
+  /* ── Typography ── */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ── Dark mode is intentionally disabled for the convocation site ── */
+/* The .dark class is a no-op — all values mirror :root light mode */
+.dark {
+  --background:         var(--warm-white);
+  --foreground:         var(--midnight-navy);
+  --card:               #ffffff;
+  --card-foreground:    var(--midnight-navy);
+  --popover:            #ffffff;
+  --popover-foreground: var(--midnight-navy);
+  --primary:            var(--midnight-navy);
+  --primary-foreground: #ffffff;
+  --secondary:          var(--champagne-gold);
+  --secondary-foreground: var(--midnight-navy);
+  --muted:              var(--surface-muted);
+  --muted-foreground:   #4a5568;
+  --accent:             var(--champagne-gold);
+  --accent-foreground:  var(--midnight-navy);
+  --destructive:        #d4183d;
+  --destructive-foreground: #ffffff;
+  --border:             rgba(0, 33, 71, 0.10);
+  --input:              transparent;
+  --ring:               var(--midnight-navy);
+  --chart-1: var(--midnight-navy);
+  --chart-2: var(--champagne-gold);
+  --chart-3: var(--royal-blue);
+  --chart-4: #1a6b9a;
+  --chart-5: #f7d96b;
+  --sidebar:                    var(--dark-surface);
+  --sidebar-foreground:         #e8edf4;
+  --sidebar-primary:            var(--champagne-gold);
+  --sidebar-primary-foreground: var(--midnight-navy);
+  --sidebar-accent:             rgba(253, 200, 0, 0.12);
+  --sidebar-accent-foreground:  var(--champagne-gold);
+  --sidebar-border:             rgba(255, 255, 255, 0.07);
+  --sidebar-ring:               var(--champagne-gold);
+}
+-----------------------------------------
+REPLACEMENT CONTENT:
+/* ─────────────────────────────────────────────────────────────────────────────
+   GUNI 19th Convocation — "Presidential Ceremony" Premium Design Tokens
+   Light-only. No dark mode. Every color chosen for prestige & legibility.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* ╔══════════════════════════════════════════════════════════╗
+     ║  BRAND PALETTE  —  Named semantic color primitives       ║
+     ╚══════════════════════════════════════════════════════════╝ */
+
+  /* Ink — near-black midnight, primary text & deep surfaces */
+  --ink:              #0D1B2E;
+
+  /* Navy — GUNI's signature deep blue, refined and prestigious */
+  --navy:             #0B2545;
+
+  /* Slate — mid-tone academic blue for interactive elements */
+  --slate-blue:       #1D4075;
+
+  /* Gold — antique medal gold; rich, warm, never harsh */
+  --gold:             #C9A84C;
+
+  /* Gold Bright — slightly lighter for hover states & glows */
+  --gold-bright:      #E8C05A;
+
+  /* Gold Pale — for very subtle tints, badges, backgrounds */
+  --gold-pale:        #FDF3D7;
+
+  /* Parchment — warm diploma white, main page background */
+  --parchment:        #FEFCF8;
+
+  /* Cream — slightly richer warm white, section alternating bg */
+  --cream:            #F7F3EA;
+
+  /* Mist — cool blue-tinted white, elevates cards & surfaces */
+  --mist:             #EDF1F8;
+
+  /* Fog — deeper cool-white for subtle borders & dividers */
+  --fog:              #DDE4EE;
+
+  /* Ink Light — primary text on mist/cream, softer than full ink */
+  --ink-light:        #1E2D42;
+
+  /* Slate Text — secondary text, captions, metadata */
+  --slate-text:       #3D5A80;
+
+  /* Ghost — disabled states, placeholders */
+  --ghost:            #8FA3BD;
+
+  /* Abyss — footer & deepest dark surfaces */
+  --abyss:            #070F1A;
+
+  /* ╔══════════════════════════════════════════════════════════╗
+     ║  SEMANTIC DESIGN TOKENS  — Mapped to brand primitives    ║
+     ╚══════════════════════════════════════════════════════════╝ */
+
+  /* — Legacy aliases for backward-compat with all modules — */
+  --midnight-navy:    var(--ink);
+  --royal-blue:       var(--slate-blue);
+  --champagne-gold:   var(--gold);
+  --warm-white:       var(--parchment);
+  --surface-subtle:   var(--mist);
+  --surface-muted:    var(--fog);
+  --dark-surface:     var(--abyss);
+
+  /* — Tailwind design system tokens — */
+  --font-size:             16px;
+  --background:            var(--parchment);
+  --foreground:            var(--ink);
+  --card:                  #ffffff;
+  --card-foreground:       var(--ink);
+  --popover:               #ffffff;
+  --popover-foreground:    var(--ink);
+  --primary:               var(--navy);
+  --primary-foreground:    #ffffff;
+  --secondary:             var(--gold);
+  --secondary-foreground:  var(--ink);
+  --muted:                 var(--mist);
+  --muted-foreground:      var(--slate-text);
+  --accent:                var(--gold);
+  --accent-foreground:     var(--ink);
+  --destructive:           #C0392B;
+  --destructive-foreground:#ffffff;
+  --border:                var(--fog);
+  --input:                 transparent;
+  --input-background:      var(--mist);
+  --switch-background:     var(--fog);
+  --font-weight-medium:    500;
+  --font-weight-normal:    400;
+  --ring:                  var(--slate-blue);
+
+  /* — Chart colors — */
+  --chart-1: var(--navy);
+  --chart-2: var(--gold);
+  --chart-3: var(--slate-blue);
+  --chart-4: #3A7CA5;
+  --chart-5: var(--gold-bright);
+
+  /* — Border radius — */
+  --radius: 0.5rem;
+
+  /* — Admin Sidebar — stays dark ink/navy — */
+  --sidebar:                    var(--abyss);
+  --sidebar-foreground:         #d0d9e8;
+  --sidebar-primary:            var(--gold);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent:             rgba(201, 168, 76, 0.14);
+  --sidebar-accent-foreground:  var(--gold-bright);
+  --sidebar-border:             rgba(255, 255, 255, 0.06);
+  --sidebar-ring:               var(--gold);
+
+  /* — Typography — */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ── Dark mode: intentionally a no-op. Public site is light-only. ── */
+.dark {
+  --background:            var(--parchment);
+  --foreground:            var(--ink);
+  --card:                  #ffffff;
+  --card-foreground:       var(--ink);
+  --popover:               #ffffff;
+  --popover-foreground:    var(--ink);
+  --primary:               var(--navy);
+  --primary-foreground:    #ffffff;
+  --secondary:             var(--gold);
+  --secondary-foreground:  var(--ink);
+  --muted:                 var(--mist);
+  --muted-foreground:      var(--slate-text);
+  --accent:                var(--gold);
+  --accent-foreground:     var(--ink);
+  --destructive:           #C0392B;
+  --destructive-foreground:#ffffff;
+  --border:                var(--fog);
+  --input:                 transparent;
+  --ring:                  var(--slate-blue);
+  --chart-1: var(--navy);
+  --chart-2: var(--gold);
+  --chart-3: var(--slate-blue);
+  --chart-4: #3A7CA5;
+  --chart-5: var(--gold-bright);
+  --sidebar:                    var(--abyss);
+  --sidebar-foreground:         #d0d9e8;
+  --sidebar-primary:            var(--gold);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent:             rgba(201, 168, 76, 0.14);
+  --sidebar-accent-foreground:  var(--gold-bright);
+  --sidebar-border:             rgba(255, 255, 255, 0.06);
+  --sidebar-ring:               var(--gold);
+}
+
+=========================================
+
+=========================================
+Step 1164: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Replace .theme-convocation with the new premium token values
+Description: Updated .theme-convocation to use all the new premium primitive tokens — same palette as :root but explicitly declared for clarity. Old plain GUNI colors replaced with the refined Presidential Ceremony palette.
+-----------------------------------------
+TARGET CONTENT:
+.theme-convocation {
+  --midnight-navy:   #002147;
+  --royal-blue:      #003580;
+  --champagne-gold:  #fdc800;
+  --warm-white:      #ffffff;
+  --surface-subtle:  #f7f9fc;
+  --surface-muted:   #eef2f8;
+  --dark-surface:    #001229;
+  --border:          rgba(0, 33, 71, 0.10);
+}
+
+-----------------------------------------
+REPLACEMENT CONTENT:
+.theme-convocation {
+  /* ── Presidential Ceremony — GUNI Premium ── */
+  --ink:              #0D1B2E;
+  --navy:             #0B2545;
+  --slate-blue:       #1D4075;
+  --gold:             #C9A84C;
+  --gold-bright:      #E8C05A;
+  --gold-pale:        #FDF3D7;
+  --parchment:        #FEFCF8;
+  --cream:            #F7F3EA;
+  --mist:             #EDF1F8;
+  --fog:              #DDE4EE;
+  --ink-light:        #1E2D42;
+  --slate-text:       #3D5A80;
+  --ghost:            #8FA3BD;
+  --abyss:            #070F1A;
+
+  /* — Legacy aliases — */
+  --midnight-navy:    var(--ink);
+  --royal-blue:       var(--slate-blue);
+  --champagne-gold:   var(--gold);
+  --warm-white:       var(--parchment);
+  --surface-subtle:   var(--mist);
+  --surface-muted:    var(--fog);
+  --dark-surface:     var(--abyss);
+  --border:           var(--fog);
+}
+
+=========================================
+
+=========================================
+Step 1166: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\globals.css
+Instruction: Update flash-prevention background to parchment
+Description: Updated globals.css flash-prevention color to use parchment (#FEFCF8) instead of plain white, matching the new premium parchment background token.
+-----------------------------------------
+TARGET CONTENT:
+html {
+  /* Prevent flash of unstyled background — GUNI white */
+  background-color: #ffffff;
+  /* Native smooth scrolling — zero JS, works everywhere */
+  scroll-behavior: smooth;
+  /* Offset for the 80px sticky header to prevent overlap when scrolling to anchor tags */
+  scroll-padding-top: 5rem;
+}
+
+/* Ensure the app body uses the convocation white theme */
+body {
+  /* Use a stable background during hydration */
+  background-color: var(--warm-white, #ffffff);
+  color: var(--midnight-navy, #002147);
+  /* Prevent content jumping from scrollbar appearing after hydration */
+  scrollbar-gutter: stable;
+}
+
+-----------------------------------------
+REPLACEMENT CONTENT:
+html {
+  /* Prevent flash of unstyled background — parchment warm white */
+  background-color: #FEFCF8;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* Ensure the app body uses the premium parchment background */
+body {
+  background-color: var(--parchment, #FEFCF8);
+  color: var(--ink, #0D1B2E);
+  scrollbar-gutter: stable;
+}
+
+=========================================
+
+=========================================
+Step 1565: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Update color variables in :root to represent the new luxury theme color values.
+Description: Modify GUNI theme variables in :root for the dark navy, gold, and ivory palette
+-----------------------------------------
+TARGET CONTENT:
+  /* Ink — near-black midnight, primary text & deep surfaces */
+  --ink:              #0D1B2E;
+
+  /* Navy — GUNI's signature deep blue, refined and prestigious */
+  --navy:             #0B2545;
+
+  /* Slate — mid-tone academic blue for interactive elements */
+  --slate-blue:       #1D4075;
+
+  /* Gold — antique medal gold; rich, warm, never harsh */
+  --gold:             #C9A84C;
+
+  /* Gold Bright — slightly lighter for hover states & glows */
+  --gold-bright:      #E8C05A;
+
+  /* Gold Pale — for very subtle tints, badges, backgrounds */
+  --gold-pale:        #FDF3D7;
+
+  /* Parchment — warm diploma white, main page background */
+  --parchment:        #FEFCF8;
+
+  /* Cream — slightly richer warm white, section alternating bg */
+  --cream:            #F7F3EA;
+
+  /* Mist — cool blue-tinted white, elevates cards & surfaces */
+  --mist:             #EDF1F8;
+
+  /* Fog — deeper cool-white for subtle borders & dividers */
+  --fog:              #DDE4EE;
+
+  /* Ink Light — primary text on mist/cream, softer than full ink */
+  --ink-light:        #1E2D42;
+
+  /* Slate Text — secondary text, captions, metadata */
+  --slate-text:       #3D5A80;
+
+  /* Ghost — disabled states, placeholders */
+  --ghost:            #8FA3BD;
+
+  /* Abyss — footer & deepest dark surfaces */
+  --abyss:            #070F1A;
+-----------------------------------------
+REPLACEMENT CONTENT:
+  /* Ink — Ivory white primary text in dark theme */
+  --ink:              #FAF8F3;
+
+  /* Navy — GUNI's signature rich navy background */
+  --navy:             #071A3D;
+
+  /* Slate — mid-tone academic blue */
+  --slate-blue:       #112952;
+
+  /* Gold — champagne gold */
+  --gold:             #D4AF37;
+
+  /* Gold Bright — brighter gold for hovers */
+  --gold-bright:      #F3D065;
+
+  /* Gold Pale — translucent gold tint */
+  --gold-pale:        rgba(212, 175, 55, 0.15);
+
+  /* Parchment — mapped to rich navy to darken the page background */
+  --parchment:        #071A3D;
+
+  /* Cream — deepest navy for alternating sections */
+  --cream:            #040E21;
+
+  /* Mist — glassmorphic card backdrop */
+  --mist:             rgba(7, 26, 61, 0.5);
+
+  /* Fog — subtle gold border/divider */
+  --fog:              rgba(212, 175, 55, 0.15);
+
+  /* Ink Light — legible ivory white */
+  --ink-light:        rgba(250, 248, 243, 0.85);
+
+  /* Slate Text — secondary text (legible light grey/ivory) */
+  --slate-text:       rgba(250, 248, 243, 0.70);
+
+  /* Ghost — disabled/muted text */
+  --ghost:            rgba(250, 248, 243, 0.40);
+
+  /* Abyss — deepest black-blue background */
+  --abyss:            #040E21;
+=========================================
+
+=========================================
+Step 1567: Tool: replace_file_content, Target: d:\Desktop\Convocation\src\styles\theme.css
+Instruction: Update color variables inside .theme-convocation class to match the luxury dark navy theme values.
+Description: Modify GUNI theme variables in .theme-convocation class for consistency
+-----------------------------------------
+TARGET CONTENT:
+.theme-convocation {
+  /* ── Presidential Ceremony — GUNI Premium ── */
+  --ink:              #0D1B2E;
+  --navy:             #0B2545;
+  --slate-blue:       #1D4075;
+  --gold:             #C9A84C;
+  --gold-bright:      #E8C05A;
+  --gold-pale:        #FDF3D7;
+  --parchment:        #FEFCF8;
+  --cream:            #F7F3EA;
+  --mist:             #EDF1F8;
+  --fog:              #DDE4EE;
+  --ink-light:        #1E2D42;
+  --slate-text:       #3D5A80;
+  --ghost:            #8FA3BD;
+  --abyss:            #070F1A;
+
+  /* — Legacy aliases — */
+  --midnight-navy:    var(--ink);
+  --royal-blue:       var(--slate-blue);
+  --champagne-gold:   var(--gold);
+  --warm-white:       var(--parchment);
+  --surface-subtle:   var(--mist);
+  --surface-muted:    var(--fog);
+  --dark-surface:     var(--abyss);
+  --border:           var(--fog);
+}
+-----------------------------------------
+REPLACEMENT CONTENT:
+.theme-convocation {
+  /* ── Presidential Ceremony — GUNI Premium ── */
+  --ink:              #FAF8F3;
+  --navy:             #071A3D;
+  --slate-blue:       #112952;
+  --gold:             #D4AF37;
+  --gold-bright:      #F3D065;
+  --gold-pale:        rgba(212, 175, 55, 0.15);
+  --parchment:        #071A3D;
+  --cream:            #040E21;
+  --mist:             rgba(7, 26, 61, 0.5);
+  --fog:              rgba(212, 175, 55, 0.15);
+  --ink-light:        rgba(250, 248, 243, 0.85);
+  --slate-text:       rgba(250, 248, 243, 0.70);
+  --ghost:            rgba(250, 248, 243, 0.40);
+  --abyss:            #040E21;
+
+  /* — Legacy aliases — */
+  --midnight-navy:    var(--ink);
+  --royal-blue:       var(--slate-blue);
+  --champagne-gold:   var(--gold);
+  --warm-white:       var(--parchment);
+  --surface-subtle:   var(--mist);
+  --surface-muted:    var(--fog);
+  --dark-surface:     var(--abyss);
+  --border:           var(--fog);
+}
+=========================================
+

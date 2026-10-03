@@ -1,0 +1,487 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   GUNI 19th Convocation — "Presidential Ceremony" Premium Design Tokens
+   Light-only. No dark mode. Every color chosen for prestige & legibility.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* ╔══════════════════════════════════════════════════════════╗
+     ║  BRAND PALETTE  —  Named semantic color primitives       ║
+     ╚══════════════════════════════════════════════════════════╝ */
+
+  /* Ink — GUNI deep navy for primary dark text */
+  --ink:              #06152B;
+
+  /* Navy — GUNI's signature deep blue */
+  --navy:             #0A2540;
+
+  /* Slate — mid-tone academic blue for interactive elements */
+  --slate-blue:       #1E3A8A;
+
+  /* Gold — Warm vibrant golden amber matching Hero CTA button */
+  --gold:             #f9c53c;
+
+  /* Gold Bright — luminous warm champagne gold for dark surfaces & highlights */
+  --gold-bright:      #fde68a;
+
+  /* Gold Text — deep burnished warm gold for WCAG contrast on light backgrounds */
+  --gold-text:        #8C6514;
+
+  /* Gold Pale — translucent warm gold tint for background badges */
+  --gold-pale:        rgba(249, 197, 60, 0.15);
+
+  /* Parchment — pure white background */
+  --parchment:        #ffffff;
+
+  /* Cream — crisp cool slate-50 background for alternating section background */
+  --cream:            #f8fafc;
+
+  /* Mist — subtle slate-100 backdrop */
+  --mist:             #f1f5f9;
+
+  /* Fog — crisp slate-200 border/divider */
+  --fog:              #e2e8f0;
+
+  /* Ink Light — legible secondary text on mist/cream, softer */
+  --ink-light:        #1E293B;
+
+  /* Slate Text — secondary grey-slate body and description text with 5.5:1+ contrast */
+  --slate-text:       #475569;
+
+  /* Ghost — light grey-slate border accents and placeholders */
+  --ghost:            #cbd5e1;
+
+  /* Abyss — footer deep dark navy background */
+  --abyss:            #040D1A;
+
+  /* ╔══════════════════════════════════════════════════════════╗
+     ║  SEMANTIC DESIGN TOKENS  — Mapped to brand primitives    ║
+     ╚══════════════════════════════════════════════════════════╝ */
+
+  /* — Legacy aliases for backward-compat with all modules — */
+  --midnight-navy:    var(--ink);
+  --royal-blue:       var(--slate-blue);
+  --champagne-gold:   var(--gold);
+  --warm-white:       var(--parchment);
+  --surface-subtle:   var(--cream);
+  --surface-muted:    var(--fog);
+  --dark-surface:     var(--abyss);
+
+  /* — Tailwind design system tokens — */
+  --font-size:             16px;
+  --background:            var(--parchment);
+  --foreground:            var(--ink);
+  --card:                  #ffffff;
+  --card-foreground:       var(--ink);
+  --popover:               #ffffff;
+  --popover-foreground:    var(--ink);
+  --primary:               var(--navy);
+  --primary-foreground:    #ffffff;
+  --secondary:             var(--gold);
+  --secondary-foreground:  var(--ink);
+  --muted:                 var(--mist);
+  --muted-foreground:      var(--slate-text);
+  --accent:                var(--gold);
+  --accent-foreground:     var(--ink);
+  --destructive:           #C0392B;
+  --destructive-foreground:#ffffff;
+  --border:                var(--fog);
+  --input:                 transparent;
+  --input-background:      var(--mist);
+  --switch-background:     var(--fog);
+  --font-weight-medium:    500;
+  --font-weight-normal:    400;
+  --ring:                  var(--slate-blue);
+
+  /* — Chart colors — */
+  --chart-1: var(--navy);
+  --chart-2: var(--gold);
+  --chart-3: var(--slate-blue);
+  --chart-4: #3A7CA5;
+  --chart-5: var(--gold-bright);
+
+  /* — Border radius — */
+  --radius: 0.5rem;
+
+  /* — Admin Sidebar — stays dark ink/navy — */
+  --sidebar:                    var(--abyss);
+  --sidebar-foreground:         #d0d9e8;
+  --sidebar-primary:            var(--gold);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent:             rgba(201, 168, 76, 0.14);
+  --sidebar-accent-foreground:  var(--gold-bright);
+  --sidebar-border:             rgba(255, 255, 255, 0.06);
+  --sidebar-ring:               var(--gold);
+
+  /* — Typography — */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ── Dark mode: intentionally a no-op. Public site is light-only. ── */
+.dark {
+  --background:            var(--parchment);
+  --foreground:            var(--ink);
+  --card:                  #ffffff;
+  --card-foreground:       var(--ink);
+  --popover:               #ffffff;
+  --popover-foreground:    var(--ink);
+  --primary:               var(--navy);
+  --primary-foreground:    #ffffff;
+  --secondary:             var(--gold);
+  --secondary-foreground:  var(--ink);
+  --muted:                 var(--mist);
+  --muted-foreground:      var(--slate-text);
+  --accent:                var(--gold);
+  --accent-foreground:     var(--ink);
+  --destructive:           #C0392B;
+  --destructive-foreground:#ffffff;
+  --border:                var(--fog);
+  --input:                 transparent;
+  --ring:                  var(--slate-blue);
+  --chart-1: var(--navy);
+  --chart-2: var(--gold);
+  --chart-3: var(--slate-blue);
+  --chart-4: #3A7CA5;
+  --chart-5: var(--gold-bright);
+  --sidebar:                    var(--abyss);
+  --sidebar-foreground:         #d0d9e8;
+  --sidebar-primary:            var(--gold);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent:             rgba(201, 168, 76, 0.14);
+  --sidebar-accent-foreground:  var(--gold-bright);
+  --sidebar-border:             rgba(255, 255, 255, 0.06);
+  --sidebar-ring:               var(--gold);
+}
+
+
+@theme inline {
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius: var(--radius);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-text: var(--gold-text);
+  --color-champagne-gold: var(--champagne-gold);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
+
+/* Dynamic Visual Combinations (Debug Selector Overlays) */
+.theme-midnight-navy {
+  --midnight-navy: #002147;
+  --royal-blue:    #003580;
+  --champagne-gold: #fdc800;
+  --warm-white:    #ffffff;
+  --surface-subtle: #f7f9fc;
+  --surface-muted:  #eef2f8;
+  --dark-surface:  #001229;
+  --border: rgba(0, 33, 71, 0.10);
+}
+
+.theme-ivy-league {
+  --midnight-navy: #3A0E15;
+  --royal-blue: #611C24;
+  --champagne-gold: #C89E4C;
+  --warm-white: #FCFAF5;
+  --dark-surface: #24060A;
+  --border: rgba(58, 14, 21, 0.12);
+}
+
+.theme-emerald-legacy {
+  --midnight-navy: #0A2419;
+  --royal-blue: #123F2B;
+  --champagne-gold: #C89E4C;
+  --warm-white: #F6F8F5;
+  --dark-surface: #05130D;
+  --border: rgba(10, 36, 25, 0.12);
+}
+
+.theme-slate-charcoal {
+  --midnight-navy: #161719;
+  --royal-blue: #2C2D31;
+  --champagne-gold: #D8B467;
+  --warm-white: #F5F5F5;
+  --dark-surface: #0D0E0F;
+  --border: rgba(22, 23, 25, 0.12);
+}
+
+.theme-imperial-violet {
+  --midnight-navy: #28143A;
+  --royal-blue: #422060;
+  --champagne-gold: #C89E4C;
+  --warm-white: #F8F5FA;
+  --dark-surface: #190C25;
+  --border: rgba(40, 20, 58, 0.12);
+}
+
+.theme-oxford-prestige {
+  --midnight-navy: #0A1C36;
+  --royal-blue: #1A365D;
+  --champagne-gold: #D4AF37;
+  --warm-white: #F7F9FB;
+  --dark-surface: #050E1B;
+  --border: rgba(10, 28, 54, 0.12);
+}
+
+.theme-bronze-amber {
+  --midnight-navy: #2C1E17;
+  --royal-blue: #4A3528;
+  --champagne-gold: #D49D42;
+  --warm-white: #FAF8F5;
+  --dark-surface: #1B120E;
+  --border: rgba(44, 30, 23, 0.12);
+}
+
+.theme-minimalist-editorial {
+  --midnight-navy: #1A1A1A;
+  --royal-blue: #404040;
+  --champagne-gold: #9A8470;
+  --warm-white: #FAF9F6;
+  --dark-surface: #121212;
+  --border: rgba(26, 26, 26, 0.12);
+}
+
+.theme-teal-scholar {
+  --midnight-navy: #0A2B30;
+  --royal-blue: #154850;
+  --champagne-gold: #D4AF37;
+  --warm-white: #F5F8F8;
+  --dark-surface: #05181C;
+  --border: rgba(10, 43, 48, 0.12);
+}
+
+.theme-cambridge-blue {
+  --midnight-navy: #0F1E26;
+  --royal-blue: #3B5B66;
+  --champagne-gold: #C5A059;
+  --warm-white: #F4F7F6;
+  --dark-surface: #071015;
+  --border: rgba(15, 30, 38, 0.12);
+}
+
+.theme-bordeaux-velvet {
+  --midnight-navy: #2D0B13;
+  --royal-blue: #541524;
+  --champagne-gold: #CBB07B;
+  --warm-white: #FAF6F7;
+  --dark-surface: #1C060B;
+  --border: rgba(45, 11, 19, 0.12);
+}
+
+.theme-sandalwood-gold {
+  --midnight-navy: #2E2218;
+  --royal-blue: #543F30;
+  --champagne-gold: #D4AB70;
+  --warm-white: #FBF9F6;
+  --dark-surface: #1D140E;
+  --border: rgba(46, 34, 24, 0.12);
+}
+
+.theme-nordic-spruce {
+  --midnight-navy: #0E2329;
+  --royal-blue: #1E3F47;
+  --champagne-gold: #E6C594;
+  --warm-white: #F4F8F9;
+  --dark-surface: #071317;
+  --border: rgba(14, 35, 41, 0.12);
+}
+
+.theme-desert-sage {
+  --midnight-navy: #222D29;
+  --royal-blue: #3E4D47;
+  --champagne-gold: #DCA462;
+  --warm-white: #FAF9F6;
+  --dark-surface: #141C19;
+  --border: rgba(34, 45, 41, 0.12);
+}
+
+.theme-tuscan-sun {
+  --midnight-navy: #2B1D15;
+  --royal-blue: #593627;
+  --champagne-gold: #E5AC44;
+  --warm-white: #FDFBF7;
+  --dark-surface: #1A100B;
+  --border: rgba(43, 29, 21, 0.12);
+}
+
+.theme-royal-plum {
+  --midnight-navy: #230B21;
+  --royal-blue: #471A43;
+  --champagne-gold: #D4AC6E;
+  --warm-white: #FCF6FC;
+  --dark-surface: #140513;
+  --border: rgba(35, 11, 33, 0.12);
+}
+
+.theme-steel-platinum {
+  --midnight-navy: #1C2430;
+  --royal-blue: #384556;
+  --champagne-gold: #B8C5D6;
+  --warm-white: #F4F7FA;
+  --dark-surface: #0F151E;
+  --border: rgba(28, 36, 48, 0.12);
+}
+
+.theme-earthy-clay {
+  --midnight-navy: #2B231F;
+  --royal-blue: #59453C;
+  --champagne-gold: #D9967E;
+  --warm-white: #FAF7F5;
+  --dark-surface: #1B1512;
+  --border: rgba(43, 35, 31, 0.12);
+}
+
+.theme-classic-mahogany {
+  --midnight-navy: #31140F;
+  --royal-blue: #5C2820;
+  --champagne-gold: #CCA677;
+  --warm-white: #FCFAF7;
+  --dark-surface: #1F0B08;
+  --border: rgba(49, 20, 15, 0.12);
+}
+
+.theme-sahara-gold {
+  --midnight-navy: #2E2519;
+  --royal-blue: #564431;
+  --champagne-gold: #CCA26A;
+  --warm-white: #FAF9F5;
+  --dark-surface: #1E170F;
+  --border: rgba(46, 37, 25, 0.12);
+}
+
+.theme-navy-cyan {
+  --midnight-navy: #0F172A;
+  --royal-blue: #1556B2;
+  --champagne-gold: #15B1D8;
+  --warm-white: #FFFFFF;
+  --dark-surface: #0F172A;
+  --border: rgba(15, 23, 42, 0.12);
+}
+
+.theme-convocation {
+  /* ── Presidential Ceremony — GUNI Premium ── */
+  --ink:              #002147;
+  --navy:             #002147;
+  --slate-blue:       #003580;
+  --gold:             #f9c53c;
+  --gold-bright:      #fde68a;
+  --gold-text:        #8C6514;
+  --gold-pale:        rgba(249, 197, 60, 0.15);
+  --parchment:        #ffffff;
+  --cream:            #f7f9fc;
+  --mist:             #eef2f8;
+  --fog:              rgba(0, 33, 71, 0.10);
+  --ink-light:        #1A2D42;
+  --slate-text:       #4A5A70;
+  --ghost:            #cbd5e1;
+  --abyss:            #001229;
+
+  /* — Legacy aliases — */
+  --midnight-navy:    var(--ink);
+  --royal-blue:       var(--slate-blue);
+  --champagne-gold:   var(--gold);
+  --warm-white:       var(--parchment);
+  --surface-subtle:   var(--mist);
+  --surface-muted:    var(--fog);
+  --dark-surface:     var(--abyss);
+  --border:           var(--fog);
+}

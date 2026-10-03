@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Production build
+dist/
+
+# Environment files
+.env
+.env*.local
+.env.*.local
+
+# Local database files (not needed if using external Postgres)
+local_db/
+local_db_rs/
+
+# Prisma
+prisma/*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database backups (local only — do not commit)
+backups/
