@@ -537,11 +537,11 @@ export default function HeroModule({ id, data }: HeroModuleProps) {
           className="
             md:hidden relative z-10 flex flex-col justify-start
             h-full min-h-[calc(100dvh-80px)]
-            px-5 sm:px-8 pt-24 sm:pt-28 pb-4 overflow-hidden
+            px-5 sm:px-8 pt-5 sm:pt-6 pb-4 overflow-hidden
           "
         >
           {/* Mobile Centered Bottom Hero Characters - Positioned Lower to Bleed Off Bottom */}
-          <div className="absolute -bottom-8 sm:-bottom-10 left-1/2 -translate-x-1/2 pointer-events-none z-0 flex items-end justify-center w-full max-w-[360px] sm:max-w-[440px] h-[46%] sm:h-[50%] overflow-visible">
+          <div className="absolute -bottom-14 sm:-bottom-16 left-1/2 -translate-x-1/2 pointer-events-none z-0 flex items-end justify-center w-full max-w-[360px] sm:max-w-[440px] h-[46%] sm:h-[50%] overflow-visible">
             <img
               src={studentImg}
               alt="Convocation Students"
