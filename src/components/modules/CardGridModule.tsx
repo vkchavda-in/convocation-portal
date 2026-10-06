@@ -623,6 +623,10 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
 
   // Sub-renderer for past guests & dignitaries (Text Variant)
   const renderGuestCard = (item: CardItem, index: number) => {
+    const rawDignitaries = item.description
+      ? item.description.split('•').map((s) => s.trim()).filter(Boolean)
+      : [];
+
     return (
       <div
         key={index}
@@ -641,7 +645,7 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
             )}
           </div>
 
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-[var(--navy,#0B2545)] mb-1 group-hover:text-amber-600 transition-colors">
+          <h3 className="font-serif text-lg sm:text-xl font-bold text-[var(--navy,#0B2545)] mb-1 group-hover:text-[#b47e00] transition-colors">
             {item.title}
           </h3>
 
@@ -651,14 +655,22 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
             </div>
           )}
 
-          {item.description && (
-            <div className="text-xs text-slate-600 leading-relaxed bg-slate-50/80 p-3 rounded-xl border border-slate-100">
-              <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-700/80 mb-1">
-                Guest(s) of Honour / Special Dignitaries
+          {rawDignitaries.length > 0 && (
+            <div className="mt-3.5 pt-3 border-t border-slate-100">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                Special Dignitaries / Guests of Honour
               </span>
-              <span className="text-slate-700 font-medium">
-                {item.description}
-              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {rawDignitaries.map((dignitary, dIdx) => (
+                  <span
+                    key={dIdx}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-50 text-slate-700 border border-slate-200/70"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                    <span>{dignitary}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -679,6 +691,10 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
       .map((w) => w[0])
       .slice(0, 2)
       .join('') || 'G';
+
+    const rawDignitaries = item.description
+      ? item.description.split('•').map((s) => s.trim()).filter(Boolean)
+      : [];
 
     return (
       <div
@@ -728,7 +744,7 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
         {/* Bottom Details Container */}
         <div className="p-5 flex flex-col justify-between flex-1 bg-white">
           <div>
-            <h3 className="font-serif text-base sm:text-lg font-bold text-[var(--navy,#0B2545)] mb-1 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
+            <h3 className="font-serif text-base sm:text-lg font-bold text-[var(--navy,#0B2545)] mb-1 leading-snug group-hover:text-[#b47e00] transition-colors line-clamp-1">
               {item.title}
             </h3>
 
@@ -738,14 +754,22 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
               </p>
             )}
 
-            {item.description && (
-              <div className="text-[11px] text-slate-600 leading-relaxed bg-slate-50/90 p-2.5 rounded-xl border border-slate-100 line-clamp-2">
-                <span className="block text-[9px] font-bold uppercase tracking-wider text-amber-700/80 mb-0.5">
-                  Guest(s) of Honour / Dignitaries:
+            {rawDignitaries.length > 0 && (
+              <div className="mt-3 pt-2.5 border-t border-slate-100">
+                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
+                  Special Dignitaries / Guests of Honour
                 </span>
-                <span className="text-slate-700 font-medium">
-                  {item.description}
-                </span>
+                <div className="flex flex-wrap gap-1">
+                  {rawDignitaries.map((dignitary, dIdx) => (
+                    <span
+                      key={dIdx}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-50 text-slate-700 border border-slate-200/70"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-amber-500 shrink-0" />
+                      <span className="truncate max-w-[200px]">{dignitary}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
           </div>
