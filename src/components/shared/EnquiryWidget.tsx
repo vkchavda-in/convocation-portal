@@ -65,6 +65,17 @@ interface WidgetItem {
 interface EnquiryWidgetProps {
   settings?: {
     widgets?: WidgetItem[];
+    // Auto Popup settings
+    autoPopupEnabled?: boolean;
+    autoPopupTitle?: string;
+    autoPopupHtml?: string;
+    autoPopupDelay?: number;
+    autoPopupFrequency?: 'always' | 'once_per_session';
+    autoPopupMaxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+    autoPopupShowCloseButton?: boolean;
+    autoPopupCloseOnBackdrop?: boolean;
+    autoPopupCtaText?: string;
+    autoPopupCtaUrl?: string;
     // Fallback settings for backward compatibility
     widgetEnabled?: boolean;
     widgetType?: 'link' | 'modal' | 'html' | 'download';
@@ -84,16 +95,40 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
   const [openNpfWidgetId, setOpenNpfWidgetId] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showAutoPopup, setShowAutoPopup] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [windowWidth, setWindowWidth] = useState<number>(1024);
   const [windowHeight, setWindowHeight] = useState<number>(768);
   const modalContainerRef = useRef<HTMLDivElement>(null);
   const showScrollTopRef = useRef(false);
 
-
-  // Lock body scroll and Lenis smooth scroll when modal is active
+  // Auto Popup trigger on site load / reload
   useEffect(() => {
-    if (activeModalWidget) {
+    if (!settings?.autoPopupEnabled || !settings?.autoPopupHtml) return;
+
+    if (settings?.autoPopupFrequency === 'once_per_session') {
+      const seen = typeof window !== 'undefined' && sessionStorage.getItem('convocation_auto_popup_shown');
+      if (seen) return;
+    }
+
+    const delayMs = Math.max(0, (settings?.autoPopupDelay ?? 1) * 1000);
+    const timer = setTimeout(() => {
+      setShowAutoPopup(true);
+    }, delayMs);
+
+    return () => clearTimeout(timer);
+  }, [settings?.autoPopupEnabled, settings?.autoPopupHtml, settings?.autoPopupFrequency, settings?.autoPopupDelay]);
+
+  const handleCloseAutoPopup = () => {
+    setShowAutoPopup(false);
+    if (settings?.autoPopupFrequency === 'once_per_session' && typeof window !== 'undefined') {
+      sessionStorage.setItem('convocation_auto_popup_shown', 'true');
+    }
+  };
+
+  // Lock body scroll and Lenis smooth scroll when modal or auto popup is active
+  useEffect(() => {
+    if (activeModalWidget || showAutoPopup) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
       if ((window as any).lenis) {
@@ -113,7 +148,7 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
         (window as any).lenis.start();
       }
     };
-  }, [activeModalWidget]);
+  }, [activeModalWidget, showAutoPopup]);
 
   // Track window size dynamically for responsive sizing and auto-scaling
   useEffect(() => {
@@ -519,10 +554,11 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
                 onClick={() => handleWidgetClick(widget)}
                 style={{
                   ...positionStyle,
-                  background: 'linear-gradient(90deg, var(--royal-blue) 0%, var(--champagne-gold) 100%)',
-                  boxShadow: '0 8px 32px rgba(2,132,199,0.3)'
+                  background: 'linear-gradient(90deg, #e9a800, #f9c53c, #f59e0b)',
+                  color: '#060f24',
+                  boxShadow: '0 8px 30px rgba(245, 158, 11, 0.4)'
                 }}
-                className="flex items-center justify-center font-bold text-white text-[10px] md:text-xs tracking-wider px-5 py-2.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 uppercase font-extrabold shine-hover overflow-hidden"
+                className="flex items-center justify-center font-black text-[#060f24] text-[10px] md:text-xs tracking-wider px-5 py-2.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 uppercase font-sans shine-hover overflow-hidden border border-amber-300/40"
               >
                 {widget.text}
               </button>
@@ -531,8 +567,8 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
   
           if (style === 'bubble') {
             const iconName = widget.bubbleIcon || 'message';
-            let iconElement = <MessageSquare className="w-5 h-5" />;
-            let bubbleColor = 'bg-gradient-to-t from-[var(--royal-blue)] to-[var(--champagne-gold)]';
+            let iconElement = <MessageSquare className="w-5 h-5 text-[#060f24]" />;
+            let bubbleBg = 'linear-gradient(135deg, #e9a800, #f9c53c, #f59e0b)';
   
             if (iconName === 'whatsapp') {
               iconElement = (
@@ -540,31 +576,28 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.488 2.02 14.024.992 11.41.992 5.974.992 1.55 5.361 1.547 10.79c-.002 1.637.433 3.238 1.26 4.678l-.997 3.637 3.837-.993zM18.23 15.11c-.34-.17-2.01-1.01-2.321-1.123-.31-.11-.537-.17-.76.17-.223.337-.866 1.1-.11 1.348.156.052.312.1.468.1.156 0 .313-.048.47-.156.34-.17.68-.34.99-.548.33-.222.66-.468.99-.76.31-.274.537-.565.656-.837.12-.27.06-.51-.03-.68-.09-.17-.76-1.83-1.04-2.516-.273-.656-.566-.656-.766-.666-.2-.01-.425-.01-.652-.01-.226 0-.595.085-.907.425-.31.336-1.19 1.162-1.19 2.83 0 1.67 1.218 3.28 1.388 3.51.17.23 2.395 3.66 5.8 5.13 2.83 1.214 3.738 1.034 5.097.74.887-.19 2.01-.82 2.293-1.57.283-.75.283-1.393.2-1.527-.083-.135-.312-.224-.652-.394z"/>
                 </svg>
               );
-              bubbleColor = 'bg-emerald-500 hover:bg-emerald-600';
+              bubbleBg = '#10B981';
             } else if (iconName === 'phone') {
-              iconElement = <Phone className="w-5 h-5" />;
+              iconElement = <Phone className="w-5 h-5 text-[#060f24]" />;
             } else if (iconName === 'mail') {
-              iconElement = <Mail className="w-5 h-5" />;
+              iconElement = <Mail className="w-5 h-5 text-[#060f24]" />;
             } else if (iconName === 'info') {
-              iconElement = <Info className="w-5 h-5" />;
+              iconElement = <Info className="w-5 h-5 text-[#060f24]" />;
             } else if (iconName === 'gift') {
-              iconElement = <Gift className="w-5 h-5" />;
+              iconElement = <Gift className="w-5 h-5 text-[#060f24]" />;
             }
-  
-            const isGradient = bubbleColor.startsWith('bg-gradient-to-t');
-            const buttonStyle = {
-              ...positionStyle,
-              background: isGradient ? 'linear-gradient(to top, var(--royal-blue) 0%, var(--champagne-gold) 100%)' : undefined,
-              boxShadow: isGradient ? '0 8px 24px rgba(2,132,199,0.3)' : undefined
-            };
   
             return (
               <button
                 key={widget.id}
                 type="button"
                 onClick={() => handleWidgetClick(widget)}
-                style={buttonStyle}
-                className={`w-12 h-12 rounded-full ${isGradient ? '' : bubbleColor} text-white shadow-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 group overflow-hidden shine-hover`}
+                style={{
+                  ...positionStyle,
+                  background: bubbleBg,
+                  boxShadow: '0 8px 24px rgba(245, 158, 11, 0.4)'
+                }}
+                className="w-12 h-12 rounded-full text-white shadow-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 group overflow-hidden shine-hover border border-amber-300/40"
                 title={widget.text}
               >
                 {iconElement}
@@ -572,20 +605,20 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
             );
           }
   
-          // Default Button layout
+          // Default Vertical/Horizontal Tab Button layout in solid gold
           let buttonClass = '';
           if (!widget.customPosition) {
             if (widget.side === 'right') {
-              buttonClass = 'w-9 md:w-[38px] h-36 rounded-l-2xl hover:shadow-[0_0_20px_rgba(0,138,124,0.45)] overflow-hidden';
+              buttonClass = 'w-9 md:w-[38px] h-36 rounded-l-2xl shadow-[0_4px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_25px_rgba(245,158,11,0.55)] overflow-hidden';
             } else if (widget.side === 'left') {
-              buttonClass = 'w-9 md:w-[38px] h-36 rounded-r-2xl hover:shadow-[0_0_20px_rgba(0,138,124,0.45)] overflow-hidden';
+              buttonClass = 'w-9 md:w-[38px] h-36 rounded-r-2xl shadow-[0_4px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_25px_rgba(245,158,11,0.55)] overflow-hidden';
             } else if (widget.side === 'top') {
-              buttonClass = 'px-4 py-2.5 rounded-b-2xl hover:shadow-[0_0_20px_rgba(0,138,124,0.45)] overflow-hidden';
+              buttonClass = 'px-5 py-2.5 rounded-b-2xl shadow-[0_4px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_25px_rgba(245,158,11,0.55)] overflow-hidden';
             } else if (widget.side === 'bottom') {
-              buttonClass = 'px-4 py-2.5 rounded-t-2xl hover:shadow-[0_0_20px_rgba(0,138,124,0.45)] overflow-hidden';
+              buttonClass = 'px-5 py-2.5 rounded-t-2xl shadow-[0_4px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_25px_rgba(245,158,11,0.55)] overflow-hidden';
             }
           } else {
-            buttonClass = 'px-4 py-2.5 rounded-xl hover:shadow-[0_0_20px_rgba(0,138,124,0.45)] overflow-hidden';
+            buttonClass = 'px-5 py-2.5 rounded-xl shadow-[0_4px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_25px_rgba(245,158,11,0.55)] overflow-hidden';
           }
   
           const isVertical = !widget.customPosition && (widget.side === 'left' || widget.side === 'right');
@@ -597,18 +630,17 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
               onClick={() => handleWidgetClick(widget)}
               style={{
                 ...positionStyle,
-                background: isVertical
-                  ? 'linear-gradient(to top, var(--royal-blue) 0%, var(--champagne-gold) 100%)'
-                  : 'linear-gradient(to right, var(--royal-blue) 0%, var(--champagne-gold) 100%)'
+                background: 'linear-gradient(180deg, #f9c53c 0%, #e9a800 50%, #f59e0b 100%)',
+                color: '#060f24',
               }}
-              className={`flex items-center justify-center font-bold text-white text-[10px] md:text-[11px] tracking-widest leading-none select-none transition-all duration-300 shadow-lg cursor-pointer uppercase shine-hover ${buttonClass}`}
+              className={`flex items-center justify-center font-black text-[#060f24] text-[10px] md:text-[11px] tracking-widest leading-none select-none transition-all duration-300 hover:brightness-105 active:scale-95 cursor-pointer uppercase shine-hover border border-amber-300/50 ${buttonClass}`}
             >
               {isVertical ? (
-                <span className={`block transform whitespace-nowrap tracking-[0.25em] font-extrabold ${widget.side === 'right' ? '-rotate-90' : 'rotate-90'}`}>
+                <span className={`block transform whitespace-nowrap tracking-[0.25em] font-black text-[#060f24] ${widget.side === 'right' ? '-rotate-90' : 'rotate-90'}`}>
                   {widget.text}
                 </span>
               ) : (
-                <span className="font-extrabold tracking-[0.1em]">{widget.text}</span>
+                <span className="font-black tracking-[0.12em] text-[#060f24]">{widget.text}</span>
               )}
             </button>
           );
@@ -655,16 +687,19 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
         </>
       )}
 
-      {/* Pure Viewport Portal Modal (No Dummy Fields) */}
+      {/* Pure Viewport Portal Modal (for manual widget click) */}
       {activeModalWidget && mounted && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm transition-all duration-300 top-0 left-0 select-none"
+          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md transition-all duration-300 top-0 left-0 select-none"
           onClick={() => setActiveModalWidget(null)}
         >
           <div
             ref={modalContainerRef}
-            className="relative bg-white rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden border border-slate-100 flex flex-col transition-all duration-300 scale-100 min-h-[220px]"
+            className="relative bg-white rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden border border-amber-400/30 flex flex-col transition-all duration-300 scale-100 min-h-[220px]"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              boxShadow: '0 25px 60px -15px rgba(11, 37, 69, 0.4), 0 0 0 1px rgba(249, 197, 60, 0.3)'
+            }}
           >
             {/* Close Button */}
             <button
@@ -675,20 +710,20 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
               <X size={16} />
             </button>
 
-            {/* Modal Content Frame (Pure blank if no modalHtml provided) */}
+            {/* Modal Content Frame */}
             <div className="p-0 overflow-y-auto max-h-[85vh] w-full scrollbar-thin custom-modal-container">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center text-center py-8 px-6 space-y-4 animate-fade-in">
                   <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500 shadow-inner">
                     <CheckCircle2 size={36} />
                   </div>
-                  <h4 className="text-lg font-bold text-[var(--midnight-navy)]">Submission Successful!</h4>
-                  <p className="text-xs text-slate-550 max-w-sm leading-relaxed">
+                  <h4 className="text-lg font-bold text-[#0B2545]">Submission Successful!</h4>
+                  <p className="text-xs text-slate-500 max-w-sm leading-relaxed">
                     Thank you. Our team will get in touch with you shortly.
                   </p>
                   <button
                     onClick={() => setActiveModalWidget(null)}
-                    className="px-6 py-2 border border-slate-200 text-slate-650 rounded-lg text-xs font-semibold hover:bg-slate-50 transition-colors mt-2 cursor-pointer"
+                    className="px-6 py-2 border border-slate-200 text-slate-600 rounded-lg text-xs font-semibold hover:bg-slate-50 transition-colors mt-2 cursor-pointer"
                   >
                     Close Window
                   </button>
@@ -698,9 +733,95 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
                   dangerouslySetInnerHTML={{
                     __html: activeModalWidget.modalHtml || ''
                   }}
-                  className="relative w-full min-h-[160px]"
+                  className="relative w-full min-h-[160px] p-6 text-slate-800"
                 />
               )}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Automatic Popup Modal on Site Load / Reload */}
+      {showAutoPopup && mounted && typeof document !== 'undefined' && createPortal(
+        <div
+          className="fixed inset-0 z-[999999] w-screen h-screen flex items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-md transition-all duration-300 top-0 left-0"
+          onClick={() => {
+            if (settings?.autoPopupCloseOnBackdrop !== false) handleCloseAutoPopup();
+          }}
+        >
+          <div
+            className={`relative bg-white rounded-2xl w-full shadow-2xl overflow-hidden flex flex-col transition-all duration-300 scale-100 animate-in fade-in zoom-in-95 duration-200 ${
+              settings?.autoPopupMaxWidth === 'sm' ? 'max-w-md' :
+              settings?.autoPopupMaxWidth === 'md' ? 'max-w-lg' :
+              settings?.autoPopupMaxWidth === 'xl' ? 'max-w-3xl' :
+              settings?.autoPopupMaxWidth === '2xl' ? 'max-w-4xl' :
+              'max-w-2xl'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              boxShadow: '0 25px 60px -15px rgba(11, 37, 69, 0.4), 0 0 0 1px rgba(249, 197, 60, 0.35)'
+            }}
+          >
+            {/* Header / Banner */}
+            <div
+              className="px-6 py-3.5 flex items-center justify-between select-none relative"
+              style={{
+                background: 'var(--navy, #0B2545)',
+                borderBottom: '2px solid #f9c53c',
+              }}
+            >
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#f9c53c] animate-pulse shrink-0 shadow-sm" />
+                <h3 className="text-sm sm:text-base font-bold text-white uppercase tracking-wider truncate font-sans">
+                  {settings?.autoPopupTitle || 'Notice & Announcement'}
+                </h3>
+              </div>
+
+              {/* Close Button */}
+              {settings?.autoPopupShowCloseButton !== false && (
+                <button
+                  onClick={handleCloseAutoPopup}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white bg-white/10 hover:bg-white/20 transition-all cursor-pointer shrink-0 ml-2"
+                  aria-label="Close modal"
+                >
+                  <X size={16} />
+                </button>
+              )}
+            </div>
+
+            {/* Modal Body / Custom CKEditor HTML */}
+            <div className="p-6 sm:p-8 overflow-y-auto max-h-[75vh] w-full scrollbar-thin custom-modal-container text-slate-800 font-sans">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: settings?.autoPopupHtml || ''
+                }}
+                className="prose prose-sm max-w-none prose-headings:text-[#0B2545] prose-a:text-[#b45309] prose-img:rounded-xl prose-img:mx-auto"
+              />
+            </div>
+
+            {/* Optional Bottom Action Footer */}
+            <div className="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-3 flex-wrap">
+              <span className="text-[11px] text-slate-400 font-medium">Ganpat University Convocation</span>
+              <div className="flex items-center gap-2.5 ml-auto">
+                {settings?.autoPopupCtaText && (
+                  <a
+                    href={settings?.autoPopupCtaUrl || '#'}
+                    target={settings?.autoPopupCtaUrl?.startsWith('http') ? '_blank' : undefined}
+                    rel="noreferrer"
+                    onClick={handleCloseAutoPopup}
+                    className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] text-[#060f24] font-bold text-xs uppercase tracking-wider shadow-md hover:brightness-105 transition-all"
+                  >
+                    {settings.autoPopupCtaText}
+                  </a>
+                )}
+                <button
+                  onClick={handleCloseAutoPopup}
+                  className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>,
@@ -712,10 +833,10 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 z-[60] w-10 h-10 rounded-full bg-white shadow-xl border border-slate-150 flex items-center justify-center text-[var(--royal-blue)] hover:text-[var(--champagne-gold)] hover:bg-slate-50 transition-all hover:scale-110 active:scale-95 group duration-300"
+          className="fixed bottom-6 right-6 z-[60] w-11 h-11 rounded-full bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] shadow-xl shadow-amber-500/30 border border-amber-300 flex items-center justify-center text-[#060f24] hover:brightness-105 transition-all hover:scale-110 active:scale-95 group duration-300"
           title="Scroll to top"
         >
-          <ArrowUp className="w-4.5 h-4.5 group-hover:-translate-y-0.5 transition-transform" />
+          <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
         </button>
       )}
     </>

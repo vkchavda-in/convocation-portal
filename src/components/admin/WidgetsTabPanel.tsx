@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Loader2, Layout, MousePointer, Plus, Trash2, ChevronDown, ChevronUp, Sliders, Download, FolderOpen, X } from 'lucide-react';
+import { Loader2, Layout, MousePointer, Plus, Trash2, ChevronDown, ChevronUp, Sliders, Download, FolderOpen, X, Eye, Sparkles, Bell } from 'lucide-react';
 import { toast } from './AdminToaster';
 import { CKEditorField } from '@/components/admin/block-editors/CustomEditor';
 import MediaPicker from '@/components/admin/MediaPicker';
@@ -40,6 +40,17 @@ interface AppWidgetSettings {
   topBarCtaLabel?: string; topBarCtaUrl?: string;
   topBarLinks: TopBarLinkItem[]; topBarMarqueeItems: MarqueeItem[];
   widgets: WidgetItem[];
+  // Auto Popup on Reload settings
+  autoPopupEnabled?: boolean;
+  autoPopupTitle?: string;
+  autoPopupHtml?: string;
+  autoPopupDelay?: number;
+  autoPopupFrequency?: 'always' | 'once_per_session';
+  autoPopupMaxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  autoPopupShowCloseButton?: boolean;
+  autoPopupCloseOnBackdrop?: boolean;
+  autoPopupCtaText?: string;
+  autoPopupCtaUrl?: string;
 }
 
 /* ─── Shared input style matching HeroEditor / global/page.tsx ─────────────── */
@@ -62,8 +73,21 @@ const defaultModalHtml = `<div class="space-y-4">
     </div>
     <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Enrollment Number / Query</label>
     <textarea name="message" rows="2" class="w-full px-3 py-2 border border-slate-200 rounded text-xs" placeholder="Enter your enrollment number or questions here..."></textarea></div>
-    <button type="submit" class="w-full py-2 bg-[#0B2545] text-[#f9c53c] font-bold rounded text-xs hover:brightness-110 transition-all">Submit Query</button>
+    <button type="submit" class="w-full py-2 bg-[#0B2545] text-[#f9c53c] font-bold rounded text-xs hover:brightness-105 transition-all">Submit Query</button>
   </form>
+</div>`;
+
+const defaultAutoPopupHtml = `<div class="space-y-4 text-center py-2">
+  <div class="inline-block px-3 py-1 bg-amber-100 text-amber-900 rounded-full text-xs font-black uppercase tracking-wider mb-2">Notice for Awardees & Guests</div>
+  <h3 class="text-xl font-bold text-[#0B2545]">Ganpat University 19th Convocation Ceremony</h3>
+  <p class="text-sm text-slate-600 leading-relaxed max-w-lg mx-auto">
+    The 19th Annual Convocation will be held on the main campus. All degree recipients, gold medalists, and PhD scholars are requested to verify their registration and seating schedule.
+  </p>
+  <div class="pt-3 flex justify-center gap-3">
+    <a href="/schedule-for-gold-medalists-and-phd-awardees" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] text-[#060f24] font-bold text-xs uppercase tracking-wider shadow-md hover:brightness-105 transition-all">
+      View Schedule & Guidelines
+    </a>
+  </div>
 </div>`;
 
 const defaultSettings: AppWidgetSettings = {
@@ -86,9 +110,19 @@ const defaultSettings: AppWidgetSettings = {
     link: 'https://convocation.guni.ac.in/live', html: '', side: 'right', offset: 50,
     modalTitle: 'Ganpat University Convocation Helpdesk', modalHtml: defaultModalHtml, widgetStyle: 'button',
   }],
+  autoPopupEnabled: false,
+  autoPopupTitle: '19th Convocation Important Announcement',
+  autoPopupHtml: defaultAutoPopupHtml,
+  autoPopupDelay: 1,
+  autoPopupFrequency: 'always',
+  autoPopupMaxWidth: 'lg',
+  autoPopupShowCloseButton: true,
+  autoPopupCloseOnBackdrop: true,
+  autoPopupCtaText: '',
+  autoPopupCtaUrl: '',
 };
 
-interface Props { section: 'topbar' | 'widgets'; }
+interface Props { section: 'topbar' | 'widgets' | 'autopopup'; }
 
 export default function WidgetsTabPanel({ section }: Props) {
   const [settings, setSettings] = useState<AppWidgetSettings>(defaultSettings);
@@ -98,6 +132,7 @@ export default function WidgetsTabPanel({ section }: Props) {
   const [topBarLinks, setTopBarLinks] = useState<TopBarLinkItem[]>([]);
   const [expandedWidgetId, setExpandedWidgetId] = useState<string | null>(null);
   const [showAddDropdown, setShowAddDropdown] = useState(false);
+  const [previewAutoPopup, setPreviewAutoPopup] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [confirmDelete, setConfirmDelete] = useState<{ title: string; message: string; onConfirm: () => void } | null>(null);
 
@@ -405,6 +440,250 @@ export default function WidgetsTabPanel({ section }: Props) {
 
         {/* Confirm Delete */}
         {confirmDelete && <ConfirmDeleteModal confirmDelete={confirmDelete} onClose={() => setConfirmDelete(null)} />}
+      </div>
+    );
+  }
+
+  /* ── AUTO POPUP ON RELOAD SECTION ───────────────────────────────────────── */
+  if (section === 'autopopup') {
+    return (
+      <div className="space-y-6">
+        {/* Enable toggle */}
+        <section className="space-y-4">
+          <div className="py-1">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold text-slate-700">Enable Automatic Modal Popup</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Automatically trigger an announcement modal on website load or refresh.</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => update('autoPopupEnabled', !settings.autoPopupEnabled)}
+                className="relative w-8 h-4 rounded-full transition-colors flex-shrink-0"
+                style={{ background: settings.autoPopupEnabled ? '#2563eb' : '#cbd5e1' }}
+              >
+                <span
+                  className="absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full shadow transition-transform"
+                  style={{ transform: settings.autoPopupEnabled ? 'translateX(16px)' : 'translateX(0)' }}
+                />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {settings.autoPopupEnabled && (
+          <>
+            {/* Behavior & Trigger Settings */}
+            <section className="space-y-4">
+              <h2 className={sectionHeadingCls}>Popup Behavior & Timing</h2>
+              <div className="py-1 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className={labelCls}>Display Frequency</label>
+                  <select
+                    value={settings.autoPopupFrequency ?? 'always'}
+                    onChange={(e) => update('autoPopupFrequency', e.target.value)}
+                    className={inputCls}
+                  >
+                    <option value="always">Every Page Reload (always)</option>
+                    <option value="once_per_session">Once per Browser Session (once_per_session)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className={labelCls}>Popup Delay (Seconds)</label>
+                  <select
+                    value={settings.autoPopupDelay ?? 1}
+                    onChange={(e) => update('autoPopupDelay', Number(e.target.value))}
+                    className={inputCls}
+                  >
+                    <option value="0">Instant (0s)</option>
+                    <option value="1">1 Second (Recommended)</option>
+                    <option value="2">2 Seconds</option>
+                    <option value="3">3 Seconds</option>
+                    <option value="5">5 Seconds</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className={labelCls}>Modal Maximum Width</label>
+                  <select
+                    value={settings.autoPopupMaxWidth ?? 'lg'}
+                    onChange={(e) => update('autoPopupMaxWidth', e.target.value)}
+                    className={inputCls}
+                  >
+                    <option value="sm">Compact Dialog (Small - 448px)</option>
+                    <option value="md">Standard (Medium - 512px)</option>
+                    <option value="lg">Comfortable (Large - 672px)</option>
+                    <option value="xl">Wide Banner (Extra Large - 768px)</option>
+                    <option value="2xl">Expanded (2XL - 896px)</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            {/* Title & Dismissal */}
+            <section className="space-y-4">
+              <h2 className={sectionHeadingCls}>Modal Header & Dismissal</h2>
+              <div className="py-1 space-y-3">
+                <div>
+                  <label className={labelCls}>Popup Header Title</label>
+                  <input
+                    type="text"
+                    value={settings.autoPopupTitle ?? '19th Convocation Important Announcement'}
+                    onChange={(e) => update('autoPopupTitle', e.target.value)}
+                    className={inputCls}
+                    placeholder="e.g. 19th Convocation Notice for Awardees"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 pt-1">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-700">
+                    <input
+                      type="checkbox"
+                      checked={settings.autoPopupCloseOnBackdrop !== false}
+                      onChange={(e) => update('autoPopupCloseOnBackdrop', e.target.checked)}
+                      className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <span>Close when clicking outside (Backdrop Click)</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-700">
+                    <input
+                      type="checkbox"
+                      checked={settings.autoPopupShowCloseButton !== false}
+                      onChange={(e) => update('autoPopupShowCloseButton', e.target.checked)}
+                      className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <span>Show top-right Close (X) button</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            {/* Custom CKEditor Content */}
+            <section className="space-y-4">
+              <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                <div>
+                  <h2 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Popup Content (CKEditor Rich Text)</h2>
+                  <p className="text-[10px] text-slate-400 mt-0.5">Format text, insert headings, banner images, formatted notices, video embeds, or custom HTML.</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPreviewAutoPopup(true)}
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 hover:text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 px-3 py-1 rounded-md transition-all shadow-sm"
+                >
+                  <Eye className="w-3.5 h-3.5" /> Preview Popup
+                </button>
+              </div>
+
+              <div className="border border-slate-200 rounded-lg overflow-hidden bg-white mt-2">
+                <CKEditorField
+                  key="autopopup-editor"
+                  value={settings.autoPopupHtml ?? defaultAutoPopupHtml}
+                  onChange={(v) => update('autoPopupHtml', v)}
+                />
+              </div>
+            </section>
+
+            {/* Optional Bottom CTA Button */}
+            <section className="space-y-4">
+              <h2 className={sectionHeadingCls}>Optional Bottom Action Button (Gold Pill)</h2>
+              <div className="py-1 grid grid-cols-2 gap-4">
+                <div>
+                  <label className={labelCls}>Button Text (Leave empty to omit)</label>
+                  <input
+                    type="text"
+                    value={settings.autoPopupCtaText ?? ''}
+                    onChange={(e) => update('autoPopupCtaText', e.target.value)}
+                    className={inputCls}
+                    placeholder="e.g. View Awardee Seating Schedule"
+                  />
+                </div>
+                <div>
+                  <label className={labelCls}>Button Destination URL</label>
+                  <input
+                    type="text"
+                    value={settings.autoPopupCtaUrl ?? ''}
+                    onChange={(e) => update('autoPopupCtaUrl', e.target.value)}
+                    className={inputCls}
+                    placeholder="/schedule-for-gold-medalists-and-phd-awardees"
+                  />
+                </div>
+              </div>
+            </section>
+          </>
+        )}
+
+        {/* Live Test Preview Modal */}
+        {previewAutoPopup && (
+          <div
+            className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-md"
+            onClick={() => setPreviewAutoPopup(false)}
+          >
+            <div
+              className={`relative bg-white rounded-2xl w-full shadow-2xl overflow-hidden flex flex-col transition-all scale-100 animate-in fade-in zoom-in-95 duration-150 ${
+                settings.autoPopupMaxWidth === 'sm' ? 'max-w-md' :
+                settings.autoPopupMaxWidth === 'md' ? 'max-w-lg' :
+                settings.autoPopupMaxWidth === 'xl' ? 'max-w-3xl' :
+                settings.autoPopupMaxWidth === '2xl' ? 'max-w-4xl' :
+                'max-w-2xl'
+              }`}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                boxShadow: '0 25px 60px -15px rgba(11, 37, 69, 0.4), 0 0 0 1px rgba(249, 197, 60, 0.35)'
+              }}
+            >
+              {/* Header */}
+              <div
+                className="px-6 py-3.5 flex items-center justify-between select-none"
+                style={{
+                  background: 'var(--navy, #0B2545)',
+                  borderBottom: '2px solid #f9c53c',
+                }}
+              >
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#f9c53c] animate-pulse shrink-0" />
+                  <h3 className="text-sm sm:text-base font-bold text-white uppercase tracking-wider truncate font-sans">
+                    {settings.autoPopupTitle || 'Notice & Announcement'}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setPreviewAutoPopup(false)}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white bg-white/10 hover:bg-white/20 transition-all cursor-pointer shrink-0 ml-2"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 sm:p-8 overflow-y-auto max-h-[70vh] w-full scrollbar-thin text-slate-800 font-sans">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: settings.autoPopupHtml || defaultAutoPopupHtml
+                  }}
+                  className="prose prose-sm max-w-none prose-headings:text-[#0B2545] prose-a:text-[#b45309] prose-img:rounded-xl prose-img:mx-auto"
+                />
+              </div>
+
+              {/* Footer */}
+              <div className="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-3 flex-wrap">
+                <span className="text-[11px] text-slate-400 font-medium">Preview Mode</span>
+                <div className="flex items-center gap-2.5 ml-auto">
+                  {settings.autoPopupCtaText && (
+                    <span className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] text-[#060f24] font-bold text-xs uppercase tracking-wider shadow-md">
+                      {settings.autoPopupCtaText}
+                    </span>
+                  )}
+                  <button
+                    onClick={() => setPreviewAutoPopup(false)}
+                    className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 text-xs font-semibold"
+                  >
+                    Close Preview
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

@@ -20,6 +20,93 @@ interface Props {
   onChange: (d: object) => void;
 }
 
+// Singleton script loaders to prevent racing and duplicate tags
+let ckeditorLoadingPromise: Promise<any> | null = null;
+function loadCKEditorScript(): Promise<any> {
+  if (typeof window === 'undefined') return Promise.reject(new Error('Window not available'));
+  if ((window as any).CKEDITOR) return Promise.resolve((window as any).CKEDITOR);
+  if (ckeditorLoadingPromise) return ckeditorLoadingPromise;
+
+  ckeditorLoadingPromise = new Promise((resolve, reject) => {
+    // 1. Set CKEDITOR_BASEPATH before script loads so plugins and skins resolve from CDN
+    const cdnBase = 'https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.22.1/';
+    (window as any).CKEDITOR_BASEPATH = cdnBase;
+
+    const script = document.createElement('script');
+    script.src = `${cdnBase}ckeditor.js`;
+    script.async = true;
+
+    script.onload = () => {
+      if ((window as any).CKEDITOR) {
+        (window as any).CKEDITOR.disableAutoInline = true;
+        resolve((window as any).CKEDITOR);
+      } else {
+        fallbackLoad();
+      }
+    };
+
+    script.onerror = () => {
+      fallbackLoad();
+    };
+
+    function fallbackLoad() {
+      const fallbackBase = 'https://cdn.ckeditor.com/4.22.1/full/';
+      (window as any).CKEDITOR_BASEPATH = fallbackBase;
+      const fallbackScript = document.createElement('script');
+      fallbackScript.src = `${fallbackBase}ckeditor.js`;
+      fallbackScript.async = true;
+      fallbackScript.onload = () => {
+        if ((window as any).CKEDITOR) {
+          (window as any).CKEDITOR.disableAutoInline = true;
+          resolve((window as any).CKEDITOR);
+        } else {
+          reject(new Error('Failed to load CKEditor'));
+        }
+      };
+      fallbackScript.onerror = (err) => reject(err);
+      document.head.appendChild(fallbackScript);
+    }
+
+    document.head.appendChild(script);
+  });
+
+  return ckeditorLoadingPromise;
+}
+
+let monacoLoadingPromise: Promise<any> | null = null;
+function loadMonacoAsync(): Promise<any> {
+  if (typeof window === 'undefined') return Promise.reject(new Error('Window not available'));
+  if ((window as any).monaco) return Promise.resolve((window as any).monaco);
+  if (monacoLoadingPromise) return monacoLoadingPromise;
+
+  monacoLoadingPromise = new Promise((resolve, reject) => {
+    const initMonaco = () => {
+      try {
+        (window as any).require.config({
+          paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.39.0/min/vs' },
+        });
+        (window as any).require(['vs/editor/editor.main'], () => {
+          resolve((window as any).monaco);
+        });
+      } catch (err) {
+        reject(err);
+      }
+    };
+
+    if ((window as any).require) {
+      initMonaco();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.39.0/min/vs/loader.min.js';
+      script.onload = () => initMonaco();
+      script.onerror = (e) => reject(e);
+      document.head.appendChild(script);
+    }
+  });
+
+  return monacoLoadingPromise;
+}
+
 export function CKEditorField({
   value,
   onChange,
@@ -29,164 +116,158 @@ export function CKEditorField({
 }) {
   const instanceRef = useRef<any>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [isReady, setIsReady] = useState(false);
+  const uniqueIdRef = useRef<string>(`cke_${Math.random().toString(36).substring(2, 9)}`);
 
   useEffect(() => {
     let active = true;
 
-    const load = async () => {
-      // 1. Load CKEditor
-      if (!(window as any).CKEDITOR) {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.ckeditor.com/4.22.1/full/ckeditor.js';
-        document.body.appendChild(script);
-        await new Promise((res) => {
-          script.onload = res;
-        });
-      }
+    // Start loading Monaco in the background asynchronously without blocking CKEditor
+    loadMonacoAsync().catch(() => {});
 
-      // 2. Load Monaco Editor
-      if (!(window as any).monaco) {
-        if (!(window as any).require) {
-          const script = document.createElement('script');
-          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.39.0/min/vs/loader.min.js';
-          document.body.appendChild(script);
-          await new Promise((res) => {
-            script.onload = res;
-          });
+    loadCKEditorScript()
+      .then((CKEDITOR) => {
+        if (!active || !textareaRef.current) return;
+
+        const elemId = uniqueIdRef.current;
+        if (textareaRef.current) {
+          textareaRef.current.id = elemId;
         }
 
-        (window as any).require.config({
-          paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.39.0/min/vs' },
-        });
-
-        await new Promise<void>((resolve) => {
-          (window as any).require(['vs/editor/editor.main'], () => {
-            resolve();
-          });
-        });
-      }
-
-      if (!active) return;
-
-      const CKEDITOR = (window as any).CKEDITOR;
-      if (!CKEDITOR || instanceRef.current || !textareaRef.current) return;
-
-      const instance = CKEDITOR.replace(textareaRef.current, {
-        customConfig: '',
-        height: 200,
-        allowedContent: true,
-        extraAllowedContent: '*(*){*}[*]',
-        versionCheck: false, // Disables the annoying upgrade to v5 warning notification popup
-        removePlugins: 'elementspath',
-        resize_enabled: false,
-        toolbar: [
-          ['Source', '-', 'Preview', 'Print'],
-          ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
-          ['Find', 'Replace', '-', 'SelectAll', 'Scayt'],
-          ['Link', 'Unlink', 'Anchor'],
-          ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'Iframe'],
-          ['Maximize', 'ShowBlocks'],
-          '/',
-          ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat'],
-          ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-          ['Styles', 'Format', 'Font', 'FontSize'],
-          ['TextColor', 'BGColor'],
-          ['About']
-        ],
-      });
-
-      instance.on('instanceReady', () => {
-        if (instance.container && instance.container.$) {
-          const links = instance.container.$.querySelectorAll('a.cke_button, a.cke_combo_button');
-          links.forEach((link: any) => {
-            link.setAttribute('href', 'javascript:void(0)');
-          });
+        // Clean up previous instance on this element ID if any
+        if (CKEDITOR.instances && CKEDITOR.instances[elemId]) {
+          try {
+            CKEDITOR.instances[elemId].destroy(true);
+          } catch (e) {
+            console.warn('Destroying previous CKEditor instance error:', e);
+          }
         }
-      });
 
-      instance.on('maximize', (evt: any) => {
-        if (instance.container && instance.container.$) {
-          const container = instance.container.$;
-          if (evt.data === 1) {
-            container.classList.add('cke_is_maximized');
+        const instance = CKEDITOR.replace(elemId, {
+          customConfig: '',
+          height: 220,
+          allowedContent: true,
+          extraAllowedContent: '*(*){*}[*]',
+          versionCheck: false, // Disables the upgrade to v5 warning notification
+          removePlugins: 'elementspath',
+          resize_enabled: false,
+          toolbar: [
+            ['Source', '-', 'Preview', 'Print'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+            ['Find', 'Replace', '-', 'SelectAll', 'Scayt'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'Iframe'],
+            ['Maximize', 'ShowBlocks'],
+            '/',
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['About']
+          ],
+        });
+
+        instance.on('instanceReady', () => {
+          if (!active) return;
+          setIsReady(true);
+
+          if (instance.container && instance.container.$) {
+            const links = instance.container.$.querySelectorAll('a.cke_button, a.cke_combo_button');
+            links.forEach((link: any) => {
+              link.setAttribute('href', 'javascript:void(0)');
+            });
+          }
+        });
+
+        instance.on('maximize', (evt: any) => {
+          if (instance.container && instance.container.$) {
+            const container = instance.container.$;
+            if (evt.data === 1) {
+              container.classList.add('cke_is_maximized');
+            } else {
+              container.classList.remove('cke_is_maximized');
+            }
+          }
+        });
+
+        // Integrate Monaco Editor dynamically inside CKEditor's Source view
+        instance.on('mode', async () => {
+          const currentMode = instance.mode;
+          
+          if (currentMode === 'source') {
+            const textarea = instance.editable().$;
+            if (!textarea) return;
+
+            // Hide default CKEditor plain textarea
+            textarea.style.display = 'none';
+
+            // Create Monaco container
+            const container = document.createElement('div');
+            container.className = 'monaco-source-editor';
+
+            textarea.parentNode.insertBefore(container, textarea);
+
+            try {
+              const monacoInstance = await loadMonacoAsync();
+              if (monacoInstance && instance.mode === 'source') {
+                const editor = monacoInstance.editor.create(container, {
+                  value: textarea.value || '',
+                  language: 'html',
+                  theme: 'vs-dark',
+                  automaticLayout: true,
+                  minimap: { enabled: false },
+                  fontSize: 13,
+                  lineNumbers: 'on',
+                  scrollBeyondLastLine: false,
+                  wordWrap: 'on',
+                  padding: {
+                    top: 8,
+                    bottom: 8
+                  }
+                });
+
+                editor.onDidChangeModelContent(() => {
+                  textarea.value = editor.getValue();
+                  if (active) {
+                    onChange(editor.getValue());
+                  }
+                });
+
+                (instance as any)._monacoEditor = editor;
+                (instance as any)._monacoContainer = container;
+              }
+            } catch (err) {
+              // Fallback to standard textarea if Monaco fails
+              textarea.style.display = 'block';
+            }
           } else {
-            container.classList.remove('cke_is_maximized');
+            // WYSIWYG mode activated - clean up Monaco
+            const editor = (instance as any)._monacoEditor;
+            const container = (instance as any)._monacoContainer;
+
+            if (editor) {
+              editor.dispose();
+              (instance as any)._monacoEditor = null;
+            }
+            if (container) {
+              container.remove();
+              (instance as any)._monacoContainer = null;
+            }
           }
-        }
+        });
+
+        instance.setData(value || '');
+        instance.on('change', () => {
+          if (active) {
+            onChange(instance.getData());
+          }
+        });
+
+        instanceRef.current = instance;
+      })
+      .catch((err) => {
+        console.error('Failed to load CKEditor:', err);
       });
-
-      // Integrate Monaco Editor dynamically inside CKEditor's Source view
-      instance.on('mode', () => {
-        const currentMode = instance.mode;
-        
-        if (currentMode === 'source') {
-          const textarea = instance.editable().$;
-          if (!textarea) return;
-
-          // Hide default CKEditor plain textarea
-          textarea.style.display = 'none';
-
-          // Create Monaco container
-          const container = document.createElement('div');
-          container.className = 'monaco-source-editor';
-
-          textarea.parentNode.insertBefore(container, textarea);
-
-          const monacoInstance = (window as any).monaco;
-          if (monacoInstance) {
-            const editor = monacoInstance.editor.create(container, {
-              value: textarea.value || '',
-              language: 'html',
-              theme: 'vs-dark',
-              automaticLayout: true,
-              minimap: { enabled: false },
-              fontSize: 13,
-              lineNumbers: 'on',
-              scrollBeyondLastLine: false,
-              wordWrap: 'on',
-              padding: {
-                top: 8,
-                bottom: 8
-              }
-            });
-
-            editor.onDidChangeModelContent(() => {
-              textarea.value = editor.getValue();
-              if (active) {
-                onChange(editor.getValue());
-              }
-            });
-
-            (instance as any)._monacoEditor = editor;
-            (instance as any)._monacoContainer = container;
-          }
-        } else {
-          // WYSIWYG mode activated - clean up Monaco
-          const editor = (instance as any)._monacoEditor;
-          const container = (instance as any)._monacoContainer;
-
-          if (editor) {
-            editor.dispose();
-            (instance as any)._monacoEditor = null;
-          }
-          if (container) {
-            container.remove();
-            (instance as any)._monacoContainer = null;
-          }
-        }
-      });
-
-      instance.setData(value || '');
-      instance.on('change', () => {
-        if (active) {
-          onChange(instance.getData());
-        }
-      });
-
-      instanceRef.current = instance;
-    };
-
-    load();
 
     return () => {
       active = false;
@@ -350,7 +431,15 @@ export function CKEditorField({
           border-left: 1px solid #e2e8f0 !important;
         }
       `}</style>
-      <textarea ref={textareaRef} defaultValue={value} className="w-full" />
+      {!isReady && (
+        <div className="h-[220px] flex flex-col items-center justify-center bg-slate-50 border border-slate-100 rounded text-slate-400 gap-2.5 py-8">
+          <div className="w-5 h-5 border-2 border-[#e9a800] border-t-transparent rounded-full animate-spin" />
+          <span className="text-xs font-medium text-slate-500">Loading Rich Text Editor...</span>
+        </div>
+      )}
+      <div style={{ display: isReady ? 'block' : 'none' }}>
+        <textarea ref={textareaRef} defaultValue={value} className="w-full" />
+      </div>
     </>
   );
 }

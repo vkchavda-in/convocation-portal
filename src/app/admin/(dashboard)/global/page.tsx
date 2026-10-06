@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Globe, Plus, Trash2, ChevronUp, ChevronDown, Save, Loader2, AlertCircle, Layout, MousePointer } from 'lucide-react';
+import { Globe, Plus, Trash2, ChevronUp, ChevronDown, Save, Loader2, AlertCircle, Layout, MousePointer, Bell } from 'lucide-react';
 import { toast } from 'sonner';
 import MediaPicker from '@/components/admin/MediaPicker';
 import WidgetsTabPanel from '@/components/admin/WidgetsTabPanel';
@@ -30,7 +30,7 @@ interface FooterData {
 }
 
 export default function GlobalSettingsPage() {
-  const [activeTab, setActiveTab] = useState<'header' | 'footer' | 'topbar' | 'widgets'>('header');
+  const [activeTab, setActiveTab] = useState<'header' | 'footer' | 'topbar' | 'widgets' | 'autopopup'>('header');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [loadingChanges, setLoadingChanges] = useState(false);
@@ -210,6 +210,7 @@ export default function GlobalSettingsPage() {
             { id: 'footer', label: 'Footer Configuration' },
             { id: 'topbar', label: 'Top Bar Stripe', icon: <Layout className="w-3.5 h-3.5" /> },
             { id: 'widgets', label: 'Sticky Widgets', icon: <MousePointer className="w-3.5 h-3.5" /> },
+            { id: 'autopopup', label: 'Auto Popup on Reload', icon: <Bell className="w-3.5 h-3.5 text-amber-500" /> },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -654,6 +655,10 @@ export default function GlobalSettingsPage() {
 
         {activeTab === 'widgets' && (
           <WidgetsTabPanel section="widgets" />
+        )}
+
+        {activeTab === 'autopopup' && (
+          <WidgetsTabPanel section="autopopup" />
         )}
       </div>
 
