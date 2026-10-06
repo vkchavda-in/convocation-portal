@@ -1,11 +1,12 @@
 {
   "metadata": {
-    "exportedAt": "2026-10-03T09:55:44.575Z",
+    "exportedAt": "2026-10-06T16:17:25.811Z",
     "counts": {
       "users": 1,
       "settings": 6,
       "pages": 15,
-      "media": 42
+      "folders": 8,
+      "media": 43
     }
   },
   "users": [
@@ -17,7 +18,7 @@
       "role": "SUPER_ADMIN",
       "isActive": true,
       "createdAt": "2026-06-24T05:57:03.124Z",
-      "updatedAt": "2026-06-24T05:57:03.124Z"
+      "updatedAt": "2026-10-03T09:56:07.921Z"
     }
   ],
   "settings": [
@@ -26,42 +27,42 @@
       "key": "theme",
       "value": "theme-convocation",
       "createdAt": "2026-06-24T05:57:03.222Z",
-      "updatedAt": "2026-06-24T05:57:03.222Z"
+      "updatedAt": "2026-10-03T09:56:08.025Z"
     },
     {
       "id": "cmqrnv69j0002l9y8bo9tryvz",
       "key": "fontPairing",
       "value": "pairing-modern-sans",
       "createdAt": "2026-06-24T05:57:03.224Z",
-      "updatedAt": "2026-06-24T05:57:03.224Z"
+      "updatedAt": "2026-10-03T09:56:08.037Z"
     },
     {
       "id": "cmqrnv69l0003l9y82ygnrf70",
       "key": "siteName",
       "value": "19th Convocation",
       "createdAt": "2026-06-24T05:57:03.225Z",
-      "updatedAt": "2026-06-24T05:57:03.225Z"
+      "updatedAt": "2026-10-03T09:56:08.039Z"
     },
     {
       "id": "cmqrnv69n0004l9y81rktvp8f",
       "key": "global_header",
       "value": "{\"siteName\":\"19th Convocation\",\"subheading\":\"Ganpat University\",\"logoUrl\":\"/uploads/logo.png\",\"logoSize\":\"lg\",\"navLinks\":[{\"label\":\"Home\",\"href\":\"/\"},{\"label\":\"Guests\",\"href\":\"#\",\"children\":[{\"label\":\"Chief Guest\",\"href\":\"/chief-guest\"},{\"label\":\"Guest of Honour\",\"href\":\"/guest-of-honour-2026\"},{\"label\":\"President Profile\",\"href\":\"/president-ganpat-university\"},{\"label\":\"Director General\",\"href\":\"/director-general\"}]},{\"label\":\"Schedules\",\"href\":\"#\",\"children\":[{\"label\":\"Convocation Schedule\",\"href\":\"/convocation-schedule\"},{\"label\":\"Gold Medalists & PhD\",\"href\":\"/schedule-for-gold-medalists-and-phd-awardees\"},{\"label\":\"Awardees Schedule\",\"href\":\"/schedule-for-the-awardees\"},{\"label\":\"Group Photography\",\"href\":\"/group-photography\"},{\"label\":\"Bus Transportation\",\"href\":\"/bus-transportation\"}]},{\"label\":\"Guidelines\",\"href\":\"#\",\"children\":[{\"label\":\"Invitation for Attendees\",\"href\":\"/19th-convocation-3\"},{\"label\":\"General Guidelines\",\"href\":\"/guideline-for-convocation\"},{\"label\":\"Campus Venues Map\",\"href\":\"/layout-for-awardees\"}]},{\"label\":\"Academic Lists\",\"href\":\"#\",\"children\":[{\"label\":\"Scholastic Medals\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Gold-Medal-details.pdf\"},{\"label\":\"Faculty of Pharmacy\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Pharmacy.pdf\"},{\"label\":\"Engineering & Tech\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Engineering-Technology.pdf\"},{\"label\":\"Computer Applications\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Computer-Applications.pdf\"},{\"label\":\"Management Studies\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Management-Studies.pdf\"},{\"label\":\"Faculty of Science\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Science.pdf\"},{\"label\":\"Social Science\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-Social-Sciences-Humanities.pdf\"},{\"label\":\"Architecture & Design\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Architecture-Design-and-Planning.pdf\"},{\"label\":\"Agriculture\",\"href\":\"https://convocation.guni.ac.in/wp-content/uploads/2026/01/19th_Convo_Faculty-of-Agriculture-Allied-Sciences-Technology.pdf\"}]},{\"label\":\"Gallery\",\"href\":\"/gallery\"}],\"ctaLabel\":\"Contact Us\",\"ctaUrl\":\"/contact\",\"contact\":{\"email\":\"convocation@ganpatuniversity.ac.in\",\"phone\":\"+ 02762226021\",\"workingHours\":\"9:00 AM – 4:00 PM\"},\"socials\":{\"facebook\":\"https://www.facebook.com/ganpatuni\",\"twitter\":\"https://twitter.com/Ganpat_Uni\",\"linkedin\":\"https://www.linkedin.com/school/ganpat-university/\"}}",
       "createdAt": "2026-06-24T05:57:03.228Z",
-      "updatedAt": "2026-06-24T05:57:03.228Z"
+      "updatedAt": "2026-10-03T09:56:08.041Z"
     },
     {
       "id": "cmqrnv69p0005l9y8a4kaa3fd",
       "key": "global_footer",
       "value": "{\"tagline\":\"The 19th Convocation of Ganpat University marks a milestone celebrating student excellence, academic achievements, and the journey forward into career excellence.\",\"copyright\":\"© 2026 Ganpat University. All rights reserved. 19th Convocation - Ganpat University.\",\"email\":\"convocation@ganpatuniversity.ac.in\",\"address\":\"Ganpat Vidyanagar, Mehsana-Gandhinagar Highway, PO - 384012, Gujarat, India\",\"columns\":[{\"heading\":\"Guests & Patrons\",\"links\":[{\"label\":\"Chief Guest\",\"href\":\"/chief-guest\"},{\"label\":\"Guest of Honour\",\"href\":\"/guest-of-honour-2026\"},{\"label\":\"President\",\"href\":\"/president-ganpat-university\"},{\"label\":\"Director General\",\"href\":\"/director-general\"}]},{\"heading\":\"Quick Access\",\"links\":[{\"label\":\"Schedules\",\"href\":\"/convocation-schedule\"},{\"label\":\"Attendees Invite\",\"href\":\"/19th-convocation-3\"},{\"label\":\"Bus Details\",\"href\":\"/bus-transportation\"},{\"label\":\"Gallery Archive\",\"href\":\"/gallery\"}]}],\"socials\":[{\"platform\":\"facebook\",\"url\":\"https://www.facebook.com/ganpatuni\"},{\"platform\":\"twitter\",\"url\":\"https://twitter.com/Ganpat_Uni\"},{\"platform\":\"linkedin\",\"url\":\"https://www.linkedin.com/school/ganpat-university/\"}]}",
       "createdAt": "2026-06-24T05:57:03.230Z",
-      "updatedAt": "2026-06-24T05:57:03.230Z"
+      "updatedAt": "2026-10-03T09:56:08.043Z"
     },
     {
       "id": "cmqrnv69s0006l9y8rwjzrlhk",
       "key": "app_settings",
-      "value": "{\"siteName\":\"19th Convocation\",\"siteDescription\":\"19th Convocation - Ganpat University\",\"contactEmail\":\"convocation@ganpatuniversity.ac.in\",\"defaultMetaTitle\":\"19th Convocation - Ganpat University\",\"defaultMetaDescription\":\"Official website for the 19th Convocation of Ganpat University (GUNI). Guidelines, schedules, guest bio, layout, and logistics for awardees and guests.\",\"maintenanceMode\":false,\"maintenanceMessage\":\"Website is updating. Please try again soon.\"}",
+      "value": "{\"siteName\":\"19th Convocation\",\"siteDescription\":\"19th Convocation - Ganpat University\",\"contactEmail\":\"convocation@ganpatuniversity.ac.in\",\"defaultMetaTitle\":\"19th Convocation - Ganpat University\",\"defaultMetaDescription\":\"Official website for the 19th Convocation of Ganpat University (GUNI). Guidelines, schedules, guest bio, layout, and logistics for awardees and guests.\",\"maintenanceMode\":false,\"maintenanceMessage\":\"Website is updating. Please try again soon.\",\"topBarEnabled\":true,\"topBarType\":\"static\",\"topBarEmail\":\"convocation@ganpatuniversity.ac.in\",\"topBarPhone\":\"+91 2762 226021\",\"topBarAddress\":\"Ganpat Vidyanagar, Mehsana-Gandhinagar Highway, PO - 384012\",\"topBarWorkingHours\":\"Mon–Sat: 9:00 AM – 4:00 PM\",\"topBarCtaLabel\":\"Watch Live\",\"topBarCtaUrl\":\"https://convocation.guni.ac.in/live\",\"topBarLinks\":[{\"label\":\"Schedule\",\"url\":\"/schedule-for-gold-medalists-and-phd-awardees\"}],\"topBarMarqueeItems\":[{\"text\":\"Ganpat University 19th Convocation Ceremony – Watch Live Webcast!\",\"badge\":\"Live Stream\",\"link\":\"https://convocation.guni.ac.in/live\"},{\"text\":\"Schedule & Seating Plan for Gold Medalists & PhD Awardees is now available.\",\"badge\":\"Important\",\"link\":\"/schedule-for-gold-medalists-and-phd-awardees\"}],\"widgets\":[{\"id\":\"widget_convocation_1\",\"enabled\":false,\"type\":\"modal\",\"text\":\"Helpdesk & Queries\",\"link\":\"https://convocation.guni.ac.in/live\",\"html\":\"\",\"side\":\"right\",\"offset\":50,\"modalTitle\":\"Ganpat University Convocation Helpdesk\",\"modalHtml\":\"<div class=\\\"space-y-4\\\">\\n  <h3 class=\\\"text-lg font-bold text-slate-800\\\">Convocation Helpdesk</h3>\\n  <p class=\\\"text-xs text-slate-500\\\">Submit your query regarding the ceremony, registration, or degree certificates.</p>\\n  <form id=\\\"enquiry-form\\\" class=\\\"space-y-3\\\">\\n    <div><label class=\\\"block text-[10px] font-bold uppercase text-slate-500 mb-1\\\">Full Name</label>\\n    <input type=\\\"text\\\" name=\\\"name\\\" required class=\\\"w-full px-3 py-2 border border-slate-200 rounded text-xs\\\" placeholder=\\\"Student Name\\\" /></div>\\n    <div class=\\\"grid grid-cols-2 gap-3\\\">\\n      <div><label class=\\\"block text-[10px] font-bold uppercase text-slate-500 mb-1\\\">Email</label>\\n      <input type=\\\"email\\\" name=\\\"email\\\" required class=\\\"w-full px-3 py-2 border border-slate-200 rounded text-xs\\\" placeholder=\\\"student@ganpatuniversity.ac.in\\\" /></div>\\n      <div><label class=\\\"block text-[10px] font-bold uppercase text-slate-500 mb-1\\\">Phone</label>\\n      <input type=\\\"tel\\\" name=\\\"phone\\\" required class=\\\"w-full px-3 py-2 border border-slate-200 rounded text-xs\\\" placeholder=\\\"+91 9876543210\\\" /></div>\\n    </div>\\n    <div><label class=\\\"block text-[10px] font-bold uppercase text-slate-500 mb-1\\\">Enrollment Number / Query</label>\\n    <textarea name=\\\"message\\\" rows=\\\"2\\\" class=\\\"w-full px-3 py-2 border border-slate-200 rounded text-xs\\\" placeholder=\\\"Enter your enrollment number or questions here...\\\"></textarea></div>\\n    <button type=\\\"submit\\\" class=\\\"w-full py-2 bg-[#0B2545] text-[#f9c53c] font-bold rounded text-xs hover:brightness-105 transition-all\\\">Submit Query</button>\\n  </form>\\n</div>\",\"widgetStyle\":\"button\"}],\"autoPopupEnabled\":false,\"autoPopupTitle\":\"19th Convocation Important Announcement\",\"autoPopupHtml\":\"<div class=\\\"space-y-4 text-center py-2\\\">\\n  <div class=\\\"inline-block px-3 py-1 bg-amber-100 text-amber-900 rounded-full text-xs font-black uppercase tracking-wider mb-2\\\">Notice for Awardees & Guests</div>\\n  <h3 class=\\\"text-xl font-bold text-[#0B2545]\\\">Ganpat University 19th Convocation Ceremony</h3>\\n  <p class=\\\"text-sm text-slate-600 leading-relaxed max-w-lg mx-auto\\\">\\n    The 19th Annual Convocation will be held on the main campus. All degree recipients, gold medalists, and PhD scholars are requested to verify their registration and seating schedule.\\n  </p>\\n  <div class=\\\"pt-3 flex justify-center gap-3\\\">\\n    <a href=\\\"/schedule-for-gold-medalists-and-phd-awardees\\\" class=\\\"inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] text-[#060f24] font-bold text-xs uppercase tracking-wider shadow-md hover:brightness-105 transition-all\\\">\\n      View Schedule & Guidelines\\n    </a>\\n  </div>\\n</div>\",\"autoPopupDelay\":1,\"autoPopupFrequency\":\"always\",\"autoPopupMaxWidth\":\"lg\",\"autoPopupShowCloseButton\":true,\"autoPopupCloseOnBackdrop\":true,\"autoPopupCtaText\":\"\",\"autoPopupCtaUrl\":\"\"}",
       "createdAt": "2026-06-24T05:57:03.232Z",
-      "updatedAt": "2026-06-24T05:57:03.232Z"
+      "updatedAt": "2026-10-06T15:42:33.720Z"
     }
   ],
   "pages": [
@@ -473,7 +474,7 @@
             ],
             "title": "Eminent Guests of Past Convocations",
             "columns": 3,
-            "cardType": "guest_marquee",
+            "cardType": "guest_photo",
             "category": "Convocation Heritage",
             "subtitle": "Honouring the visionary leaders, statesmen, and scientists who have graced Ganpat University's ceremonies across all 19 editions."
           },
@@ -678,7 +679,7 @@
                 "category": "ceremony"
               }
             ],
-            "variant": "marquee",
+            "variant": "slider",
             "category": "Convocation Moments",
             "subtitle": "Capturing unforgettable memories, triumphant achievements, and the grand ceremonial spirit of Ganpat University.",
             "categories": [
@@ -711,7 +712,7 @@
       "isMaintenance": false,
       "order": 1,
       "createdAt": "2026-06-24T05:57:03.245Z",
-      "updatedAt": "2026-10-03T08:49:36.298Z"
+      "updatedAt": "2026-10-06T16:13:10.071Z"
     },
     {
       "id": "cmqrnv6bh0008l9y8xn10rcby",
@@ -766,7 +767,7 @@
       "isMaintenance": false,
       "order": 2,
       "createdAt": "2026-06-24T05:57:03.294Z",
-      "updatedAt": "2026-10-03T04:50:25.934Z"
+      "updatedAt": "2026-10-03T09:56:08.109Z"
     },
     {
       "id": "cmqrnv6bj0009l9y8bo3j6aze",
@@ -822,7 +823,7 @@
       "isMaintenance": false,
       "order": 3,
       "createdAt": "2026-06-24T05:57:03.296Z",
-      "updatedAt": "2026-10-03T04:50:25.940Z"
+      "updatedAt": "2026-10-03T09:56:08.190Z"
     },
     {
       "id": "cmqrnv6bt000al9y82xn5qf4e",
@@ -877,7 +878,7 @@
       "isMaintenance": false,
       "order": 4,
       "createdAt": "2026-06-24T05:57:03.305Z",
-      "updatedAt": "2026-10-03T04:50:25.942Z"
+      "updatedAt": "2026-10-03T09:56:08.193Z"
     },
     {
       "id": "cmqrnv6bv000bl9y8myvbwtoy",
@@ -930,7 +931,7 @@
       "isMaintenance": false,
       "order": 5,
       "createdAt": "2026-06-24T05:57:03.307Z",
-      "updatedAt": "2026-10-03T04:50:26.082Z"
+      "updatedAt": "2026-10-03T09:56:08.195Z"
     },
     {
       "id": "cmqrnv6by000cl9y8ifjdpmjv",
@@ -956,64 +957,21 @@
           "type": "hero"
         },
         {
-          "id": "invite-details",
+          "id": "block-1791301065046-dr6q2",
           "data": {
-            "body": [
-              "Dear Graduating Student,",
-              "Greetings from Ganpat University!!!",
-              "We are pleased to inform you that the 19th Convocation of Ganpat University is scheduled on 8th January 2026 at Ganpat University.",
-              "You are cordially invited to attend the Convocation Ceremony and receive your Degree/Diploma \"In-Person\".",
-              "Kindly confirm your presence on or before 2nd January 2026 through the convocation attendance confirmation link - Click Here",
-              "Non-submission of consent will be considered as your agreement to remain Absent.",
-              "Kindly refer the website https://convocation.guni.ac.in frequently for the detailed schedule, profile of guests and guidelines for attending the 19th convocation. You have to pay INR Rs. 500/- (Five Hundred Only) in cash as a deposit for the Convocation Rob (Gown) at your respective institute, which will be refunded on returning the Gown after the event. You are requested to take your seat in the pandal before 02:00 pm.",
-              "Selfie / Experience Zones and Social Media Posts",
-              "Ganpat University is set in serene campus with exquisite natural beauty. On the occasion of Convocation, we have created several special selfie and experience zones at various locations in the campus for the graduating students to click the photos for life-long memory and post them on your social medial accounts using the following hashtags - #GanpatUniversity #GanpatConvocation #GUNIConvocation #19thConvocation #ConvocationDay #GraduationDay #ClassOf2025 #GUNI #GUNVAN",
-              "Still interested further to share your experiences, feedback, or photographs on Ganpat University's official Social Media platforms, please feel free to WhatsApp on (+91) 99743 38707, (+91) 99241 97787.",
-              "Dress Code for the Awardees",
-              "Male Students - Formal attire preferably a light-coloured plain shirt, dark-coloured full trouser, and black shoes. (Kindly avoid stripes, printed, check shirts, and T-Shirts).",
-              "Female Students - Saree of sober colour and decent design or Official/Formal Attire suiting to the occasion. [Kindly avoid Jeans, T-Shirts, etc.].",
-              "For any assistance, write to us at \"convocation@ganpatuniversity.ac.in\" or the following helpline numbers:",
-              "University Reception - (+91) 8200788446",
-              "Examination Section - (+91) 9328801750",
-              "Kindly feel free to interact with the Faculty/Institute wise Contact Numbers appended herewith in case you have further query.",
-              "Looking forward to welcoming you to your own campus.",
-              "We are proudly endorsing you as GUNVAN (GUNI) ALUMNI.",
-              "Best Wishes"
-            ],
-            "title": "Dear Graduating Students,",
-            "layout": "centered",
-            "category": "Official Invite"
+            "body": "<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title></title>\n<style type=\"text/css\">\n  .gc-wrap {\n    background-color: #ffff;\n    padding: 3vw;\n    display: flex;\n    justify-content: center;\n    box-sizing: border-box;\n  }\n\n  .gc-wrap .gc-card {\n    container-type: inline-size;\n    width: min(100%, 210mm);\n    aspect-ratio: 210 / 297;\n    box-sizing: border-box;\n    background-color: #0f2247;\n    background: linear-gradient(160deg, #1a3466, #0b1a38);\n    padding: 2.2cqw;\n    box-shadow: 0 1rem 3rem rgba(15, 25, 50, 0.4);\n    font-family: Georgia, \"Times New Roman\", serif;\n    color: #2a2a35;\n  }\n\n  .gc-wrap .gc-paper {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    min-height: 100%;\n    box-sizing: border-box;\n    background-color: #fffcf4;\n    background: linear-gradient(180deg, #fffefa, #f9f2df);\n    overflow: hidden;\n  }\n\n  .gc-wrap .gc-paper::before {\n    content: \"\";\n    position: absolute;\n    top: 1.2cqw;\n    right: 1.2cqw;\n    bottom: 1.2cqw;\n    left: 1.2cqw;\n    border: 0.18cqw solid #b8913a;\n    pointer-events: none;\n    z-index: 3;\n  }\n\n\n\n  .gc-wrap .gc-body {\n    flex: 1 1 auto;\n    padding: 1.8cqw 8cqw 1.6cqw;\n    text-align: center;\n  }\n\n  .gc-wrap .gc-dear {\n    font-size: 2.07cqw;\n    font-style: italic;\n    font-weight: 500;\n    line-height: 1.35;\n    color: #8a1c2b;\n  }\n\n  .gc-wrap .gc-orn {\n    text-align: center;\n    color: #b8913a;\n    font-size: 1.44cqw;\n    letter-spacing: 1cqw;\n    line-height: 1;\n    margin: 1.2cqw 0;\n  }\n\n  .gc-wrap .gc-orn::after {\n    content: \"\\2756 \\25C6 \\2756\";\n  }\n\n  .gc-wrap .gc-lead {\n    font-size: 2.16cqw;\n    line-height: 1.35;\n    font-weight: 500;\n    color: #14284b;\n    margin: 0.6cqw 0;\n  }\n\n  .gc-wrap .gc-lead b {\n    color: #8a1c2b;\n    font-weight: 700;\n  }\n\n  .gc-wrap .gc-text {\n    font-size: 1.75cqw;\n    line-height: 1.38;\n    font-weight: 500;\n    margin: 0.8cqw 0;\n  }\n\n  .gc-wrap .gc-text b {\n    color: #14284b;\n    font-weight: 700;\n  }\n\n  .gc-wrap .gc-text a {\n    color: #8a1c2b;\n    font-weight: 700;\n    text-decoration: underline;\n  }\n\n  .gc-wrap .gc-rsvp {\n    margin: 1.2cqw 0;\n    padding: 1.2cqw 2cqw;\n    border-top: 0.15cqw solid #b8913a;\n    border-bottom: 0.15cqw solid #b8913a;\n  }\n\n  .gc-wrap .gc-rsvp .gc-text {\n    margin: 0;\n  }\n\n  .gc-wrap .gc-head {\n    font-family: Arial, Helvetica, sans-serif;\n    font-size: 1.53cqw;\n    font-weight: 700;\n    letter-spacing: 0.4cqw;\n    text-transform: uppercase;\n    color: #14284b;\n    margin: 2.4cqw 0 1.2cqw;\n  }\n\n  .gc-wrap .gc-tags {\n    font-size: 1.53cqw;\n    line-height: 1.4;\n    font-style: italic;\n    font-weight: 700;\n    color: #8a6a1f;\n    margin: 0.6cqw 0;\n    word-break: break-word;\n  }\n\n  .gc-wrap .gc-cols {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 1.6cqw;\n    justify-content: center;\n    margin-top: 1.2cqw;\n  }\n\n  .gc-wrap .gc-col {\n    flex: 1 1 40%;\n    box-sizing: border-box;\n    padding: 1.2cqw 1.6cqw;\n    font-size: 1.62cqw;\n    line-height: 1.35;\n    font-weight: 500;\n    border: 0.15cqw solid #b8913a;\n    background-color: #fffdf8;\n  }\n\n  .gc-wrap .gc-col b {\n    display: block;\n    font-family: Arial, Helvetica, sans-serif;\n    font-size: 1.35cqw;\n    letter-spacing: 0.3cqw;\n    text-transform: uppercase;\n    color: #8a1c2b;\n    margin-bottom: 0.4cqw;\n  }\n\n  .gc-wrap .gc-top {\n    text-align: center;\n    padding: 4.6cqw 6cqw 0;\n  }\n\n  .gc-wrap .gc-greet {\n    font-family: Arial, Helvetica, sans-serif;\n    font-size: 1.4cqw;\n    letter-spacing: 0.4cqw;\n    text-transform: uppercase;\n    color: #8a6a1f;\n  }\n\n  .gc-wrap .gc-invite {\n    font-size: 2.6cqw;\n    font-style: italic;\n    color: #14284b;\n    margin: 1.8cqw 0 1.8cqw;\n  }\n\n  .gc-wrap .gc-logo {\n    width: 78cqw;\n    max-width: 100%;\n    height: auto;\n    display: block;\n    margin: 0 auto;\n  }\n\n  .gc-wrap .gc-foot {\n    text-align: center;\n    color: #2a2a35;\n    padding: 2cqw 4cqw 4cqw;\n    border-top: 0.18cqw solid #b8913a;\n    margin: 0 4cqw;\n  }\n\n  .gc-wrap .gc-foot .gc-ftext {\n    font-size: 1.65cqw;\n    line-height: 1.4;\n  }\n\n  .gc-wrap .gc-foot a {\n    color: #8a1c2b;\n    text-decoration: none;\n    font-weight: 700;\n  }\n\n  .gc-wrap .gc-foot b {\n    color: #14284b;\n  }\n\n  .gc-wrap .gc-proud {\n    font-family: Arial, Helvetica, sans-serif;\n    font-size: 1.4cqw;\n    letter-spacing: 0.2cqw;\n    margin-top: 1.4cqw;\n    color: #14284b;\n  }\n\n  .gc-wrap .gc-sign {\n    font-size: 2.9cqw;\n    font-style: italic;\n    color: #8a1c2b;\n    margin-top: 0.6cqw;\n  }\n</style>\n<div class=\"gc-wrap\" id=\"convocation-invitation\">\n  <div class=\"gc-card\">\n    <div class=\"gc-paper\">\n      <div class=\"gc-top\">\n        <div class=\"gc-greet\">Greetings from Ganpat University!!!</div>\n\n        <div class=\"gc-invite\">You are invited to attend the</div>\n        <img alt=\"Ganpat University - 19th Convocation\" class=\"gc-logo\" src=\"https://convocation.guni.ac.in/uploads/logo-desktop.avif\" />\n      </div>\n\n      <div class=\"gc-body\">\n        <div class=\"gc-dear\">Dear Graduating Students,</div>\n\n        <div class=\"gc-orn\">&zwj;</div>\n\n        <div class=\"gc-lead\">We are pleased to inform you that the 19th Convocation of Ganpat University is scheduled on\n          <b>8th January 2026</b> at Ganpat University.</div>\n\n        <div class=\"gc-lead\">You are cordially invited to attend the Convocation Ceremony and receive your\n          Degree/Diploma &quot;In-Person&quot;.</div>\n\n        <div class=\"gc-rsvp\">\n          <div class=\"gc-text\">Kindly confirm your presence on or before <b>2nd January 2026</b> through the convocation\n            attendance confirmation link - <a href=\"#\">Click Here</a><br />\nNon-submission of consent will be considered as your agreement to remain Absent.</div>\n        </div>\n\n        <div class=\"gc-text\">Kindly refer the website <a\n            href=\"https://convocation.guni.ac.in\">https://convocation.guni.ac.in</a> frequently for the detailed\n          schedule, profile of guests and guidelines for attending the 19th convocation. You have to pay INR Rs. 500/-\n          (Five Hundred Only) in cash as a deposit for the Convocation Rob (Gown) at your respective institute, which\n          will be refunded on returning the Gown after the event. You are requested to take your seat in the pandal\n          before <b>02:00 pm</b>.</div>\n\n        <div class=\"gc-head\">Selfie / Experience Zones and Social Media Posts</div>\n\n        <div class=\"gc-text\" style=\"margin-top:0;\">Ganpat University is set in serene campus with exquisite natural\n          beauty. On the occasion of Convocation, we have created several special selfie and experience zones at various\n          locations in the campus for the graduating students to click the photos for life-long memory and post them on\n          your social medial accounts using the following hashtags -</div>\n\n        <div class=\"gc-tags\">#GanpatUniversity #GanpatConvocation #GUNIConvocation #19thConvocation #ConvocationDay\n          #GraduationDay #ClassOf2025 #GUNI #GUNVAN</div>\n\n        <div class=\"gc-text\" style=\"margin-top:0;\">Still interested further to share your experiences, feedback, or\n          photographs on Ganpat University&#39;s official Social Media platforms, please feel free to WhatsApp on (+91)\n          99743 38707, (+91) 99241 97787.</div>\n\n        <div class=\"gc-head\">Dress Code for the Awardees</div>\n\n        <div class=\"gc-cols\">\n          <div class=\"gc-col\"><b>Male Students</b>Formal attire preferably a light-coloured plain shirt, dark-coloured\n            full trouser, and black shoes. (Kindly avoid stripes, printed, check shirts, and T-Shirts).</div>\n\n          <div class=\"gc-col\"><b>Female Students</b>Saree of sober colour and decent design or Official/Formal Attire\n            suiting to the occasion. [Kindly avoid Jeans, T-Shirts, etc.].</div>\n        </div>\n      </div>\n\n      <div class=\"gc-foot\">\n        <div class=\"gc-ftext\">For any assistance, write to us at &quot;<a\n            href=\"mailto:convocation@ganpatuniversity.ac.in\">convocation@ganpatuniversity.ac.in</a>&quot;<br />\nor the following helpline numbers:<br />\n          <b>University Reception</b> - (+91) 8200788446<br />\n          <b>Examination Section</b> - (+91) 9328801750<br />\n          <br />\nKindly feel free to interact with the Faculty/Institute wise Contact Numbers<br />\nappended herewith in case you have further query.\n        </div>\n\n        <div class=\"gc-proud\">Looking forward to welcoming you to your own campus.<br />\nWe are proudly endorsing you as GUNVAN (GUNI) ALUMNI.</div>\n\n        <div class=\"gc-sign\">Best Wishes</div>\n      </div>\n    </div>\n  </div>\n</div>",
+            "title": "",
+            "subtitle": "",
+            "fullWidth": false
           },
-          "type": "narrative"
-        },
-        {
-          "id": "invite-cards",
-          "data": {
-            "items": [
-              {
-                "icon": "Clock",
-                "title": "Schedule Summary",
-                "description": "Start Date:January 8, 2026 • Start Time:4:30pm • End Date:January 8, 2026 • Location:Ganpat University"
-              },
-              {
-                "icon": "Phone",
-                "title": "Helpline contacts",
-                "description": "University Reception: +91 8200788446 \n Examination Section: +91 9328801750"
-              }
-            ],
-            "title": "Event & Logistics Info",
-            "columns": 2,
-            "cardType": "standard",
-            "category": "Event Info"
-          },
-          "type": "card_grid"
+          "type": "custom"
         }
       ],
       "isPublished": true,
       "isMaintenance": false,
       "order": 6,
       "createdAt": "2026-06-24T05:57:03.310Z",
-      "updatedAt": "2026-10-01T10:26:11.770Z"
+      "updatedAt": "2026-10-06T15:40:45.852Z"
     },
     {
       "id": "cmqrnv6c1000dl9y8okkjvqh8",
@@ -1066,7 +1024,7 @@
       "isMaintenance": false,
       "order": 7,
       "createdAt": "2026-06-24T05:57:03.314Z",
-      "updatedAt": "2026-06-24T06:32:35.854Z"
+      "updatedAt": "2026-10-03T09:56:08.198Z"
     },
     {
       "id": "cmqrnv6c7000el9y89us8t3ry",
@@ -1107,7 +1065,7 @@
       "isMaintenance": false,
       "order": 8,
       "createdAt": "2026-06-24T05:57:03.316Z",
-      "updatedAt": "2026-10-01T10:27:46.361Z"
+      "updatedAt": "2026-10-03T09:56:08.200Z"
     },
     {
       "id": "cmqrnv6cb000fl9y8akmbu69d",
@@ -1147,7 +1105,7 @@
       "isMaintenance": false,
       "order": 9,
       "createdAt": "2026-06-24T05:57:03.324Z",
-      "updatedAt": "2026-10-01T10:26:11.882Z"
+      "updatedAt": "2026-10-03T09:56:08.201Z"
     },
     {
       "id": "cmqrnv6cf000gl9y86yxqeo8f",
@@ -1209,7 +1167,7 @@
       "isMaintenance": false,
       "order": 10,
       "createdAt": "2026-06-24T05:57:03.327Z",
-      "updatedAt": "2026-10-01T10:26:11.997Z"
+      "updatedAt": "2026-10-03T09:56:08.203Z"
     },
     {
       "id": "cmqrnv6ch000hl9y8brfpnnms",
@@ -1263,7 +1221,7 @@
       "isMaintenance": false,
       "order": 11,
       "createdAt": "2026-06-24T05:57:03.330Z",
-      "updatedAt": "2026-06-24T06:32:35.901Z"
+      "updatedAt": "2026-10-03T09:56:08.205Z"
     },
     {
       "id": "cmqrnv6ck000il9y8td7a5k5f",
@@ -1312,7 +1270,7 @@
       "isMaintenance": false,
       "order": 12,
       "createdAt": "2026-06-24T05:57:03.332Z",
-      "updatedAt": "2026-06-24T06:32:35.903Z"
+      "updatedAt": "2026-10-03T09:56:08.207Z"
     },
     {
       "id": "cmqrnv6cp000jl9y8v38oenoc",
@@ -1366,7 +1324,7 @@
       "isMaintenance": false,
       "order": 13,
       "createdAt": "2026-06-24T05:57:03.337Z",
-      "updatedAt": "2026-10-01T10:26:12.087Z"
+      "updatedAt": "2026-10-03T09:56:08.209Z"
     },
     {
       "id": "cmqrnv6dq000kl9y8i6ngacb1",
@@ -1608,7 +1566,7 @@
       "isMaintenance": false,
       "order": 14,
       "createdAt": "2026-06-24T05:57:03.374Z",
-      "updatedAt": "2026-10-03T06:45:47.819Z"
+      "updatedAt": "2026-10-03T09:56:08.212Z"
     },
     {
       "id": "cmqrnv6em000ll9y813ob7je2",
@@ -1666,7 +1624,113 @@
       "isMaintenance": false,
       "order": 15,
       "createdAt": "2026-06-24T05:57:03.406Z",
-      "updatedAt": "2026-06-24T06:32:35.945Z"
+      "updatedAt": "2026-10-03T09:56:08.214Z"
+    }
+  ],
+  "folders": [
+    {
+      "id": "cmuwsbpx30000l9bckeqzr7cy",
+      "name": "Banners & Heroes",
+      "slug": "banners-heroes",
+      "icon": "image",
+      "color": "#2563EB",
+      "description": null,
+      "parentId": null,
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:39:33.878Z",
+      "updatedAt": "2026-10-06T14:39:33.878Z"
+    },
+    {
+      "id": "cmuwsbq0y0002l9bc3n74quw2",
+      "name": "Videos",
+      "slug": "videos",
+      "icon": "film",
+      "color": "#7C3AED",
+      "description": null,
+      "parentId": null,
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:39:34.018Z",
+      "updatedAt": "2026-10-06T14:39:34.018Z"
+    },
+    {
+      "id": "cmuwsbq120003l9bc66q5je1m",
+      "name": "Documents & PDFs",
+      "slug": "documents-pdfs",
+      "icon": "file-text",
+      "color": "#DC2626",
+      "description": null,
+      "parentId": null,
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:39:34.022Z",
+      "updatedAt": "2026-10-06T14:39:34.022Z"
+    },
+    {
+      "id": "cmuwsbq160004l9bcvndqt1np",
+      "name": "Faculty & Staff",
+      "slug": "faculty-staff",
+      "icon": "users",
+      "color": "#059669",
+      "description": null,
+      "parentId": null,
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:39:34.027Z",
+      "updatedAt": "2026-10-06T14:39:34.027Z"
+    },
+    {
+      "id": "cmuwsbq1c0005l9bclz17ic6b",
+      "name": "Events & Gallery",
+      "slug": "events-gallery",
+      "icon": "camera",
+      "color": "#D97706",
+      "description": null,
+      "parentId": null,
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:39:34.033Z",
+      "updatedAt": "2026-10-06T14:39:34.033Z"
+    },
+    {
+      "id": "cmuwsbq1h0006l9bcho0xhxrr",
+      "name": "Logos & Branding",
+      "slug": "logos-branding",
+      "icon": "badge-check",
+      "color": "#4F46E5",
+      "description": null,
+      "parentId": null,
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:39:34.037Z",
+      "updatedAt": "2026-10-06T14:39:34.037Z"
+    },
+    {
+      "id": "cmuwsbq1l0007l9bckg9z7q3a",
+      "name": "Campus & Infrastructure",
+      "slug": "campus",
+      "icon": "building-2",
+      "color": "#0D9488",
+      "description": null,
+      "parentId": null,
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:39:34.042Z",
+      "updatedAt": "2026-10-06T14:39:34.042Z"
+    },
+    {
+      "id": "cmuwsdx42000bl9bciooabpsl",
+      "name": "New folder",
+      "slug": "new-folder",
+      "icon": "folder",
+      "color": "#2563EB",
+      "description": null,
+      "parentId": null,
+      "isTrash": true,
+      "trashedAt": "2026-10-06T14:41:25.352Z",
+      "createdAt": "2026-10-06T14:41:16.514Z",
+      "updatedAt": "2026-10-06T14:41:25.353Z"
     }
   ],
   "media": [
@@ -1678,8 +1742,11 @@
       "size": 21014,
       "url": "/uploads/ashok-chaudhary-source.webp",
       "alt": "Ashok Chaudhary Source",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:31:29.768Z",
-      "updatedAt": "2026-10-03T04:31:29.768Z"
+      "updatedAt": "2026-10-06T14:39:34.339Z"
     },
     {
       "id": "cmurx85wi0001l9zs015dgosq",
@@ -1689,8 +1756,11 @@
       "size": 201642,
       "url": "/uploads/ashok-chaudhary.png",
       "alt": "Ashok Chaudhary",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-09-30T09:28:45.917Z",
-      "updatedAt": "2026-09-30T09:28:45.917Z"
+      "updatedAt": "2026-10-06T14:39:35.974Z"
     },
     {
       "id": "cmurx85wo0004l9zsyaakapp8",
@@ -1700,8 +1770,11 @@
       "size": 638870,
       "url": "/uploads/convocation-01-0u3a0768.jpg",
       "alt": "Convocation 01 0u3a0768",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:15:39.397Z",
-      "updatedAt": "2026-10-01T10:15:39.397Z"
+      "updatedAt": "2026-10-06T14:39:36.240Z"
     },
     {
       "id": "cmurx85wu0007l9zsng4niu28",
@@ -1711,8 +1784,11 @@
       "size": 408086,
       "url": "/uploads/convocation-02-0u3a0868.jpg",
       "alt": "Convocation 02 0u3a0868",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:16:14.523Z",
-      "updatedAt": "2026-10-01T10:16:14.523Z"
+      "updatedAt": "2026-10-06T14:39:36.343Z"
     },
     {
       "id": "cmurx85x0000al9zskmgg23q7",
@@ -1722,8 +1798,11 @@
       "size": 399362,
       "url": "/uploads/convocation-03-0u3a0987.jpg",
       "alt": "Convocation 03 0u3a0987",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:16:34.628Z",
-      "updatedAt": "2026-10-01T10:16:34.628Z"
+      "updatedAt": "2026-10-06T14:39:36.395Z"
     },
     {
       "id": "cmurx85x3000dl9zsdhy8y4lh",
@@ -1733,8 +1812,11 @@
       "size": 415139,
       "url": "/uploads/convocation-04-0u3a1809.jpg",
       "alt": "Convocation 04 0u3a1809",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:16:50.029Z",
-      "updatedAt": "2026-10-01T10:16:50.029Z"
+      "updatedAt": "2026-10-06T14:39:36.419Z"
     },
     {
       "id": "cmurx85x8000gl9zsfjf67xfj",
@@ -1744,8 +1826,11 @@
       "size": 323046,
       "url": "/uploads/convocation-05-0u3a1942.jpg",
       "alt": "Convocation 05 0u3a1942",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:17:06.316Z",
-      "updatedAt": "2026-10-01T10:17:06.316Z"
+      "updatedAt": "2026-10-06T14:39:36.424Z"
     },
     {
       "id": "cmurx85xc000jl9zsq1ixog5i",
@@ -1755,8 +1840,11 @@
       "size": 338170,
       "url": "/uploads/convocation-06-0u3a1946.jpg",
       "alt": "Convocation 06 0u3a1946",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:17:19.481Z",
-      "updatedAt": "2026-10-01T10:17:19.481Z"
+      "updatedAt": "2026-10-06T14:39:36.435Z"
     },
     {
       "id": "cmurx85xg000ml9zsvskxv9jr",
@@ -1766,8 +1854,11 @@
       "size": 345471,
       "url": "/uploads/convocation-07-0u3a1947.jpg",
       "alt": "Convocation 07 0u3a1947",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:17:32.824Z",
-      "updatedAt": "2026-10-01T10:17:32.824Z"
+      "updatedAt": "2026-10-06T14:39:36.459Z"
     },
     {
       "id": "cmurx85xl000pl9zs3jpcrj7x",
@@ -1777,8 +1868,11 @@
       "size": 537304,
       "url": "/uploads/convocation-08-158a3767.jpg",
       "alt": "Convocation 08 158a3767",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:17:46.367Z",
-      "updatedAt": "2026-10-01T10:17:46.367Z"
+      "updatedAt": "2026-10-06T14:39:36.476Z"
     },
     {
       "id": "cmurx85xp000sl9zsv1sugqr5",
@@ -1788,8 +1882,11 @@
       "size": 638976,
       "url": "/uploads/convocation-09-158a3954.jpg",
       "alt": "Convocation 09 158a3954",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:18:15.578Z",
-      "updatedAt": "2026-10-01T10:18:15.578Z"
+      "updatedAt": "2026-10-06T14:39:36.485Z"
     },
     {
       "id": "cmurx85xu000vl9zsh7wvck97",
@@ -1799,8 +1896,11 @@
       "size": 505716,
       "url": "/uploads/convocation-10-158a3965.jpg",
       "alt": "Convocation 10 158a3965",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:18:47.738Z",
-      "updatedAt": "2026-10-01T10:18:47.738Z"
+      "updatedAt": "2026-10-06T14:39:36.495Z"
     },
     {
       "id": "cmurx85xy000yl9zswy5cwlsf",
@@ -1810,8 +1910,11 @@
       "size": 471421,
       "url": "/uploads/convocation-11-158a3966.jpg",
       "alt": "Convocation 11 158a3966",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:19:13.990Z",
-      "updatedAt": "2026-10-01T10:19:13.990Z"
+      "updatedAt": "2026-10-06T14:39:36.505Z"
     },
     {
       "id": "cmurx85y20011l9zs50h207kd",
@@ -1821,8 +1924,25 @@
       "size": 595068,
       "url": "/uploads/convocation-12-158a9209.jpg",
       "alt": "Convocation 12 158a9209",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:19:38.170Z",
-      "updatedAt": "2026-10-01T10:19:38.170Z"
+      "updatedAt": "2026-10-06T14:39:36.522Z"
+    },
+    {
+      "id": "cmuwsd9sk0009l9bcpjf97ij0",
+      "filename": "460a797a6d167feec13343404d5600b9.webp",
+      "originalName": "cropped-1791297645355-ashok-chaudhary-source.webp",
+      "mimeType": "image/webp",
+      "size": 7520,
+      "url": "/files/460a797a6d167feec13343404d5600b9",
+      "alt": "",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
+      "createdAt": "2026-10-06T14:40:46.290Z",
+      "updatedAt": "2026-10-06T14:40:46.290Z"
     },
     {
       "id": "cmurx85y80014l9zsqn5njneh",
@@ -1832,8 +1952,11 @@
       "size": 620654,
       "url": "/uploads/convocation-13-158a9214.jpg",
       "alt": "Convocation 13 158a9214",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:20:09.171Z",
-      "updatedAt": "2026-10-01T10:20:09.171Z"
+      "updatedAt": "2026-10-06T14:39:36.534Z"
     },
     {
       "id": "cmurx85yc0017l9zs4urgqn9x",
@@ -1843,8 +1966,11 @@
       "size": 709183,
       "url": "/uploads/convocation-14-158a9227.jpg",
       "alt": "Convocation 14 158a9227",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:20:39.675Z",
-      "updatedAt": "2026-10-01T10:20:39.675Z"
+      "updatedAt": "2026-10-06T14:39:36.570Z"
     },
     {
       "id": "cmurx85yg001al9zs372vv4h6",
@@ -1854,8 +1980,11 @@
       "size": 832694,
       "url": "/uploads/convocation-15-dsc02474.jpg",
       "alt": "Convocation 15 Dsc02474",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:21:12.968Z",
-      "updatedAt": "2026-10-01T10:21:12.968Z"
+      "updatedAt": "2026-10-06T14:39:36.602Z"
     },
     {
       "id": "cmurx85yk001dl9zs2oe45zz9",
@@ -1865,8 +1994,11 @@
       "size": 797344,
       "url": "/uploads/convocation-16-dsc02488.jpg",
       "alt": "Convocation 16 Dsc02488",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:21:50.206Z",
-      "updatedAt": "2026-10-01T10:21:50.206Z"
+      "updatedAt": "2026-10-06T14:39:36.638Z"
     },
     {
       "id": "cmurx85yo001gl9zs85cdzxhi",
@@ -1876,8 +2008,11 @@
       "size": 463589,
       "url": "/uploads/convocation-17-img_0782.jpg",
       "alt": "Convocation 17 Img 0782",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:22:36.448Z",
-      "updatedAt": "2026-10-01T10:22:36.448Z"
+      "updatedAt": "2026-10-06T14:39:36.678Z"
     },
     {
       "id": "cmurx85ys001jl9zskpc4b3xt",
@@ -1887,8 +2022,11 @@
       "size": 404350,
       "url": "/uploads/convocation-18-img_0803.jpg",
       "alt": "Convocation 18 Img 0803",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:23:08.557Z",
-      "updatedAt": "2026-10-01T10:23:08.557Z"
+      "updatedAt": "2026-10-06T14:39:36.718Z"
     },
     {
       "id": "cmurx85yw001ml9zskp9xlrjm",
@@ -1898,8 +2036,11 @@
       "size": 433320,
       "url": "/uploads/convocation-19-img_0804.jpg",
       "alt": "Convocation 19 Img 0804",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:23:37.088Z",
-      "updatedAt": "2026-10-01T10:23:37.088Z"
+      "updatedAt": "2026-10-06T14:39:36.743Z"
     },
     {
       "id": "cmurx85z1001pl9zsuo0puimc",
@@ -1909,8 +2050,11 @@
       "size": 364476,
       "url": "/uploads/convocation-20-img_0901.jpg",
       "alt": "Convocation 20 Img 0901",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:24:04.267Z",
-      "updatedAt": "2026-10-01T10:24:04.267Z"
+      "updatedAt": "2026-10-06T14:39:36.766Z"
     },
     {
       "id": "cmurx85z5001sl9zsxq77pnrd",
@@ -1920,8 +2064,11 @@
       "size": 545392,
       "url": "/uploads/convocation-21-mhdv5790.jpg",
       "alt": "Convocation 21 Mhdv5790",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:24:31.257Z",
-      "updatedAt": "2026-10-01T10:24:31.257Z"
+      "updatedAt": "2026-10-06T14:39:36.784Z"
     },
     {
       "id": "cmurx85za001vl9zsok2f01fg",
@@ -1931,8 +2078,11 @@
       "size": 341114,
       "url": "/uploads/convocation-22-_2001672.jpg",
       "alt": "Convocation 22  2001672",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:25:05.531Z",
-      "updatedAt": "2026-10-01T10:25:05.531Z"
+      "updatedAt": "2026-10-06T14:39:36.801Z"
     },
     {
       "id": "cmurx85ze001yl9zs2ljh48ly",
@@ -1942,8 +2092,11 @@
       "size": 712799,
       "url": "/uploads/convocation-23-_2001729.jpg",
       "alt": "Convocation 23  2001729",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-01T10:25:36.745Z",
-      "updatedAt": "2026-10-01T10:25:36.745Z"
+      "updatedAt": "2026-10-06T14:39:36.813Z"
     },
     {
       "id": "cmurx85zh0020l9zs91w18i5q",
@@ -1953,8 +2106,11 @@
       "size": 1405283,
       "url": "/uploads/ganpat-bhai-patel.png",
       "alt": "Ganpat Bhai Patel",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:22:17.269Z",
-      "updatedAt": "2026-09-07T11:31:15.962Z"
+      "updatedAt": "2026-10-06T14:39:36.828Z"
     },
     {
       "id": "cmurx85zi0021l9zsxxy6clu8",
@@ -1964,8 +2120,11 @@
       "size": 133098,
       "url": "/uploads/guest-chaudhary-cutout.png",
       "alt": "Guest Chaudhary Cutout",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:31:50.941Z",
-      "updatedAt": "2026-10-03T04:31:50.961Z"
+      "updatedAt": "2026-10-06T14:39:36.861Z"
     },
     {
       "id": "cmurx85zk0022l9zsggqivboq",
@@ -1975,8 +2134,11 @@
       "size": 477031,
       "url": "/uploads/guest-dr-pradyuman-vaja.png",
       "alt": "Guest Dr Pradyuman Vaja",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:32:16.306Z",
-      "updatedAt": "2026-10-03T04:44:40.548Z"
+      "updatedAt": "2026-10-06T14:39:36.894Z"
     },
     {
       "id": "cmurx85zl0023l9zssev4pshr",
@@ -1986,8 +2148,11 @@
       "size": 594035,
       "url": "/uploads/guest-dr-v-narayanan.png",
       "alt": "Guest Dr V Narayanan",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:32:16.414Z",
-      "updatedAt": "2026-10-03T04:55:49.491Z"
+      "updatedAt": "2026-10-06T14:39:36.947Z"
     },
     {
       "id": "cmurx85zn0024l9zs8rtp0vpu",
@@ -1997,8 +2162,11 @@
       "size": 565126,
       "url": "/uploads/guest-narayanan-cutout.png",
       "alt": "Guest Narayanan Cutout",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:31:49.466Z",
-      "updatedAt": "2026-10-03T04:31:49.582Z"
+      "updatedAt": "2026-10-06T14:39:36.962Z"
     },
     {
       "id": "cmurx85zo0025l9zsc4ydbv8c",
@@ -2008,8 +2176,11 @@
       "size": 227213,
       "url": "/uploads/guest-shri-ashok-chaudhary.png",
       "alt": "Guest Shri Ashok Chaudhary",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:32:16.523Z",
-      "updatedAt": "2026-10-03T04:41:51.643Z"
+      "updatedAt": "2026-10-06T14:39:36.975Z"
     },
     {
       "id": "cmurx85zq0026l9zshebxmn4u",
@@ -2019,8 +2190,11 @@
       "size": 1823570,
       "url": "/uploads/guest-vaja-cutout-new.png",
       "alt": "Guest Vaja Cutout New",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:41:14.270Z",
-      "updatedAt": "2026-10-03T04:41:15.290Z"
+      "updatedAt": "2026-10-06T14:39:37.033Z"
     },
     {
       "id": "cmurx85zr0027l9zskkalgatk",
@@ -2030,8 +2204,11 @@
       "size": 929909,
       "url": "/uploads/guest-vaja-cutout.png",
       "alt": "Guest Vaja Cutout",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:31:47.711Z",
-      "updatedAt": "2026-10-03T04:31:47.834Z"
+      "updatedAt": "2026-10-06T14:39:37.060Z"
     },
     {
       "id": "cmurx85zs0028l9zsddipo3ba",
@@ -2041,8 +2218,11 @@
       "size": 1357515,
       "url": "/uploads/hero-student-right.png",
       "alt": "Hero Student Right",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:03:51.348Z",
-      "updatedAt": "2026-10-03T04:36:02.900Z"
+      "updatedAt": "2026-10-06T14:39:37.072Z"
     },
     {
       "id": "cmurx85zt0029l9zsutajp4sy",
@@ -2052,8 +2232,11 @@
       "size": 1357515,
       "url": "/uploads/hero-student-updated.png",
       "alt": "Hero Student Updated",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:37:44.352Z",
-      "updatedAt": "2026-10-03T04:36:02.900Z"
+      "updatedAt": "2026-10-06T14:39:37.078Z"
     },
     {
       "id": "cmurx85zv002bl9zszpcdgil8",
@@ -2063,8 +2246,11 @@
       "size": 161886,
       "url": "/uploads/logo.png",
       "alt": "Logo",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-06-23T10:51:55.319Z",
-      "updatedAt": "2026-06-23T10:53:17.131Z"
+      "updatedAt": "2026-10-06T14:39:37.084Z"
     },
     {
       "id": "cmurx85zy002dl9zscqjw6roe",
@@ -2074,8 +2260,11 @@
       "size": 1909563,
       "url": "/uploads/mahendra-sharma.png",
       "alt": "Mahendra Sharma",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:22:03.394Z",
-      "updatedAt": "2026-08-17T09:42:40.598Z"
+      "updatedAt": "2026-10-06T14:39:37.096Z"
     },
     {
       "id": "cmurx8601002fl9zsg5q7y98e",
@@ -2085,8 +2274,11 @@
       "size": 1745048,
       "url": "/uploads/pra-vaja-1781068508584.png",
       "alt": "Pra Vaja",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-09-30T09:27:50.690Z",
-      "updatedAt": "2026-09-30T09:27:50.690Z"
+      "updatedAt": "2026-10-06T14:39:37.117Z"
     },
     {
       "id": "cmurx8604002hl9zszzzdktz1",
@@ -2096,8 +2288,11 @@
       "size": 22849,
       "url": "/uploads/president-ganpatbhai-patel.png",
       "alt": "President Ganpatbhai Patel",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-09-30T09:29:12.734Z",
-      "updatedAt": "2026-09-30T09:29:12.734Z"
+      "updatedAt": "2026-10-06T14:39:37.126Z"
     },
     {
       "id": "cmurx8606002jl9zsos57wevi",
@@ -2107,8 +2302,11 @@
       "size": 1376726,
       "url": "/uploads/shri-shyam-jagannathan.png",
       "alt": "Shri Shyam Jagannathan",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:22:03.362Z",
-      "updatedAt": "2026-09-07T11:31:15.845Z"
+      "updatedAt": "2026-10-06T14:39:37.144Z"
     },
     {
       "id": "cmurx8607002kl9zs5ul51zlg",
@@ -2118,8 +2316,11 @@
       "size": 570334,
       "url": "/uploads/v-narayanan-cutout.png",
       "alt": "V Narayanan Cutout",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-10-03T04:26:35.211Z",
-      "updatedAt": "2026-10-03T04:26:35.212Z"
+      "updatedAt": "2026-10-06T14:39:37.163Z"
     },
     {
       "id": "cmurx8608002ll9zs7fa2vdl0",
@@ -2129,8 +2330,11 @@
       "size": 2366907,
       "url": "/uploads/v-narayanan.png",
       "alt": "V Narayanan",
+      "folderId": "cmuwsbpx30000l9bckeqzr7cy",
+      "isTrash": false,
+      "trashedAt": null,
       "createdAt": "2026-09-30T09:28:14.746Z",
-      "updatedAt": "2026-09-30T09:28:14.747Z"
+      "updatedAt": "2026-10-06T14:39:37.170Z"
     }
   ]
 }

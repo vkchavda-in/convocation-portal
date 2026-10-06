@@ -10,6 +10,7 @@ async function exportSnapshot() {
   const users = await prisma.user.findMany();
   const settings = await prisma.setting.findMany();
   const pages = await prisma.page.findMany({ orderBy: { order: 'asc' } });
+  const folders = await prisma.mediaFolder.findMany();
   const media = await prisma.media.findMany();
 
   const snapshot = {
@@ -19,12 +20,14 @@ async function exportSnapshot() {
         users: users.length,
         settings: settings.length,
         pages: pages.length,
+        folders: folders.length,
         media: media.length
       }
     },
     users,
     settings,
     pages,
+    folders,
     media
   };
 
