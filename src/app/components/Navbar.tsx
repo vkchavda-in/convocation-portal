@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, MapPin, Mail, Clock, Facebook, Twitter, Linkedin, ChevronDown, Phone } from 'lucide-react';
 import OptimizedImage from '@/components/shared/OptimizedImage';
 
-export default function Navbar({ headerData }: { headerData?: any }) {
+export default function Navbar({ headerData, appSettings }: { headerData?: any; appSettings?: any }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobileLink, setExpandedMobileLink] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +58,6 @@ export default function Navbar({ headerData }: { headerData?: any }) {
     };
   }, [mobileMenuOpen]);
 
-
   const rawNavLinks = headerData?.navLinks || [];
   const navLinks = rawNavLinks.filter((link: any) => {
     const label = (link.label || '').toLowerCase();
@@ -85,6 +84,23 @@ export default function Navbar({ headerData }: { headerData?: any }) {
     twitter: 'https://twitter.com/Ganpat_Uni',
     linkedin: 'https://www.linkedin.com/school/ganpat-university/'
   };
+
+  // Top Bar configuration
+  const topBarEnabled = appSettings?.topBarEnabled ?? true;
+  const topBarType = appSettings?.topBarType ?? 'marquee';
+  const topBarEmail = appSettings?.topBarEmail || contact.email;
+  const topBarPhone = appSettings?.topBarPhone || contact.phone;
+  const topBarAddress = appSettings?.topBarAddress || contact.address;
+  const topBarWorkingHours = appSettings?.topBarWorkingHours || contact.workingHours;
+  const topBarLinks = appSettings?.topBarLinks || [
+    { label: 'Watch Live Webcast', url: 'https://convocation.guni.ac.in/live' }
+  ];
+  const marqueeItems = (appSettings?.topBarMarqueeItems && appSettings.topBarMarqueeItems.length > 0)
+    ? appSettings.topBarMarqueeItems
+    : [
+        { text: '19th Convocation Ceremony – Registrations & Schedule Live!', badge: 'Important Update', link: '/schedule-for-gold-medalists-and-phd-awardees' },
+        { text: 'Watch Live Webcast of the 19th Convocation', badge: 'Live Stream', link: '/#live-stream' }
+      ];
   
   // Resolve logo size in pixels
   const logoSize = headerData?.logoSize || 'md';
@@ -121,46 +137,136 @@ export default function Navbar({ headerData }: { headerData?: any }) {
 
   return (
     <>
-      {/* Top Info Bar — dark navy, hidden on mobile/tablet */}
-      <div
-        className="hidden md:flex text-white text-[11px] sm:text-xs font-semibold h-10 justify-between items-center relative z-50 w-full select-none pl-6 lg:pl-12"
-        style={{
-          background: 'var(--navy, #0B2545)',
-          borderBottom: '1px solid rgba(249,197,60,0.30)',
-        }}
-      >
-        {/* Left: phone + email */}
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5">
-            <Phone size={12} style={{ color: 'var(--gold, #f9c53c)' }} />
-            <span className="text-white/80">+ 02762226021</span>
-          </div>
-          <span className="text-white/20 font-light">|</span>
-          <div className="flex items-center gap-1.5">
-            <Mail size={12} style={{ color: 'var(--gold, #f9c53c)' }} />
-            <a
-              href={`mailto:${contact.email}`}
-              className="text-white/80 transition-colors hover:text-[#f9c53c]"
-            >
-              {contact.email}
-            </a>
-          </div>
-        </div>
+      {/* Top Info Bar */}
+      {topBarEnabled && (
+        topBarType === 'marquee' ? (
+          <div
+            className="flex text-white/90 text-[11.5px] font-normal py-2 px-6 lg:px-12 justify-between items-center gap-4 w-full select-none shrink-0"
+            style={{
+              background: 'var(--navy-dark, #08172D)',
+              borderBottom: '1px solid rgba(200, 158, 76, 0.25)',
+            }}
+          >
+            {/* Left: scrolling announcement marquee */}
+            <div className="flex-1 max-w-full md:max-w-[55%] min-w-0 flex items-center">
+              <div className="relative flex-1 min-w-0 overflow-hidden h-full flex items-center">
+                <marquee scrollamount="3.5" className="w-full">
+                  {marqueeItems.map((item: any, idx: number) => {
+                    const content = (
+                      <span className="inline-flex items-center gap-2">
+                        <span className="font-light text-white/90 whitespace-nowrap">{item.text}</span>
+                        {item.badge && (
+                          <span className="bg-[#C89E4C] text-[#08172D] text-[8px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wider select-none shrink-0 whitespace-nowrap shadow-sm">
+                            {item.badge}
+                          </span>
+                        )}
+                      </span>
+                    );
 
-        {/* Right: Watch Live gold pill */}
-        <a
-          href="https://convocation.guni.ac.in/live"
-          target="_blank"
-          rel="noreferrer"
-          className="h-full flex items-center justify-center px-6 font-extrabold text-xs uppercase tracking-widest transition-all hover:brightness-105"
-          style={{
-            background: 'linear-gradient(90deg, #e9a800, #f9c53c, #f59e0b)',
-            color: '#060f24',
-          }}
-        >
-          Watch Live
-        </a>
-      </div>
+                    return (
+                      <span key={idx} className="inline-flex items-center">
+                        {idx > 0 && <span className="mx-5 text-white/20 select-none">|</span>}
+                        {item.link ? (
+                          <a
+                            href={item.link}
+                            target={item.link.startsWith('http') ? '_blank' : undefined}
+                            rel="noopener noreferrer"
+                            className="hover:text-[var(--champagne-gold)] transition-colors inline-flex items-center"
+                          >
+                            {content}
+                          </a>
+                        ) : (
+                          content
+                        )}
+                      </span>
+                    );
+                  })}
+                </marquee>
+              </div>
+            </div>
+
+            {/* Right: Custom Links + Contact Pills */}
+            <div className="hidden md:flex items-center gap-4 flex-shrink-0 font-medium ml-auto text-xs">
+              {topBarLinks && topBarLinks.length > 0 && (
+                <div className="flex items-center gap-3.5 border-r border-white/15 pr-4">
+                  {topBarLinks.map((link: any, idx: number) => (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target={link.url.startsWith('http') ? '_blank' : undefined}
+                      rel="noopener noreferrer"
+                      className="text-[var(--champagne-gold)] font-bold hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex items-center gap-1.5 text-white/80">
+                <Mail size={11} className="text-[var(--champagne-gold)]" />
+                <a href={`mailto:${topBarEmail}`} className="hover:text-white transition-colors">
+                  {topBarEmail}
+                </a>
+              </div>
+              <div className="flex items-center gap-1.5 text-white/80">
+                <Phone size={11} className="text-[var(--champagne-gold)]" />
+                <a href={`tel:${topBarPhone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">
+                  {topBarPhone}
+                </a>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div
+            className="hidden md:flex text-white/90 text-[11.5px] font-normal py-2 px-6 lg:px-12 justify-between items-center gap-2 w-full select-none shrink-0"
+            style={{
+              background: 'var(--navy-dark, #08172D)',
+              borderBottom: '1px solid rgba(200, 158, 76, 0.25)',
+            }}
+          >
+            <div className="flex items-center gap-5 flex-wrap">
+              <div className="flex items-center gap-1.5">
+                <MapPin size={11} className="text-[var(--champagne-gold)]" />
+                <span>{topBarAddress}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Mail size={11} className="text-[var(--champagne-gold)]" />
+                <a href={`mailto:${topBarEmail}`} className="hover:text-white transition-colors">
+                  {topBarEmail}
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-5 flex-wrap justify-end">
+              <div className="flex items-center gap-1.5">
+                <Phone size={11} className="text-[var(--champagne-gold)]" />
+                <a href={`tel:${topBarPhone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">
+                  {topBarPhone}
+                </a>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Clock size={11} className="text-[var(--champagne-gold)]" />
+                <span>{topBarWorkingHours}</span>
+              </div>
+              {topBarLinks && topBarLinks.length > 0 && (
+                <div className="flex items-center gap-3">
+                  {topBarLinks.map((link: any, idx: number) => (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target={link.url.startsWith('http') ? '_blank' : undefined}
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 rounded bg-[#C89E4C] text-[#08172D] font-bold text-[10px] uppercase tracking-wider hover:brightness-110 transition-all"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )
+      )}
 
       {/* Sticky Main Navigation */}
       <header

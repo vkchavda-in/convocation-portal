@@ -68,19 +68,30 @@ export const revalidate = 10; // Cache and revalidate settings every 10 seconds 
 
 async function getThemeAndFont() {
   try {
-    const [themeSetting, fontSetting] = await Promise.all([
+    const [themeSetting, fontSetting, themeCustomSetting] = await Promise.all([
       prisma.setting.findUnique({ where: { key: 'theme' } }),
       prisma.setting.findUnique({ where: { key: 'fontPairing' } }),
+      prisma.setting.findUnique({ where: { key: 'theme_custom' } }),
     ]);
+
+    let themeCustom = null;
+    if (themeCustomSetting?.value) {
+      try {
+        themeCustom = JSON.parse(themeCustomSetting.value);
+      } catch {}
+    }
+
     return {
-      theme: themeSetting?.value || 'theme-convocation',
-      fontPairing: fontSetting?.value || 'pairing-modern-sans',
+      theme: themeSetting?.value || 'theme-ivy-league',
+      fontPairing: fontSetting?.value || 'pairing-classic',
+      themeCustom,
     };
   } catch (error) {
     console.error('Failed to get theme and font settings:', error);
     return {
-      theme: 'theme-convocation',
-      fontPairing: 'pairing-modern-sans',
+      theme: 'theme-ivy-league',
+      fontPairing: 'pairing-classic',
+      themeCustom: null,
     };
   }
 }
@@ -90,21 +101,60 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let { theme, fontPairing } = await getThemeAndFont();
+  let { theme, fontPairing, themeCustom } = await getThemeAndFont();
   if (theme.startsWith('{')) theme = 'theme-ivy-league';
   if (fontPairing.startsWith('{')) fontPairing = 'pairing-classic';
 
   const isModernFont = fontPairing === 'pairing-modern-sans';
 
+  const inlineStyles: Record<string, string> = {
+    '--font-heading': isModernFont ? "var(--font-outfit), sans-serif" : "var(--font-playfair), serif",
+    '--font-body': "var(--font-inter), sans-serif",
+  };
+
+  if (themeCustom) {
+    if (themeCustom.primaryColor) {
+      inlineStyles['--primary'] = themeCustom.primaryColor;
+      inlineStyles['--slate-blue'] = themeCustom.primaryColor;
+      inlineStyles['--royal-blue'] = themeCustom.primaryColor;
+    }
+    if (themeCustom.secondaryColor) {
+      inlineStyles['--secondary'] = themeCustom.secondaryColor;
+      inlineStyles['--champagne-gold'] = themeCustom.secondaryColor;
+      inlineStyles['--gold'] = themeCustom.secondaryColor;
+    }
+    if (themeCustom.bgDark) {
+      inlineStyles['--navy-dark'] = themeCustom.bgDark;
+      inlineStyles['--midnight-navy'] = themeCustom.bgDark;
+      inlineStyles['--abyss'] = themeCustom.bgDark;
+      inlineStyles['--ink'] = themeCustom.bgDark;
+    }
+    if (themeCustom.bgLight) {
+      inlineStyles['--warm-white'] = themeCustom.bgLight;
+      inlineStyles['--parchment'] = themeCustom.bgLight;
+    }
+    if (themeCustom.headingColor) {
+      inlineStyles['--heading-color'] = themeCustom.headingColor;
+    }
+    if (themeCustom.bodyColor) {
+      inlineStyles['--slate-text'] = themeCustom.bodyColor;
+    }
+    if (themeCustom.borderRadius) {
+      inlineStyles['--radius'] = themeCustom.borderRadius;
+    }
+  }
+
   return (
     <html 
       lang="en" 
       className={`${inter.variable} ${playfairDisplay.variable} ${outfit.variable} ${theme}`}
-      style={{
-        '--font-heading': isModernFont ? "var(--font-outfit), sans-serif" : "var(--font-playfair), serif",
-        '--font-body': "var(--font-inter), sans-serif",
-      } as React.CSSProperties}
+      style={inlineStyles as React.CSSProperties}
     >
+      <head>
+        {themeCustom?.customCss && (
+          <style dangerouslySetInnerHTML={{ __html: themeCustom.customCss }} />
+        )}
+      </head>
       <body className="antialiased">
         <SmoothScroll />
         <ScrollToTop />

@@ -8,10 +8,11 @@ export const dynamic = 'force-dynamic';
 // GET /api/settings - Publicly fetch current theme and typography config
 export async function GET() {
   try {
-    const [themeSetting, fontSetting, appSettingsSetting] = await Promise.all([
+    const [themeSetting, fontSetting, appSettingsSetting, themeCustomSetting] = await Promise.all([
       prisma.setting.findUnique({ where: { key: 'theme' } }),
       prisma.setting.findUnique({ where: { key: 'fontPairing' } }),
       prisma.setting.findUnique({ where: { key: 'app_settings' } }),
+      prisma.setting.findUnique({ where: { key: 'theme_custom' } }),
     ]);
 
     return NextResponse.json(
@@ -19,6 +20,7 @@ export async function GET() {
         theme: themeSetting?.value || 'theme-ivy-league',
         fontPairing: fontSetting?.value || 'pairing-classic',
         appSettings: appSettingsSetting?.value || null,
+        themeCustom: themeCustomSetting?.value || null,
       },
       {
         headers: {
@@ -34,12 +36,12 @@ export async function GET() {
 
 // PUT /api/settings - Update site theme and typography (requires ADMIN / SUPER_ADMIN)
 export async function PUT(request: Request) {
-  const auth = await requireRole(request, ['SUPER_ADMIN', 'ADMIN']);
+  const auth = await requireRole(request, ['SUPER_ADMIN', 'ADMIN', 'EDITOR']);
   if (!auth.authorized) return auth.response!;
 
   try {
     const body = await request.json();
-    const { theme, fontPairing, appSettings } = body;
+    const { theme, fontPairing, appSettings, themeCustom } = body;
 
     const updates = [];
 
@@ -69,6 +71,16 @@ export async function PUT(request: Request) {
           where: { key: 'app_settings' },
           update: { value: appSettings.slice(0, 50000) },
           create: { key: 'app_settings', value: appSettings.slice(0, 50000) },
+        })
+      );
+    }
+
+    if (themeCustom !== undefined && typeof themeCustom === 'string') {
+      updates.push(
+        prisma.setting.upsert({
+          where: { key: 'theme_custom' },
+          update: { value: themeCustom.slice(0, 50000) },
+          create: { key: 'theme_custom', value: themeCustom.slice(0, 50000) },
         })
       );
     }

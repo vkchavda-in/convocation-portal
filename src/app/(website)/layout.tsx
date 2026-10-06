@@ -4,6 +4,7 @@ import Footer from '@/app/components/Footer';
 import { prisma } from '@/lib/prisma';
 import MaintenanceView from '@/components/shared/MaintenanceView';
 import SiteLoader from '@/components/shared/SiteLoader';
+import EnquiryWidget from '@/components/shared/EnquiryWidget';
 
 export const revalidate = 10; // Enable ISR for global settings
 
@@ -35,6 +36,7 @@ const getGlobalSettings = cache(async () => {
     return {
       header: headerSetting ? JSON.parse(headerSetting.value) : defaultHeader,
       footer: footerSetting ? JSON.parse(footerSetting.value) : defaultFooter,
+      appSettings,
       maintenanceMode: appSettings.maintenanceMode === true,
       maintenanceMessage: appSettings.maintenanceMessage || 'We are currently undergoing scheduled maintenance. Please check back soon.',
       siteName: appSettings.siteName || '19th Convocation',
@@ -43,7 +45,7 @@ const getGlobalSettings = cache(async () => {
     };
   } catch (err) {
     console.error('Failed to get global settings', err);
-    return { header: null, footer: null, maintenanceMode: false, maintenanceMessage: '', siteName: '', defaultMetaTitle: '', defaultMetaDescription: '' };
+    return { header: null, footer: null, appSettings: {}, maintenanceMode: false, maintenanceMessage: '', siteName: '', defaultMetaTitle: '', defaultMetaDescription: '' };
   }
 });
 
@@ -63,7 +65,7 @@ export default async function WebsiteLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { header, footer, maintenanceMode, maintenanceMessage } = await getGlobalSettings();
+  const { header, footer, appSettings, maintenanceMode, maintenanceMessage } = await getGlobalSettings();
   const logoUrl = header?.logoUrl || '';
   // Determine if logo is a local upload (for preload as image vs external)
   const isLocalLogo = logoUrl.startsWith('/uploads/') || logoUrl.startsWith('/assets/');
@@ -95,9 +97,10 @@ export default async function WebsiteLayout({
           type={isLocalLogo ? 'image/avif' : undefined}
         />
       )}
-      <Navbar headerData={header} />
+      <Navbar headerData={header} appSettings={appSettings} />
       {children}
       <Footer footerData={footer} />
+      <EnquiryWidget settings={appSettings} />
     </div>
   );
 }

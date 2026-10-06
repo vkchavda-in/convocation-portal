@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Globe, Plus, Trash2, ChevronUp, ChevronDown, Save, Loader2, AlertCircle } from 'lucide-react';
+import { Globe, Plus, Trash2, ChevronUp, ChevronDown, Save, Loader2, AlertCircle, Layout, MousePointer } from 'lucide-react';
 import { toast } from 'sonner';
 import MediaPicker from '@/components/admin/MediaPicker';
+import WidgetsTabPanel from '@/components/admin/WidgetsTabPanel';
 
 interface NavLink { label: string; href: string; external?: boolean; children?: NavLink[]; }
 interface FooterCol { heading: string; links: NavLink[]; }
@@ -29,7 +30,7 @@ interface FooterData {
 }
 
 export default function GlobalSettingsPage() {
-  const [activeTab, setActiveTab] = useState<'header' | 'footer'>('header');
+  const [activeTab, setActiveTab] = useState<'header' | 'footer' | 'topbar' | 'widgets'>('header');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [loadingChanges, setLoadingChanges] = useState(false);
@@ -108,6 +109,10 @@ export default function GlobalSettingsPage() {
   }, []);
 
   const handleSave = async () => {
+    if (activeTab === 'topbar' || activeTab === 'widgets') {
+      window.dispatchEvent(new CustomEvent('widget-panel-save'));
+      return;
+    }
     setSaving(true);
     try {
       const res = await fetch('/api/global', {
@@ -200,15 +205,21 @@ export default function GlobalSettingsPage() {
       {/* Tabs */}
       <div className="px-6 border-b border-slate-200 bg-white">
         <div className="flex gap-4">
-          {(['header', 'footer'] as const).map((tab) => (
+          {[
+            { id: 'header', label: 'Header Navigation' },
+            { id: 'footer', label: 'Footer Configuration' },
+            { id: 'topbar', label: 'Top Bar Stripe', icon: <Layout className="w-3.5 h-3.5" /> },
+            { id: 'widgets', label: 'Sticky Widgets', icon: <MousePointer className="w-3.5 h-3.5" /> },
+          ].map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`py-3 text-xs font-medium border-b-2 transition-colors capitalize ${
-                activeTab === tab ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-500 hover:text-slate-700'
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`py-3 text-xs font-medium border-b-2 transition-colors flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+                activeTab === tab.id ? 'border-blue-600 text-blue-600 font-semibold' : 'border-transparent text-slate-500 hover:text-slate-700'
               }`}
             >
-              {tab} Navigation
+              {'icon' in tab && tab.icon}
+              {tab.label}
             </button>
           ))}
         </div>
@@ -635,6 +646,14 @@ export default function GlobalSettingsPage() {
             </div>
             
           </div>
+        )}
+
+        {activeTab === 'topbar' && (
+          <WidgetsTabPanel section="topbar" />
+        )}
+
+        {activeTab === 'widgets' && (
+          <WidgetsTabPanel section="widgets" />
         )}
       </div>
 
