@@ -74,8 +74,26 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Static assets in /assets/
+        source: '/assets/:path*',
+        headers: [
+          ...securityHeaders,
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        // HTML pages: ensure browsers revalidate HTML so chunk references stay in sync across deployments
         source: '/:path*',
-        headers: securityHeaders,
+        headers: [
+          ...securityHeaders,
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
       },
     ];
   },

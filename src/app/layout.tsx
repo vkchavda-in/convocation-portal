@@ -151,6 +151,60 @@ export default async function RootLayout({
       style={inlineStyles as React.CSSProperties}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function() {
+  var RELOAD_KEY = '__chunk_reload_ts';
+  function tryReload(reason) {
+    try {
+      var last = parseInt(sessionStorage.getItem(RELOAD_KEY) || '0', 10);
+      var now = Date.now();
+      if (now - last > 10000) {
+        sessionStorage.setItem(RELOAD_KEY, now.toString());
+        console.warn('[ChunkRecovery] Stale/missing chunk detected (' + reason + '). Auto-refreshing...');
+        window.location.reload();
+      }
+    } catch(e) {}
+  }
+
+  window.addEventListener('error', function(e) {
+    if (!e) return;
+    var target = e.target;
+    if (target && (target.tagName === 'SCRIPT' || target.tagName === 'LINK')) {
+      var url = target.src || target.href || '';
+      if (url.indexOf('/_next/static/') !== -1) {
+        tryReload('Resource 404: ' + url);
+      }
+    } else if (e.message) {
+      var m = (e.message || '').toLowerCase();
+      if (
+        m.indexOf('loading chunk') !== -1 ||
+        m.indexOf('chunkloaderror') !== -1 ||
+        m.indexOf('failed to fetch dynamically imported module') !== -1 ||
+        m.indexOf('text/plain') !== -1
+      ) {
+        tryReload(e.message);
+      }
+    }
+  }, true);
+
+  window.addEventListener('unhandledrejection', function(e) {
+    if (!e || !e.reason) return;
+    var r = ((e.reason && e.reason.message) || e.reason + '').toLowerCase();
+    if (
+      r.indexOf('loading chunk') !== -1 ||
+      r.indexOf('chunkloaderror') !== -1 ||
+      r.indexOf('failed to fetch dynamically imported module') !== -1 ||
+      r.indexOf('text/plain') !== -1
+    ) {
+      tryReload(r);
+    }
+  });
+})();
+`,
+          }}
+        />
         {themeCustom?.customCss && (
           <style dangerouslySetInnerHTML={{ __html: themeCustom.customCss }} />
         )}
