@@ -36,7 +36,7 @@ interface Props {
 
 export default function GalleryEditor({ data, onChange }: Props) {
   const d = data as GalleryData;
-  const categories = d.categories || [];
+  const categories = (d.categories || []).filter((c) => c.id && c.id !== 'all');
   const images = d.images || [];
 
   // Tracks which category group opened the MediaPicker
@@ -117,10 +117,23 @@ export default function GalleryEditor({ data, onChange }: Props) {
   };
 
   // Category dropdown options for moving images
-  const categoryOptions = [
-    ...categories.map((c) => ({ value: c.id, label: c.label || c.id })),
-    { value: 'all', label: 'All / General' }
-  ];
+  const categoryOptions = (() => {
+    const list: { value: string; label: string }[] = [];
+    const seen = new Set<string>();
+
+    categories.forEach((c) => {
+      const val = c.id || '';
+      if (val && !seen.has(val)) {
+        seen.add(val);
+        list.push({ value: val, label: c.label || val });
+      }
+    });
+
+    if (!seen.has('all')) {
+      list.push({ value: 'all', label: 'All / General' });
+    }
+    return list;
+  })();
 
   // Group images by category ID
   const knownCategoryIds = new Set(categories.map((c) => c.id));

@@ -70,52 +70,54 @@ const GalleryMarquee = ({ images, onImageClick }: { images: any[], onImageClick:
     );
   };
 
-  return (
-    <div className="relative w-full overflow-hidden py-4 select-none space-y-5">
-      <style>{`
-        @keyframes gallery-marquee-forward {
-          0% { transform: translate3d(0%, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
-        }
-        @keyframes gallery-marquee-reverse {
-          0% { transform: translate3d(-50%, 0, 0); }
-          100% { transform: translate3d(0%, 0, 0); }
-        }
-        .animate-gallery-marquee-1 {
-          display: flex;
-          width: max-content;
-          animation: gallery-marquee-forward 95s linear infinite;
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-        .animate-gallery-marquee-2 {
-          display: flex;
-          width: max-content;
-          animation: gallery-marquee-reverse 105s linear infinite;
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-        .animate-gallery-marquee-1:hover,
-        .animate-gallery-marquee-2:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+    return (
+      <div
+        className="relative w-full overflow-hidden py-4 select-none space-y-5"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)',
+        }}
+      >
+        <style>{`
+          @keyframes gallery-marquee-forward {
+            0% { transform: translate3d(0%, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+          }
+          @keyframes gallery-marquee-reverse {
+            0% { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(0%, 0, 0); }
+          }
+          .animate-gallery-marquee-1 {
+            display: flex;
+            width: max-content;
+            animation: gallery-marquee-forward 95s linear infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+          }
+          .animate-gallery-marquee-2 {
+            display: flex;
+            width: max-content;
+            animation: gallery-marquee-reverse 105s linear infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+          }
+          .animate-gallery-marquee-1:hover,
+          .animate-gallery-marquee-2:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
 
-      {/* Edge Blur Gradients */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none" />
+        {/* Row 1: Right-to-Left (Forward) */}
+        <div className="animate-gallery-marquee-1 gap-5 flex">
+          {row1Images.map((image, index) => renderCard(image, index, false))}
+        </div>
 
-      {/* Row 1: Right-to-Left (Forward) */}
-      <div className="animate-gallery-marquee-1 gap-5 flex">
-        {row1Images.map((image, index) => renderCard(image, index, false))}
+        {/* Row 2: Left-to-Right (Reverse — Opposite Direction!) */}
+        <div className="animate-gallery-marquee-2 gap-5 flex">
+          {row2Images.map((image, index) => renderCard(image, index, true))}
+        </div>
       </div>
-
-      {/* Row 2: Left-to-Right (Reverse — Opposite Direction!) */}
-      <div className="animate-gallery-marquee-2 gap-5 flex">
-        {row2Images.map((image, index) => renderCard(image, index, true))}
-      </div>
-    </div>
-  );
+    );
 };
 
 export default function GalleryModule({ id, data }: GalleryModuleProps) {
@@ -236,28 +238,42 @@ export default function GalleryModule({ id, data }: GalleryModuleProps) {
         )}
 
         {/* Category Filters with Rich Golden Gradient Active State */}
-        {!isSlider && categories && categories.length > 0 && (
+        {!isSlider && (categories || []).filter((c) => c.id && c.id !== 'all').length > 0 && (
           <FadeIn
             variant="up"
             delay={100}
             className="flex flex-wrap justify-center gap-2.5 sm:gap-3.5 mb-12"
           >
-            {categories.map((category) => {
-              const isActive = activeCategory === category.id;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-5 sm:px-6 py-2.5 rounded-full transition-all duration-300 font-bold text-xs uppercase tracking-wider cursor-pointer border ${
-                    isActive
-                      ? 'bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] text-[#06152B] border-transparent shadow-lg shadow-amber-500/25 scale-105'
-                      : 'bg-white text-[var(--midnight-navy)]/80 border-slate-200 hover:border-[#f9c53c] hover:bg-[#f9c53c]/10 hover:text-[var(--midnight-navy)]'
-                  }`}
-                >
-                  {category.label}
-                </button>
-              );
-            })}
+            {/* Built-in All Photos button */}
+            <button
+              onClick={() => setActiveCategory('all')}
+              className={`px-5 sm:px-6 py-2.5 rounded-full transition-all duration-300 font-bold text-xs uppercase tracking-wider cursor-pointer border ${
+                activeCategory === 'all'
+                  ? 'bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] text-[#06152B] border-transparent shadow-lg shadow-amber-500/25 scale-105'
+                  : 'bg-white text-[var(--midnight-navy)]/80 border-slate-200 hover:border-[#f9c53c] hover:bg-[#f9c53c]/10 hover:text-[var(--midnight-navy)]'
+              }`}
+            >
+              All Photos
+            </button>
+
+            {(categories || [])
+              .filter((c) => c.id && c.id !== 'all')
+              .map((category) => {
+                const isActive = activeCategory === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`px-5 sm:px-6 py-2.5 rounded-full transition-all duration-300 font-bold text-xs uppercase tracking-wider cursor-pointer border ${
+                      isActive
+                        ? 'bg-gradient-to-r from-[#e9a800] via-[#f9c53c] to-[#f59e0b] text-[#06152B] border-transparent shadow-lg shadow-amber-500/25 scale-105'
+                        : 'bg-white text-[var(--midnight-navy)]/80 border-slate-200 hover:border-[#f9c53c] hover:bg-[#f9c53c]/10 hover:text-[var(--midnight-navy)]'
+                    }`}
+                  >
+                    {category.label || category.id}
+                  </button>
+                );
+              })}
           </FadeIn>
         )}
 
