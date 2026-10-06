@@ -1,12 +1,15 @@
 'use client';
 
-import { Plus, Trash2, ChevronUp, ChevronDown, Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
+import { Plus, Trash2, ChevronUp, ChevronDown, Eye, EyeOff, ImageIcon } from 'lucide-react';
 import { Field, Input, Select, Textarea, Divider } from './HeroEditor';
+import MediaPicker from '../MediaPicker';
 
 interface CardItem {
-  icon: string;
+  icon?: string;
+  image?: string;
   title: string;
-  description: string;
+  description?: string;
   url?: string;
   hidden?: boolean;
   highlights?: string[];
@@ -29,6 +32,7 @@ interface Props { data: object; onChange: (d: object) => void; }
 export default function CardGridEditor({ data, onChange }: Props) {
   const d = data as CardGridData;
   const items = d.items || [];
+  const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
 
   const set = (key: string, value: unknown) => onChange({ ...d, [key]: value });
   
@@ -38,7 +42,7 @@ export default function CardGridEditor({ data, onChange }: Props) {
     set('items', ni);
   };
 
-  const addItem = () => set('items', [...items, { icon: 'Star', title: 'Card Title', description: '', highlights: [] }]);
+  const addItem = () => set('items', [...items, { icon: 'Award', title: 'Dignitary / Card Title', subtitle: '', description: '', highlights: [] }]);
   const removeItem = (i: number) => set('items', items.filter((_, idx) => idx !== i));
   
   const moveItem = (i: number, dir: 'up' | 'down') => {
@@ -59,23 +63,26 @@ export default function CardGridEditor({ data, onChange }: Props) {
         <Input value={d.title || ''} onChange={(v) => set('title', v)} placeholder="Section Title" />
       </Field>
       <Field label="Category Tag">
-        <Input value={d.category || ''} onChange={(v) => set('category', v)} placeholder="e.g. Initiatives" />
+        <Input value={d.category || ''} onChange={(v) => set('category', v)} placeholder="e.g. Convocation Heritage" />
       </Field>
       <div className="grid grid-cols-2 gap-2">
-        <Field label="Card Type">
+        <Field label="Card Layout / Type">
           <Select
             value={d.cardType || 'standard'}
             onChange={(v) => set('cardType', v)}
             options={[
-              { value: 'standard', label: 'Standard' },
+              { value: 'guest_marquee', label: 'Eminent Past Guests (Text Cards Marquee)' },
+              { value: 'guest_photo', label: 'Eminent Past Guests (Photo Cards Marquee)' },
+              { value: 'guest_photo_grid', label: 'Eminent Past Guests (Photo Cards Grid)' },
+              { value: 'guest_grid', label: 'Eminent Past Guests (Text Cards Grid)' },
               { value: 'academic', label: 'Academic / Awardees Corner' },
               { value: 'testimonial', label: 'Testimonials (Marquee)' },
-              { value: 'guest_marquee', label: 'Past Convocation Guests (Marquee)' },
-              { value: 'pillar', label: 'Pillar' },
-              { value: 'initiative', label: 'Initiative' },
-              { value: 'award', label: 'Award' },
-              { value: 'roadmap', label: 'Roadmap' },
-              { value: 'achievement', label: 'Achievement' },
+              { value: 'standard', label: 'Standard Cards' },
+              { value: 'pillar', label: 'Pillar Cards' },
+              { value: 'initiative', label: 'Initiative Cards' },
+              { value: 'award', label: 'Award Cards' },
+              { value: 'roadmap', label: 'Roadmap Phases' },
+              { value: 'achievement', label: 'Achievement Checklist' },
               { value: 'thought_leadership', label: 'Thought Leadership' },
               { value: 'media_highlight', label: 'Media Highlight' },
               { value: 'collaboration_model', label: 'Collaboration Model (3-Step)' },
@@ -112,46 +119,84 @@ export default function CardGridEditor({ data, onChange }: Props) {
       <Divider label={`Items (${items.length})`} />
       <div className="space-y-3">
         {items.map((item, i) => (
-          <div key={i} className={`border border-slate-200 rounded p-3 transition-all ${item.hidden ? 'opacity-60 bg-slate-100' : 'bg-slate-50'}`}>
+          <div key={i} className={`border border-slate-200 rounded-xl p-3.5 transition-all ${item.hidden ? 'opacity-60 bg-slate-100' : 'bg-slate-50'}`}>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-semibold text-slate-400">ITEM {i + 1} {item.hidden && '(HIDDEN)'}</span>
+              <span className="text-[10px] font-bold text-slate-400">CARD #{i + 1} {item.hidden && '(HIDDEN)'}</span>
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => updateItem(i, 'hidden', !item.hidden)}
-                  className="p-0.5 text-slate-400 hover:text-slate-600 rounded transition-colors"
+                  className="p-1 text-slate-400 hover:text-slate-600 rounded transition-colors"
                   title={item.hidden ? "Show item" : "Hide item"}
                 >
                   {item.hidden ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
-                <button onClick={() => moveItem(i, 'up')} disabled={i === 0} className="p-0.5 text-slate-350 hover:text-slate-600 disabled:opacity-20"><ChevronUp className="w-3 h-3" /></button>
-                <button onClick={() => moveItem(i, 'down')} disabled={i === items.length - 1} className="p-0.5 text-slate-350 hover:text-slate-600 disabled:opacity-20"><ChevronDown className="w-3 h-3" /></button>
-                <button onClick={() => removeItem(i)} className="p-0.5 text-slate-350 hover:text-red-650"><Trash2 className="w-3 h-3" /></button>
+                <button onClick={() => moveItem(i, 'up')} disabled={i === 0} className="p-1 text-slate-400 hover:text-slate-600 disabled:opacity-20"><ChevronUp className="w-3.5 h-3.5" /></button>
+                <button onClick={() => moveItem(i, 'down')} disabled={i === items.length - 1} className="p-1 text-slate-400 hover:text-slate-600 disabled:opacity-20"><ChevronDown className="w-3.5 h-3.5" /></button>
+                <button onClick={() => removeItem(i)} className="p-1 text-slate-400 hover:text-red-600"><Trash2 className="w-3.5 h-3.5" /></button>
+              </div>
+            </div>
+
+            {/* Photo Picker for guest_photo or any card */}
+            <div className="mb-3 p-2.5 bg-white border border-slate-200 rounded-lg">
+              <span className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                Card Image / Portrait
+              </span>
+              <div className="flex items-center gap-2.5">
+                {item.image ? (
+                  <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-slate-200 bg-slate-100 shrink-0">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <div className="w-12 h-12 rounded-lg border border-dashed border-slate-200 bg-slate-50 flex items-center justify-center text-slate-400 shrink-0">
+                    <ImageIcon className="w-5 h-5" />
+                  </div>
+                )}
+                <div className="flex-1 flex gap-2">
+                  <Input value={item.image || ''} onChange={(v) => updateItem(i, 'image', v)} placeholder="e.g. /uploads/amit-shah.jpg" />
+                  <button
+                    type="button"
+                    onClick={() => setActiveMediaIndex(i)}
+                    className="px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold whitespace-nowrap border border-slate-200 shadow-sm transition-colors cursor-pointer"
+                  >
+                    Browse
+                  </button>
+                  {item.image && (
+                    <button
+                      type="button"
+                      onClick={() => updateItem(i, 'image', '')}
+                      className="p-1.5 text-slate-400 hover:text-red-500 rounded-lg transition-colors cursor-pointer"
+                      title="Remove image"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
             
             <div className="grid grid-cols-3 gap-2 mb-2">
               <Field label="Icon">
-                <Input value={item.icon || ''} onChange={(v) => updateItem(i, 'icon', v)} placeholder="Star" />
+                <Input value={item.icon || ''} onChange={(v) => updateItem(i, 'icon', v)} placeholder="Award" />
               </Field>
-              <Field label="Title / Level">
-                <Input value={item.title || ''} onChange={(v) => updateItem(i, 'title', v)} placeholder="Title" />
+              <Field label="Name / Title" required>
+                <Input value={item.title || ''} onChange={(v) => updateItem(i, 'title', v)} placeholder="e.g. Shri Amit Shah" />
               </Field>
-              <Field label="Year / Duration">
-                <Input value={item.year || ''} onChange={(v) => updateItem(i, 'year', v)} placeholder="e.g. 4 Years" />
+              <Field label="Year / Date">
+                <Input value={item.year || ''} onChange={(v) => updateItem(i, 'year', v)} placeholder="e.g. Jan 16, 2025" />
               </Field>
             </div>
 
             <div className="grid grid-cols-2 gap-2 mb-2">
-              <Field label="Subtitle / Degree">
-                <Input value={item.subtitle || ''} onChange={(v) => updateItem(i, 'subtitle', v)} placeholder="e.g. B.Tech" />
+              <Field label="Designation / Subtitle">
+                <Input value={item.subtitle || ''} onChange={(v) => updateItem(i, 'subtitle', v)} placeholder="e.g. Hon'ble Union Minister..." />
               </Field>
-              <Field label="Category / Tag">
-                <Input value={item.category || ''} onChange={(v) => updateItem(i, 'category', v)} placeholder="e.g. UG Program" />
+              <Field label="Edition / Category">
+                <Input value={item.category || ''} onChange={(v) => updateItem(i, 'category', v)} placeholder="e.g. 18th Convocation" />
               </Field>
             </div>
 
-            <Field label="Description">
-              <Textarea value={item.description || ''} onChange={(v) => updateItem(i, 'description', v)} placeholder="Card description…" rows={2} />
+            <Field label="Special Dignitaries / Description">
+              <Textarea value={item.description || ''} onChange={(v) => updateItem(i, 'description', v)} placeholder="e.g. • Shri Rushikesh Patel • Shri Harsh Sanghavi" rows={2} />
             </Field>
 
             {/* Highlights field for academic, roadmap, achievement, or research_table */}
@@ -166,19 +211,32 @@ export default function CardGridEditor({ data, onChange }: Props) {
               </Field>
             )}
 
-            <Field label="Link URL (optional)">
-              <Input value={item.url || ''} onChange={(v) => updateItem(i, 'url', v)} placeholder="/page-slug" />
+            <Field label="Profile Link URL (optional)">
+              <Input value={item.url || ''} onChange={(v) => updateItem(i, 'url', v)} placeholder="/chief-guest" />
             </Field>
           </div>
         ))}
+
         <button
           onClick={addItem}
-          className="inline-flex items-center gap-1 text-[10px] text-slate-500 hover:text-blue-600 hover:bg-blue-50 px-2 py-1.5 rounded border border-dashed border-slate-200 hover:border-blue-300 transition-all w-full justify-center"
+          className="inline-flex items-center gap-1 text-xs font-bold text-slate-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-xl border border-dashed border-slate-300 hover:border-blue-400 transition-all w-full justify-center cursor-pointer"
         >
-          <Plus className="w-3 h-3" />
-          Add Card
+          <Plus className="w-3.5 h-3.5" />
+          Add Card Item
         </button>
       </div>
+
+      {activeMediaIndex !== null && (
+        <MediaPicker
+          currentUrl={items[activeMediaIndex]?.image}
+          onSelect={(url) => {
+            updateItem(activeMediaIndex, 'image', url);
+            setActiveMediaIndex(null);
+          }}
+          onClose={() => setActiveMediaIndex(null)}
+          filter="image"
+        />
+      )}
     </div>
   );
 }

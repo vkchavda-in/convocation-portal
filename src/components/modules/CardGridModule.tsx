@@ -621,7 +621,7 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
     );
   };
 
-  // Sub-renderer for past guests & dignitaries
+  // Sub-renderer for past guests & dignitaries (Text Variant)
   const renderGuestCard = (item: CardItem, index: number) => {
     return (
       <div
@@ -671,6 +671,94 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
     );
   };
 
+  // Sub-renderer for past guests with photos on top & compact bottom details (Photo Variant)
+  const renderGuestPhotoCard = (item: CardItem, index: number) => {
+    const initials = (item.title || 'Guest')
+      .split(' ')
+      .filter((w) => !['Dr.', 'Shri', 'Smt.', 'Prof.', 'Justice', 'Hon\'ble'].includes(w))
+      .map((w) => w[0])
+      .slice(0, 2)
+      .join('') || 'G';
+
+    return (
+      <div
+        key={index}
+        className="rounded-2xl border border-slate-200/90 bg-white overflow-hidden h-full flex flex-col justify-between hover:border-amber-400 hover:shadow-xl transition-all duration-300 group relative"
+      >
+        {/* Photo Container */}
+        <div className="relative w-full h-48 sm:h-52 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 overflow-hidden flex items-center justify-center shrink-0">
+          {item.image ? (
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 select-none"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0B2545] to-[#133E68] text-white select-none p-4 relative">
+              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,white_1px,transparent_0)] bg-[size:12px_12px]" />
+              <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-2xl font-serif font-black text-amber-300 mb-1.5 shadow-inner">
+                {initials}
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-amber-200/80">
+                Ganpat University
+              </span>
+            </div>
+          )}
+
+          {/* Top Overlays */}
+          <div className="absolute top-2.5 left-2.5 z-10">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-900/85 backdrop-blur-md text-amber-300 border border-amber-400/30 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              {item.category || 'Chief Guest'}
+            </span>
+          </div>
+
+          {item.year && (
+            <div className="absolute top-2.5 right-2.5 z-10">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold font-mono bg-white/95 backdrop-blur-md text-slate-800 shadow-sm border border-slate-200/80">
+                {item.year}
+              </span>
+            </div>
+          )}
+
+          {/* Subtle bottom gradient on photo */}
+          <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+        </div>
+
+        {/* Bottom Details Container */}
+        <div className="p-5 flex flex-col justify-between flex-1 bg-white">
+          <div>
+            <h3 className="font-serif text-base sm:text-lg font-bold text-[var(--navy,#0B2545)] mb-1 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
+              {item.title}
+            </h3>
+
+            {item.subtitle && (
+              <p className="text-xs font-semibold text-slate-500 mb-3 leading-snug line-clamp-2">
+                {item.subtitle}
+              </p>
+            )}
+
+            {item.description && (
+              <div className="text-[11px] text-slate-600 leading-relaxed bg-slate-50/90 p-2.5 rounded-xl border border-slate-100 line-clamp-2">
+                <span className="block text-[9px] font-bold uppercase tracking-wider text-amber-700/80 mb-0.5">
+                  Guest(s) of Honour / Dignitaries:
+                </span>
+                <span className="text-slate-700 font-medium">
+                  {item.description}
+                </span>
+              </div>
+            )}
+          </div>
+
+          <div className="pt-3 border-t border-slate-100 mt-3.5 flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            <span>Ganpat University</span>
+            <span className="text-amber-600">Convocation Record</span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const cardRendererMap: Record<string, (item: CardItem, index: number) => React.ReactNode> = {
     standard: renderStandardCard,
     pillar: renderPillarCard,
@@ -680,6 +768,10 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
     testimonial: renderTestimonialCard,
     guest: renderGuestCard,
     guest_marquee: renderGuestCard,
+    guest_grid: renderGuestCard,
+    guest_photo: renderGuestPhotoCard,
+    guest_photo_marquee: renderGuestPhotoCard,
+    guest_photo_grid: renderGuestPhotoCard,
     roadmap: renderRoadmapCard,
     achievement: renderAchievementCard,
     thought_leadership: renderThoughtLeadershipCard,
@@ -874,7 +966,7 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
         </FadeIn>
 
         {/* Past Convocation Guests Gentle Marquee (Right-to-Left / Forward) */}
-        {(cardType === 'guest_marquee' || cardType === 'guest') ? (
+        {(cardType === 'guest_marquee' || cardType === 'guest_photo' || cardType === 'guest_photo_marquee' || cardType === 'guest') ? (
           <div className="relative w-full overflow-hidden py-4 -mx-4 sm:-mx-8">
             <style>{`
               @keyframes marquee-forward {
@@ -908,7 +1000,7 @@ export default function CardGridModule({ id, data }: CardGridModuleProps) {
               {marqueeItems.map((item, index) => (
                 <div
                   key={`${item.title}-${index}`}
-                  className="w-[320px] sm:w-[380px] shrink-0 flex flex-col"
+                  className={`${(cardType === 'guest_photo' || cardType === 'guest_photo_marquee') ? 'w-[290px] sm:w-[340px]' : 'w-[320px] sm:w-[380px]'} shrink-0 flex flex-col`}
                 >
                   {renderer(item, index)}
                 </div>
