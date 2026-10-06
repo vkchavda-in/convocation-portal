@@ -16,9 +16,11 @@ interface MediaExplorerDialogProps {
   initialUrl?: string | null;
   moveItemCount?: number; // only for 'move' mode
   filter?: 'image' | 'video' | 'all'; // only for 'pick' mode
+  allowMultiple?: boolean;
   onClose: () => void;
   onConfirm?: (targetFolderId: string | null) => void; // only for 'move' mode
-  onSelect?: (url: string, item: MediaItem) => void; // only for 'pick' mode
+  onSelect?: (url: string, item?: MediaItem) => void; // only for 'pick' mode
+  onSelectMultiple?: (urls: string[], items?: MediaItem[]) => void;
 }
 
 function formatSize(bytes: number): string {
@@ -36,9 +38,11 @@ export default function MediaExplorerDialog({
   initialUrl = null,
   moveItemCount = 0,
   filter = 'all',
+  allowMultiple = false,
   onClose,
   onConfirm,
-  onSelect
+  onSelect,
+  onSelectMultiple
 }: MediaExplorerDialogProps) {
   const [folders, setFolders] = useState<MediaFolder[]>([]);
   const [files, setFiles] = useState<MediaItem[]>([]);
@@ -52,6 +56,7 @@ export default function MediaExplorerDialog({
   // Selection states
   const [selectedFolderId, setSelectedFolderId] = useState<string | null>(initialFolderId);
   const [selectedFileId, setSelectedFileId] = useState<string | null>(null);
+  const [selectedFileIds, setSelectedFileIds] = useState<Set<string>>(new Set());
   const [expandedFolderIds, setExpandedFolderIds] = useState<Set<string>>(new Set(['pages']));
 
   const [loading, setLoading] = useState(true);
@@ -549,7 +554,40 @@ export default function MediaExplorerDialog({
                 {/* 2. Files loop (only in pick mode) */}
                 {mode === 'pick' && (
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Files</p>
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                        Files {allowMultiple && selectedFileIds.size > 0 && `(${selectedFileIds.size} selected)`}
+                      </p>
+                      {allowMultiple && filteredFiles.length > 0 && (
+                        <div className="flex items-center gap-2 text-[11px]">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedFileIds(new Set(filteredFiles.map(f => f.id)));
+                              if (filteredFiles.length > 0) setSelectedFileId(filteredFiles[0].id);
+                            }}
+                            className="text-blue-600 hover:text-blue-700 font-semibold cursor-pointer"
+                          >
+                            Select All
+                          </button>
+                          {selectedFileIds.size > 0 && (
+                            <>
+                              <span className="text-slate-300">|</span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setSelectedFileIds(new Set());
+                                  setSelectedFileId(null);
+                                }}
+                                className="text-slate-500 hover:text-slate-700 cursor-pointer"
+                              >
+                                Clear
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      )}
+                    </div>
                     {filteredFiles.length === 0 ? (
                       <div className="flex flex-col items-center justify-center text-slate-400 py-12 select-none">
                         <ImageIcon className="w-10 h-10 text-slate-200 mb-2" />
@@ -558,15 +596,40 @@ export default function MediaExplorerDialog({
                     ) : (
                       <div className="grid gap-x-3 gap-y-2.5 w-full" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(92px, 1fr))' }}>
                         {filteredFiles.map(file => {
-                          const isSelected = selectedFileId === file.id;
+                          const isSelected = allowMultiple 
+                            ? selectedFileIds.has(file.id) 
+                            : selectedFileId === file.id;
                           return (
                             <FileCard 
                               key={file.id}
                               file={file}
                               isSelected={isSelected}
                               size="large"
-                              onClick={() => setSelectedFileId(isSelected ? null : file.id)}
-                              onDoubleClick={() => onSelect?.(file.url, file)}
+                              onClick={() => {
+                                if (allowMultiple) {
+                                  setSelectedFileIds(prev => {
+                                    const next = new Set(prev);
+                                    if (next.has(file.id)) next.delete(file.id);
+                                    else next.add(file.id);
+                                    return next;
+                                  });
+                                  setSelectedFileId(file.id);
+                                } else {
+                                  setSelectedFileId(isSelected ? null : file.id);
+                                }
+                              }}
+                              onDoubleClick={() => {
+                                if (allowMultiple) {
+                                  const targetIds = new Set(selectedFileIds);
+                                  targetIds.add(file.id);
+                                  const selectedItems = files.filter(f => targetIds.has(f.id));
+                                  const selectedUrls = selectedItems.map(f => f.url);
+                                  onSelectMultiple?.(selectedUrls, selectedItems);
+                                  onSelect?.(file.url, file);
+                                } else {
+                                  onSelect?.(file.url, file);
+                                }
+                              }}
                             />
                           );
                         })}
@@ -618,6 +681,8 @@ export default function MediaExplorerDialog({
               readOnly 
               value={mode === 'move' 
                 ? (selectedFolderId === null ? 'Home' : (selectedFolder ? selectedFolder.name : '')) 
+                : allowMultiple 
+                ? (selectedFileIds.size > 0 ? `${selectedFileIds.size} file${selectedFileIds.size !== 1 ? 's' : ''} selected` : 'No files selected')
                 : (selectedFile ? selectedFile.originalName : '')}
               className="flex-1 h-7 px-2 border border-slate-200 rounded bg-slate-100 text-xs text-slate-600 focus:outline-none select-none truncate font-medium"
             />
@@ -640,7 +705,7 @@ export default function MediaExplorerDialog({
 
             <button 
               onClick={onClose}
-              className="h-8 px-4 border border-slate-200 hover:bg-slate-100 text-slate-700 rounded text-xs font-semibold transition-colors"
+              className="h-8 px-4 border border-slate-200 hover:bg-slate-100 text-slate-700 rounded text-xs font-semibold transition-colors cursor-pointer"
             >
               Cancel
             </button>
@@ -648,16 +713,27 @@ export default function MediaExplorerDialog({
               onClick={() => {
                 if (mode === 'move') {
                   onConfirm?.(selectedFolderId);
+                } else if (allowMultiple) {
+                  const selectedItems = files.filter(f => selectedFileIds.has(f.id));
+                  const selectedUrls = selectedItems.map(f => f.url);
+                  if (selectedUrls.length > 0) {
+                    onSelectMultiple?.(selectedUrls, selectedItems);
+                    if (onSelect) onSelect(selectedUrls[0], selectedItems[0]);
+                  }
                 } else {
                   if (selectedFile) {
                     onSelect?.(selectedFile.url, selectedFile);
                   }
                 }
               }}
-              disabled={mode === 'move' ? false : !selectedFile}
-              className="h-8 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white rounded text-xs font-semibold shadow-sm transition-colors"
+              disabled={mode === 'move' ? false : allowMultiple ? selectedFileIds.size === 0 : !selectedFile}
+              className="h-8 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white rounded text-xs font-semibold shadow-sm transition-colors cursor-pointer"
             >
-              {mode === 'move' ? 'Move Here' : 'Open'}
+              {mode === 'move' 
+                ? 'Move Here' 
+                : allowMultiple 
+                ? `Add Selected (${selectedFileIds.size})` 
+                : 'Open'}
             </button>
           </div>
         </div>

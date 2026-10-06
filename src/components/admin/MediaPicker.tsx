@@ -5,7 +5,9 @@ import MediaExplorerDialog from './MediaExplorerDialog';
 import { MediaItem } from './MediaGridItems';
 
 interface Props {
-  onSelect: (url: string, item?: MediaItem) => void;
+  onSelect?: (url: string, item?: MediaItem) => void;
+  onSelectMultiple?: (urls: string[], items?: MediaItem[]) => void;
+  allowMultiple?: boolean;
   onClose: () => void;
   filter?: 'image' | 'video' | 'all';
   currentUrl?: string | null;
@@ -15,6 +17,8 @@ interface Props {
 
 export default function MediaPicker({ 
   onSelect, 
+  onSelectMultiple,
+  allowMultiple = false,
   onClose, 
   filter = 'all', 
   currentUrl, 
@@ -25,10 +29,12 @@ export default function MediaPicker({
     <MediaExplorerDialog 
       mode="pick"
       filter={filter}
+      allowMultiple={allowMultiple}
       currentUrl={currentUrl || initialUrl}
       initialFolderId={initialFolderId}
       onClose={onClose}
       onSelect={onSelect}
+      onSelectMultiple={onSelectMultiple}
     />
   );
 }
