@@ -1,21 +1,14 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { writeFile, mkdir, stat, readdir } from 'fs/promises';
+import { writeFile, mkdir, stat, unlink } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
+import { randomBytes } from 'crypto';
 import sharp from 'sharp';
-import { requireRole } from '@/lib/auth';
-import {
-  validateFileSignature,
-  sanitizeSvg,
-  sanitizeFilename,
-  isSafePath,
-} from '@/lib/security';
+import { logAction } from '@/lib/audit';
+import { requirePermission } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
-
-const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB maximum
-const ALLOWED_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.avif', '.svg', '.gif', '.pdf'];
 
 // Helper function to optimize and save images in multiple responsive formats and sizes
 async function processAndSaveImage(filePath: string, buffer: Buffer) {
@@ -25,16 +18,8 @@ async function processAndSaveImage(filePath: string, buffer: Buffer) {
 
   const isSupportedImage = ['.png', '.jpg', '.jpeg', '.webp'].includes(ext);
 
-  if (ext === '.svg') {
-    // Sanitize SVG text to strip malicious scripts and handlers
-    const svgText = buffer.toString('utf-8');
-    const cleanSvg = sanitizeSvg(svgText);
-    await writeFile(filePath, Buffer.from(cleanSvg, 'utf-8'));
-    return;
-  }
-
   if (!isSupportedImage) {
-    // Save as-is for PDF or GIF
+    // Save as-is for non-image formats like PDF, SVG, MP4
     await writeFile(filePath, buffer);
     return;
   }
@@ -43,136 +28,91 @@ async function processAndSaveImage(filePath: string, buffer: Buffer) {
     // 1. Compress the original in-place
     const pipeline = sharp(buffer);
     if (ext === '.png') {
-      await pipeline.png({ compressionLevel: 9, quality: 75, force: true }).toFile(filePath);
+      await pipeline.png({ compressionLevel: 6, quality: 90, force: true }).toFile(filePath);
     } else if (ext === '.jpg' || ext === '.jpeg') {
-      await pipeline.jpeg({ quality: 75, progressive: true, force: true }).toFile(filePath);
+      await pipeline.jpeg({ quality: 90, progressive: true, force: true }).toFile(filePath);
     } else if (ext === '.webp') {
-      await pipeline.webp({ quality: 80, force: true }).toFile(filePath);
+      await pipeline.webp({ quality: 90, force: true }).toFile(filePath);
     }
 
-    // 2–6. Generate all responsive variants in parallel
-    await Promise.all([
-      sharp(buffer).webp({ quality: 80 }).toFile(path.join(outputDir, `${baseName}.webp`)),
-      sharp(buffer).avif({ quality: 75 }).toFile(path.join(outputDir, `${baseName}.avif`)),
-      sharp(buffer).resize({ width: 480 }).avif({ quality: 60 }).toFile(path.join(outputDir, `${baseName}-mobile.avif`)),
-      sharp(buffer).resize({ width: 800 }).avif({ quality: 70 }).toFile(path.join(outputDir, `${baseName}-tablet.avif`)),
-      sharp(buffer).resize({ width: 1200 }).avif({ quality: 75 }).toFile(path.join(outputDir, `${baseName}-desktop.avif`)),
-    ]);
+    // 2. Generate WebP and AVIF fallback files (skip AVIF for PNGs to prevent black backgrounds)
+    if (ext === '.png') {
+      await Promise.all([
+        sharp(buffer).webp({ quality: 90 }).toFile(path.join(outputDir, `${baseName}.webp`)),
+      ]);
+    } else {
+      await Promise.all([
+        sharp(buffer).webp({ quality: 90 }).toFile(path.join(outputDir, `${baseName}.webp`)),
+        sharp(buffer).avif({ quality: 88, chromaSubsampling: '4:4:4' }).toFile(path.join(outputDir, `${baseName}.avif`)),
+      ]);
+    }
   } catch (error) {
     console.error(`Failed to process and optimize image ${filePath}:`, error);
+    // Fallback to saving original unmodified buffer if sharp fails
     await writeFile(filePath, buffer);
     throw error;
   }
 }
 
-function getMimeType(filename: string): string {
-  const ext = path.extname(filename).toLowerCase();
-  switch (ext) {
-    case '.png': return 'image/png';
-    case '.jpg':
-    case '.jpeg': return 'image/jpeg';
-    case '.webp': return 'image/webp';
-    case '.avif': return 'image/avif';
-    case '.svg': return 'image/svg+xml';
-    case '.gif': return 'image/gif';
-    case '.pdf': return 'application/pdf';
-    default: return 'application/octet-stream';
+// Auto-purge items in trash older than 30 days
+async function purgeExpiredTrash() {
+  try {
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const expiredMedia = await (prisma as any).media.findMany({
+      where: { isTrash: true, trashedAt: { lte: thirtyDaysAgo } },
+      select: { id: true, url: true, filename: true },
+    });
+
+    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+    for (const m of expiredMedia) {
+      try {
+        const fn = path.basename(m.url);
+        const p = path.join(uploadsDir, fn);
+        if (existsSync(p)) await unlink(p).catch(() => {});
+        const ext = path.extname(fn);
+        const base = path.basename(fn, ext);
+        await Promise.all([
+          unlink(path.join(uploadsDir, `${base}.webp`)).catch(() => {}),
+          unlink(path.join(uploadsDir, `${base}.avif`)).catch(() => {}),
+        ]);
+      } catch {}
+    }
+
+    await (prisma as any).media.deleteMany({
+      where: { isTrash: true, trashedAt: { lte: thirtyDaysAgo } },
+    });
+    await (prisma as any).mediaFolder.deleteMany({
+      where: { isTrash: true, trashedAt: { lte: thirtyDaysAgo } },
+    });
+  } catch (e) {
+    // Non-blocking cleanup error
   }
 }
 
-// GET /api/media - List all media
+// GET /api/media - List all media (optionally filtered by folderId or trash)
 export async function GET(request: Request) {
   try {
+    // Run background trash expiration check
+    purgeExpiredTrash();
+
     const { searchParams } = new URL(request.url);
-    const folderFilter = searchParams.get('folder');
+    const isTrash = searchParams.get('trash') === 'true';
+    const folderId = searchParams.get('folderId'); // 'null' string = root, undefined = all
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
-    if (existsSync(uploadsDir)) {
-      try {
-        const diskFiles = await readdir(uploadsDir);
-        const diskFileSet = new Set(diskFiles);
-        const existingMedia = await (prisma as any).media.findMany({
-          select: { filename: true },
-        });
-        const existingFilenames = new Set(existingMedia.map((m: any) => m.filename));
-
-        const untracked = diskFiles.filter((f) => {
-          const ext = path.extname(f).toLowerCase();
-          const isSupported = ALLOWED_EXTENSIONS.includes(ext);
-          const isThumbnail = /-(mobile|tablet|desktop)\.(avif|webp)$/i.test(f);
-          if (!isSupported || isThumbnail || existingFilenames.has(f)) return false;
-
-          if (ext === '.avif' || ext === '.webp') {
-            const baseName = f.slice(0, -ext.length);
-            if (diskFileSet.has(`${baseName}.png`) || diskFileSet.has(`${baseName}.jpg`) || diskFileSet.has(`${baseName}.jpeg`)) {
-              return false;
-            }
-          }
-          return true;
-        });
-
-        if (untracked.length > 0) {
-          for (const filename of untracked) {
-            try {
-              const safeFilename = sanitizeFilename(filename);
-              const filePath = path.join(uploadsDir, safeFilename);
-              if (!isSafePath(uploadsDir, filePath)) continue;
-
-              const fileStat = await stat(filePath);
-              const humanName = safeFilename
-                .replace(/-[0-9]{10,}\.[a-z0-9]+$/i, '')
-                .replace(/\.[a-z0-9]+$/i, '')
-                .replace(/[-_]/g, ' ')
-                .replace(/\b\w/g, (l) => l.toUpperCase());
-
-              // Smart default folder detection based on filename
-              let defaultFolder = 'General';
-              if (/202[0-9]/i.test(safeFilename)) {
-                const yearMatch = safeFilename.match(/202[0-9]/);
-                if (yearMatch) defaultFolder = yearMatch[0];
-              } else if (/guest|dignitary|president|dg|sharma|patel|narayanan|chaudhary|vaja/i.test(safeFilename)) {
-                defaultFolder = 'Dignitaries';
-              } else if (/convocation|ceremony/i.test(safeFilename)) {
-                defaultFolder = '2026';
-              }
-
-              await (prisma as any).media.create({
-                data: {
-                  filename: safeFilename,
-                  originalName: safeFilename,
-                  mimeType: getMimeType(safeFilename),
-                  size: fileStat.size,
-                  url: `/uploads/${safeFilename}`,
-                  alt: humanName,
-                  folder: defaultFolder,
-                  createdAt: fileStat.birthtime || new Date(),
-                  updatedAt: fileStat.mtime || new Date(),
-                },
-              });
-            } catch (err) {
-              console.warn(`Failed to auto-sync file ${filename}:`, err);
-            }
-          }
-        }
-      } catch (syncErr) {
-        console.warn('Auto-sync check skipped:', syncErr);
-      }
-    }
-
-    const whereClause: Record<string, any> = {};
-    if (folderFilter && folderFilter !== 'all' && folderFilter !== 'All') {
-      whereClause.folder = folderFilter;
+    const where: any = { isTrash };
+    if (!isTrash) {
+      if (folderId === 'null') where.folderId = null;
+      else if (folderId) where.folderId = folderId;
     }
 
     const media = await (prisma as any).media.findMany({
-      where: whereClause,
-      orderBy: { createdAt: 'desc' },
+      where,
+      orderBy: isTrash ? { trashedAt: 'desc' } : { createdAt: 'desc' },
     });
-
     return NextResponse.json(media, {
-      headers: {
-        'Cache-Control': 'no-store, max-age=0, must-revalidate',
-      },
+      headers: { 'Cache-Control': 'no-store, max-age=0, must-revalidate' },
     });
   } catch (error) {
     console.error('GET /api/media error:', error);
@@ -180,83 +120,85 @@ export async function GET(request: Request) {
   }
 }
 
-// POST /api/media - Upload a file (Strictly Protected)
+// POST /api/media - Upload a file (strict DAL auth)
 export async function POST(request: Request) {
-  // 1. Authenticate and authorize role
-  const auth = await requireRole(request, ['SUPER_ADMIN', 'ADMIN', 'EDITOR']);
-  if (!auth.authorized) {
-    return auth.response!;
-  }
+  const { user, errorResponse } = await requirePermission(request, 'upload_media');
+  if (errorResponse) return errorResponse;
 
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    const rawAlt = (formData.get('alt') as string) || '';
-    const alt = rawAlt.replace(/[<>"'/]/g, '').slice(0, 200);
-    const rawFolder = (formData.get('folder') as string) || 'General';
-    const folder = rawFolder.replace(/[<>"'/]/g, '').slice(0, 100) || 'General';
+    const alt = (formData.get('alt') as string) || '';
+    const folderId = (formData.get('folderId') as string) || null;
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    // 2. Validate File Size
-    if (file.size > MAX_FILE_SIZE) {
-      return NextResponse.json(
-        { error: 'File size exceeds maximum allowed limit (15MB)' },
-        { status: 400 }
-      );
-    }
-
-    const ext = path.extname(file.name).toLowerCase();
-    if (!ALLOWED_EXTENSIONS.includes(ext)) {
-      return NextResponse.json(
-        { error: `Invalid file extension. Allowed extensions: ${ALLOWED_EXTENSIONS.join(', ')}` },
-        { status: 400 }
-      );
-    }
-
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // 3. Binary Magic Number Signature Verification
-    const signatureCheck = validateFileSignature(buffer, ext);
-    if (!signatureCheck.valid) {
-      return NextResponse.json(
-        { error: 'File header does not match file extension. Potential security risk.' },
-        { status: 400 }
-      );
-    }
-
-    // 4. Ensure uploads directory exists
+    // Ensure uploads directory exists
     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
     if (!existsSync(uploadsDir)) {
       await mkdir(uploadsDir, { recursive: true });
     }
 
-    // 5. Generate safe unique filename
-    const safeBaseName = sanitizeFilename(file.name)
-      .replace(ext, '')
-      .slice(0, 45);
-    const filename = `${safeBaseName}-${Date.now()}${ext}`;
+    // Generate opaque hex token
+    const ext = path.extname(file.name).toLowerCase();
+    const token = randomBytes(16).toString('hex');
+    const filename = `${token}${ext}`;
     const filePath = path.join(uploadsDir, filename);
 
-    // 6. Check path traversal safety
-    if (!isSafePath(uploadsDir, filePath)) {
-      return NextResponse.json({ error: 'Invalid destination path' }, { status: 400 });
+    // ── VIDEO COMPRESSION ──
+    let finalBuffer = buffer;
+    const isVideo = file.type.startsWith('video/') || ['.mp4', '.webm', '.ogg', '.mov'].includes(ext);
+
+    if (isVideo) {
+      try {
+        let ffmpegPath: any = null;
+        try {
+          ffmpegPath = eval('require')('ffmpeg-static');
+        } catch {}
+        if (ffmpegPath) {
+          const { exec } = require('child_process');
+          const { unlink, writeFile: fsWriteFile, readFile } = require('fs/promises');
+          const tempInput = path.join(uploadsDir, `temp-in-${Date.now()}${ext}`);
+          const tempOutput = path.join(uploadsDir, `temp-out-${Date.now()}${ext}`);
+
+          await fsWriteFile(tempInput, buffer);
+
+          await new Promise<void>((resolve, reject) => {
+            exec(
+              `"${ffmpegPath}" -i "${tempInput}" -vcodec libx264 -crf 26 -preset faster -acodec aac -b:a 128k -y "${tempOutput}"`,
+              (error: any) => {
+                if (error) reject(error);
+                else resolve();
+              }
+            );
+          });
+
+          finalBuffer = await readFile(tempOutput);
+          await unlink(tempInput).catch(() => {});
+          await unlink(tempOutput).catch(() => {});
+        }
+      } catch (err) {
+        console.error('Video compression failed, falling back to original upload:', err);
+      }
     }
 
-    // 7. Save and process
+    // Save and optimize the file
     try {
-      await processAndSaveImage(filePath, buffer);
+      await processAndSaveImage(filePath, finalBuffer);
     } catch (sharpError) {
-      console.error('Image processing failed:', sharpError);
+      console.error('File saving failed:', sharpError);
       return NextResponse.json(
-        { error: 'Image processing failed on server.' },
+        { error: 'File upload failed: could not process or write the file.' },
         { status: 500 }
       );
     }
 
+    // Query file size on disk after compression
     let finalSize = file.size;
     try {
       if (existsSync(filePath)) {
@@ -267,18 +209,26 @@ export async function POST(request: Request) {
     const media = await (prisma as any).media.create({
       data: {
         filename,
-        originalName: sanitizeFilename(file.name),
-        mimeType: file.type || getMimeType(filename),
+        originalName: file.name,
+        mimeType: file.type,
         size: finalSize,
-        url: `/uploads/${filename}`,
+        url: `/files/${token}`,
         alt,
-        folder,
+        folderId: folderId || null,
       },
+    });
+
+    await logAction(request, {
+      action: 'CREATE',
+      entity: 'Media',
+      entityId: media.id,
+      details: { filename: media.filename, originalName: media.originalName, mimeType: media.mimeType, size: finalSize },
+      user,
     });
 
     return NextResponse.json(media, { status: 201 });
   } catch (error) {
     console.error('POST /api/media error:', error);
-    return NextResponse.json({ error: 'Failed to process file upload' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to upload file' }, { status: 500 });
   }
 }

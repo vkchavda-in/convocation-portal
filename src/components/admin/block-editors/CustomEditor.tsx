@@ -1,13 +1,18 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Field, Input, Toggle } from './HeroEditor';
+import { Field, Input, Toggle, Select } from './HeroEditor';
+import MediaPicker from '../MediaPicker';
+import { Trash, Plus, RefreshCw } from 'lucide-react';
+
 
 interface CustomData {
   title?: string;
   subtitle?: string;
   body: string;
   fullWidth?: boolean;
+  titleAlignment?: string;
+  images?: Record<string, string>;
 }
 
 interface Props {
@@ -15,7 +20,7 @@ interface Props {
   onChange: (d: object) => void;
 }
 
-function CKEditorField({
+export function CKEditorField({
   value,
   onChange,
 }: {
@@ -350,9 +355,112 @@ function CKEditorField({
   );
 }
 
+function autoDetectImages(htmlBody: string, currentImages: Record<string, string>) {
+  let updatedBody = htmlBody;
+  const newImages = { ...currentImages };
+  let changed = false;
+
+  // 1. Find all image URLs from <img> tags
+  const imgRegex = /<img[^>]+src=["']([^"']+)["']/gi;
+  let match;
+  const detectedUrls = new Set<string>();
+
+  while ((match = imgRegex.exec(htmlBody)) !== null) {
+    const url = match[1];
+    // Ignore placeholders like {{ placeholder }}
+    if (url && !url.startsWith('{{') && !url.endsWith('}}')) {
+      detectedUrls.add(url);
+    }
+  }
+
+  // 2. Find all background image URLs from inline styles / CSS
+  const bgRegex = /url\(['"]?([^'")\s]+)['"]?\)/gi;
+  while ((match = bgRegex.exec(htmlBody)) !== null) {
+    const url = match[1];
+    if (url && !url.startsWith('{{') && !url.endsWith('}}')) {
+      detectedUrls.add(url);
+    }
+  }
+
+  // 3. Map detected URLs
+  if (detectedUrls.size > 0) {
+    // Helper to check if a URL is already in currentImages
+    const getExistingKey = (url: string) => {
+      return Object.entries(newImages).find(([_, val]) => val === url)?.[0];
+    };
+
+    let imgCounter = 1;
+    detectedUrls.forEach((url) => {
+      let key = getExistingKey(url);
+      if (!key) {
+        // Find a unique name
+        while (true) {
+          const testKey = `Image ${imgCounter}`;
+          if (!newImages[testKey]) {
+            key = testKey;
+            break;
+          }
+          imgCounter++;
+        }
+        newImages[key] = url;
+        changed = true;
+      }
+
+      // Replace all occurrences of this raw URL with the placeholder {{ key }}
+      if (updatedBody.includes(url)) {
+        updatedBody = updatedBody.split(url).join(`{{ ${key} }}`);
+        changed = true;
+      }
+    });
+  }
+
+  return { updatedBody, newImages, changed };
+}
+
 export default function CustomEditor({ data, onChange }: Props) {
   const d = data as CustomData;
   const set = (key: string, value: unknown) => onChange({ ...d, [key]: value });
+  const [activeImageKey, setActiveImageKey] = useState<string | null>(null);
+  const [newImageKey, setNewImageKey] = useState('');
+
+  // Auto-detect images on load to convert any existing hardcoded URLs to placeholders
+  useEffect(() => {
+    const { updatedBody, newImages, changed } = autoDetectImages(d.body || '', d.images || {});
+    if (changed) {
+      onChange({
+        ...d,
+        body: updatedBody,
+        images: newImages
+      });
+    }
+  }, []);
+
+  const handleAutoDetect = () => {
+    const { updatedBody, newImages, changed } = autoDetectImages(d.body || '', d.images || {});
+    if (changed) {
+      onChange({
+        ...d,
+        body: updatedBody,
+        images: newImages
+      });
+      alert("Successfully scanned HTML and converted images to fields!");
+    } else {
+      alert("No new hardcoded images found in the HTML.");
+    }
+  };
+
+  const handleAddImageKey = () => {
+    if (!newImageKey.trim()) return;
+    const key = newImageKey.trim();
+    const currentImages = d.images || {};
+    if (key in currentImages) {
+      alert("An image field with this label already exists!");
+      return;
+    }
+    const newImages = { ...currentImages, [key]: '' };
+    set('images', newImages);
+    setNewImageKey('');
+  };
 
   return (
     <div className="space-y-4">
@@ -364,6 +472,19 @@ export default function CustomEditor({ data, onChange }: Props) {
       {/* 2. Subtitle */}
       <Field label="Section Subtitle / Category Label">
         <Input value={d.subtitle || ''} onChange={(v) => set('subtitle', v)} placeholder="e.g. ACCREDITATION" />
+      </Field>
+
+      {/* Title Alignment */}
+      <Field label="Title Alignment">
+        <Select
+          value={d.titleAlignment || 'center'}
+          onChange={(v) => set('titleAlignment', v)}
+          options={[
+            { value: 'center', label: 'Center (Default)' },
+            { value: 'left', label: 'Left' },
+            { value: 'right', label: 'Right' },
+          ]}
+        />
       </Field>
 
       {/* 3. Full Width Toggle */}
@@ -381,6 +502,96 @@ export default function CustomEditor({ data, onChange }: Props) {
           Use the <strong className="font-semibold text-slate-600">Source</strong> button in the editor toolbar to edit raw HTML or paste custom embed codes in Monaco Editor.
         </p>
       </Field>
+
+      {/* 5. Dynamic Image Fields (Generic Inputs at the bottom of CKEditor) */}
+      <div className="space-y-4 pt-4 border-t border-slate-100">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Dynamic Images</span>
+          <button
+            type="button"
+            onClick={handleAutoDetect}
+            className="inline-flex items-center gap-1 bg-transparent hover:text-slate-800 text-slate-500 transition-colors font-semibold text-[11px] border-0 p-0 shadow-none focus:outline-none cursor-pointer"
+            title="Scan HTML body and auto-create image fields"
+          >
+            <RefreshCw className="w-3 h-3 text-slate-400" />
+            Sync Images from HTML
+          </button>
+        </div>
+
+        {d.images && typeof d.images === 'object' && Object.keys(d.images).length > 0 ? (
+          <div className="grid grid-cols-1 gap-4">
+            {Object.entries(d.images).map(([key, value]) => (
+              <Field key={key} label={key}>
+                <div className="flex gap-3 mt-1 items-center">
+                  {/* Image Preview Thumbnail */}
+                  {value && (value.startsWith('/') || value.startsWith('http')) ? (
+                    <div className="relative w-11 h-11 rounded-lg overflow-hidden border border-slate-200 flex-shrink-0 bg-slate-50 flex items-center justify-center">
+                      <img
+                        src={value}
+                        alt={key}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-11 h-11 rounded-lg border border-dashed border-slate-200 flex-shrink-0 bg-slate-50 flex items-center justify-center text-[10px] text-slate-400 font-medium">
+                      No Img
+                    </div>
+                  )}
+
+                  <div className="flex-1 flex gap-2">
+                    <Input
+                      value={value || ''}
+                      onChange={(newVal) => {
+                        const newImages = { ...d.images, [key]: newVal };
+                        set('images', newImages);
+                      }}
+                      placeholder="e.g. /uploads/image.png"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setActiveImageKey(key)}
+                      className="px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold whitespace-nowrap border border-slate-200 shadow-sm transition-colors cursor-pointer"
+                    >
+                      Browse
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newImages = { ...d.images };
+                        delete newImages[key];
+                        set('images', newImages);
+                      }}
+                      className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors border border-slate-200/60 cursor-pointer"
+                      title="Delete Image Placeholder"
+                    >
+                      <Trash className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </Field>
+            ))}
+          </div>
+        ) : (
+          <p className="text-xs text-slate-400 italic">No dynamic images mapped. Click "Sync Images from HTML" to scan body content.</p>
+        )}
+      </div>
+
+      {/* Media Picker Modal */}
+      {activeImageKey !== null && (
+        <MediaPicker
+          currentUrl={activeImageKey !== null ? d.images?.[activeImageKey] : undefined}
+          onSelect={(url) => {
+            const newImages = { ...d.images, [activeImageKey]: url };
+            set('images', newImages);
+            setActiveImageKey(null);
+          }}
+          onClose={() => setActiveImageKey(null)}
+          filter="image"
+        />
+      )}
     </div>
   );
 }

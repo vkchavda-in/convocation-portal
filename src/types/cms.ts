@@ -512,6 +512,8 @@ export interface CustomBlockData {
   subtitle?: string;
   body: string;
   fullWidth?: boolean;
+  titleAlignment?: string;
+  images?: Record<string, string>;
 }
 
 export interface CustomBlock extends BaseBlock {

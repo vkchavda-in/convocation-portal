@@ -33,16 +33,36 @@ model Setting {
 }
 
 model Media {
-  id           String   @id @default(cuid())
+  id           String        @id @default(cuid())
   filename     String
   originalName String
   mimeType     String
   size         Int
   url          String
-  alt          String   @default("")
-  folder       String   @default("General")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  alt          String        @default("")
+  folderId     String?
+  folder       MediaFolder?  @relation(fields: [folderId], references: [id])
+  isTrash      Boolean       @default(false)
+  trashedAt    DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model MediaFolder {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  icon        String        @default("folder")
+  color       String        @default("#2563EB")
+  description String?
+  parentId    String?
+  parent      MediaFolder?  @relation("FolderChildren", fields: [parentId], references: [id])
+  children    MediaFolder[] @relation("FolderChildren")
+  media       Media[]
+  isTrash     Boolean       @default(false)
+  trashedAt   DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 enum Role {

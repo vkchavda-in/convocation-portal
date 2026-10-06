@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 import { JWT_SECRET } from '@/lib/config';
+import { prisma } from '@/lib/prisma';
 
 export interface AuthUser {
+  id?: string;
   userId: string;
   username: string;
-  role: 'SUPER_ADMIN' | 'ADMIN' | 'EDITOR';
+  name?: string;
+  role: 'SUPER_ADMIN' | 'ADMIN' | 'EDITOR' | string;
+  permissions?: string[];
+  clientIp?: string;
+  userAgent?: string;
 }
 
 export interface VerifyAuthResult {
@@ -56,10 +62,37 @@ export async function verifySession(request: Request): Promise<VerifyAuthResult>
       };
     }
 
+    const role = String(payload.role);
+    const permissions: string[] =
+      role === 'SUPER_ADMIN'
+        ? [
+            'view_dashboard',
+            'view_pages', 'create_pages', 'edit_pages', 'delete_pages',
+            'view_media', 'upload_media', 'delete_media',
+            'view_users', 'create_users', 'edit_users', 'delete_users',
+            'manage_global', 'manage_theme', 'manage_settings'
+          ]
+        : [
+            'view_dashboard',
+            'view_pages', 'create_pages', 'edit_pages',
+            'view_media', 'upload_media'
+          ];
+
+    const clientIp =
+      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      request.headers.get('x-real-ip') ||
+      '127.0.0.1';
+    const userAgent = request.headers.get('user-agent') || 'Unknown';
+
     const user: AuthUser = {
+      id: String(payload.userId),
       userId: String(payload.userId),
       username: String(payload.username || ''),
-      role: payload.role as AuthUser['role'],
+      name: String(payload.name || payload.username || ''),
+      role: role as AuthUser['role'],
+      permissions,
+      clientIp,
+      userAgent,
     };
 
     return {
@@ -109,4 +142,59 @@ export async function requireRole(
     authorized: true,
     user: result.user,
   };
+}
+
+/**
+ * getAuthUser compatible with Goa_New routes
+ */
+export async function getAuthUser(request?: Request): Promise<{ user: AuthUser | null; error: string | null; status: number }> {
+  if (!request) {
+    return { user: null, error: 'No request provided', status: 401 };
+  }
+  const result = await verifySession(request);
+  if (!result.authorized || !result.user) {
+    return { user: null, error: result.error || 'Unauthorized', status: result.status };
+  }
+  return { user: result.user, error: null, status: 200 };
+}
+
+/**
+ * Strict permission guard for API Route handlers
+ */
+export async function requirePermission(
+  request: Request,
+  permissionKey?: string
+): Promise<{ user: AuthUser | null; errorResponse: NextResponse | null }> {
+  const { user, error, status } = await getAuthUser(request);
+
+  if (!user || error) {
+    return {
+      user: null,
+      errorResponse: NextResponse.json({ error: error || 'Unauthorized' }, { status: status || 401 }),
+    };
+  }
+
+  // Super Admin has unrestricted bypass
+  if (user.role === 'SUPER_ADMIN') {
+    return { user, errorResponse: null };
+  }
+
+  // If a specific permission is requested, check permissions array
+  if (permissionKey && user.permissions && !user.permissions.includes(permissionKey)) {
+    return {
+      user: null,
+      errorResponse: NextResponse.json(
+        { error: `Forbidden: You lack the required permission ('${permissionKey}') for this action.` },
+        { status: 403 }
+      ),
+    };
+  }
+
+  return { user, errorResponse: null };
+}
+
+export async function requireAuth(
+  request: Request
+): Promise<{ user: AuthUser | null; errorResponse: NextResponse | null }> {
+  return requirePermission(request);
 }

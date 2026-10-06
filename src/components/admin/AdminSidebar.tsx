@@ -11,6 +11,7 @@ import {
   Settings,
   Globe,
   Image as ImageIcon,
+  Folder,
   Shield,
   Users
 } from 'lucide-react';
@@ -35,7 +36,7 @@ const navGroups: NavGroup[] = [
     items: [
       { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
       { href: '/admin/pages', label: 'Pages', icon: FileText },
-      { href: '/admin/media', label: 'Media', icon: ImageIcon },
+      { href: '/admin/filemanager', label: 'File Manager', icon: Folder },
       { href: '/admin/global', label: 'Global', icon: Globe },
     ],
   },

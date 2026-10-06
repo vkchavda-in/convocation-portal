@@ -1,6 +1,6 @@
 import FadeIn from '@/components/shared/FadeIn';
 import { CustomBlockData } from '@/types/cms';
-import { optimizeHtmlImages } from '@/components/shared/OptimizedImage';
+import { optimizeHtmlImages } from '@/lib/cms/optimize-html-images';
 
 interface CustomModuleProps {
   id?: string;
@@ -8,10 +8,48 @@ interface CustomModuleProps {
 }
 
 export default function CustomModule({ id, data }: CustomModuleProps) {
-  const { title, subtitle, body, fullWidth = false } = data;
+  const { title, subtitle, body, fullWidth = false, titleAlignment = 'center' } = data;
 
   const normalizedBody = (body || '').replace(/\r\n/g, '\n');
-  const optimizedBody = optimizeHtmlImages(normalizedBody);
+  
+  // Resolve dynamic image placeholders (e.g. {{ Image 1 }})
+  let processedBody = normalizedBody;
+  if (data.images && typeof data.images === 'object') {
+    Object.entries(data.images).forEach(([key, value]) => {
+      if (typeof value === 'string') {
+        const escapedKey = key.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const regex = new RegExp(`{{\\s*${escapedKey}\\s*}}`, 'g');
+        processedBody = processedBody.replace(regex, value);
+      }
+    });
+  }
+
+  const optimizedBody = optimizeHtmlImages(processedBody);
+
+  const alignClass =
+    titleAlignment === 'left'
+      ? 'text-left'
+      : titleAlignment === 'right'
+      ? 'text-right'
+      : 'text-center';
+
+  const headerContent = (title || subtitle) && (
+    <div className={`mb-8 ${alignClass}`}>
+      {subtitle && (
+        <div className="text-xs font-semibold tracking-widest uppercase mb-3 text-[var(--secondary)]">
+          {subtitle}
+        </div>
+      )}
+      {title && (
+        <h2
+          className="text-3xl md:text-4xl font-bold leading-tight text-[#1E293B]"
+          style={{ fontFamily: 'var(--font-heading)' }}
+        >
+          {title}
+        </h2>
+      )}
+    </div>
+  );
 
   const content = (
     <div 
@@ -33,21 +71,9 @@ export default function CustomModule({ id, data }: CustomModuleProps) {
     return (
       <section id={id} className="w-full bg-white">
         <div className="w-full">
-          {(title || subtitle) && (
-            <div className="section-container pt-12 md:pt-16 mb-8">
-              {subtitle && (
-                <div className="text-xs font-semibold tracking-widest uppercase mb-3 text-[var(--secondary)]">
-                  {subtitle}
-                </div>
-              )}
-              {title && (
-                <h2
-                  className="text-3xl md:text-4xl font-bold leading-tight text-[#1E293B]"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  {title}
-                </h2>
-              )}
+          {headerContent && (
+            <div className="section-container pt-12 md:pt-16">
+              {headerContent}
             </div>
           )}
           <div className="w-full">
@@ -62,23 +88,7 @@ export default function CustomModule({ id, data }: CustomModuleProps) {
     <section id={id} className="py-12 md:py-16 bg-white overflow-hidden">
       <div className="section-container">
         <FadeIn variant="up" delay={0}>
-          {(title || subtitle) && (
-            <div className="mb-8">
-              {subtitle && (
-                <div className="text-xs font-semibold tracking-widest uppercase mb-3 text-[var(--secondary)]">
-                  {subtitle}
-                </div>
-              )}
-              {title && (
-                <h2
-                  className="text-3xl md:text-4xl font-bold leading-tight text-[#1E293B]"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  {title}
-                </h2>
-              )}
-            </div>
-          )}
+          {headerContent}
           {content}
         </FadeIn>
       </div>
