@@ -109,7 +109,7 @@ export default function GlobalSettingsPage() {
   }, []);
 
   const handleSave = async () => {
-    if (activeTab === 'topbar' || activeTab === 'widgets') {
+    if (activeTab === 'topbar' || activeTab === 'widgets' || activeTab === 'autopopup') {
       window.dispatchEvent(new CustomEvent('widget-panel-save'));
       return;
     }

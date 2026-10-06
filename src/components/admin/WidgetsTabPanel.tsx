@@ -154,38 +154,34 @@ export default function WidgetsTabPanel({ section }: Props) {
           setFullAppSettings(parsed);
 
           // ── Widget resolution ───────────────────────────────────────────
-          // 1. Use the saved widgets array if it has entries.
-          // 2. Otherwise try to migrate from the old flat widget fields.
-          // 3. Finally fall back to the hardcoded default ("Enquire Now!").
-          let migratedWidgets: WidgetItem[] =
-            Array.isArray(parsed.widgets) && parsed.widgets.length > 0
-              ? parsed.widgets
-              : [];
-
-          if (migratedWidgets.length === 0 && (parsed.widgetEnabled !== undefined || parsed.widgetText)) {
-            migratedWidgets = [{
-              id: 'widget_migrated_legacy',
+          // 1. If parsed.widgets is explicitly an array (even if empty []), respect user setting.
+          // 2. Otherwise try to migrate from the old flat widget fields if present.
+          // 3. Finally fall back to defaultSettings.widgets on very first initialization.
+          let resolvedWidgets: WidgetItem[] = [];
+          if (Array.isArray(parsed.widgets)) {
+            resolvedWidgets = parsed.widgets;
+          } else if (parsed.widgetEnabled !== undefined || parsed.widgetText) {
+            resolvedWidgets = [{
+              id: 'widget_convocation_1',
               enabled: parsed.widgetEnabled !== false,
               type: parsed.widgetType || 'modal',
-              text: parsed.widgetText || 'Enquire Now!',
-              link: parsed.widgetLink || 'https://admissiongoa.ganpatuniversity.ac.in/',
+              text: parsed.widgetText || 'Helpdesk & Queries',
+              link: parsed.widgetLink || 'https://convocation.guni.ac.in/live',
               html: parsed.widgetHtml || '',
               side: parsed.widgetSide || 'right',
               offset: parsed.widgetOffset ?? 50,
-              modalTitle: parsed.widgetModalTitle || 'Ganpat University Goa',
+              modalTitle: parsed.widgetModalTitle || 'Ganpat University Convocation Helpdesk',
               modalHtml: parsed.widgetModalHtml || defaultModalHtml,
               widgetStyle: parsed.widgetStyle || 'button',
             }];
+          } else {
+            resolvedWidgets = defaultSettings.widgets;
           }
 
-          if (migratedWidgets.length === 0) {
-            migratedWidgets = defaultSettings.widgets;
-          }
-
-          setSettings({ ...defaultSettings, ...parsed, widgets: migratedWidgets });
+          setSettings({ ...defaultSettings, ...parsed, widgets: resolvedWidgets });
           setMarqueeItems(parsed.topBarMarqueeItems || defaultSettings.topBarMarqueeItems);
           setTopBarLinks(parsed.topBarLinks || defaultSettings.topBarLinks);
-          if (migratedWidgets.length > 0) setExpandedWidgetId(migratedWidgets[0].id);
+          if (resolvedWidgets.length > 0) setExpandedWidgetId(resolvedWidgets[0].id);
 
         }
       }

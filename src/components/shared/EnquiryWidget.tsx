@@ -200,27 +200,21 @@ export default function EnquiryWidget({ settings }: EnquiryWidgetProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Normalize widgets: either array from settings or convert fallback fields to array
-  const widgets: WidgetItem[] = settings?.widgets || [];
-
-  // If no widgets array exists but fallback is enabled, make a single widget array
-  const hasLegacyWidget = settings?.widgetEnabled ?? true;
-  const legacyWidget: WidgetItem = {
-    id: 'widget_legacy',
-    enabled: true,
-    type: settings?.widgetType || 'modal',
-    text: settings?.widgetText || 'Enquire Now!',
-    link: settings?.widgetLink || 'https://admissiongoa.ganpatuniversity.ac.in/',
-    html: settings?.widgetHtml || '',
-    side: settings?.widgetSide || 'right',
-    offset: settings?.widgetOffset ?? 50,
-    modalTitle: 'Ganpat University Goa',
-    modalHtml: (settings as any)?.modalHtml || '',
-  };
-
-  const normalizedWidgets: WidgetItem[] = widgets.length > 0
-    ? widgets.filter(w => w.enabled)
-    : (hasLegacyWidget ? [legacyWidget] : []);
+  // Normalize widgets: strictly use saved array if present
+  const normalizedWidgets: WidgetItem[] = Array.isArray(settings?.widgets)
+    ? settings.widgets.filter((w) => w && w.enabled)
+    : (settings?.widgetEnabled === true ? [{
+        id: 'widget_convocation_1',
+        enabled: true,
+        type: settings?.widgetType || 'modal',
+        text: settings?.widgetText || 'Helpdesk & Queries',
+        link: settings?.widgetLink || 'https://convocation.guni.ac.in/live',
+        html: settings?.widgetHtml || '',
+        side: settings?.widgetSide || 'right',
+        offset: settings?.widgetOffset ?? 50,
+        modalTitle: 'Ganpat University Convocation Helpdesk',
+        modalHtml: (settings as any)?.modalHtml || '',
+      }] : []);
 
   // Initialize mounting and automatically open the first active NPF widget
   useEffect(() => {

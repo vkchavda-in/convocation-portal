@@ -78,9 +78,9 @@ export default function HeroModule({ id, data }: HeroModuleProps) {
       if (!el) return;
       const headerOffset = window.innerWidth >= 768 ? 120 : 80;
       const availHeight = Math.max(window.innerHeight - headerOffset, 450);
-      const scaleW = (window.innerWidth - 64) / 1480;
-      const scaleH = (availHeight / H) * 1.04;
-      const scale = Math.max(0.55, Math.min(1.15, Math.min(scaleW, scaleH)));
+      const scaleW = (window.innerWidth - 64) / 1640;
+      const scaleH = (availHeight / H) * 0.94;
+      const scale = Math.max(0.48, Math.min(1.02, Math.min(scaleW, scaleH)));
       el.style.setProperty('--hero-scale', scale.toFixed(6));
     };
     update();
@@ -380,7 +380,7 @@ export default function HeroModule({ id, data }: HeroModuleProps) {
             height: '900px',
             top: '50%',
             left: 'var(--container-padding)',
-            transform: 'translate(0, -50%) scale(var(--hero-scale, min(1.15, max(0.55, min(calc((100vw - 64px) / 1480), calc((100vh - 120px) / 900 * 1.04))))))',
+            transform: 'translate(0, -50%) scale(var(--hero-scale, min(1.02, max(0.48, min(calc((100vw - 64px) / 1640), calc((100vh - 120px) / 900 * 0.94))))))',
             transformOrigin: 'left center',
             pointerEvents: 'none',
           }}
@@ -517,7 +517,7 @@ export default function HeroModule({ id, data }: HeroModuleProps) {
           className="
             hidden md:flex absolute right-4 lg:right-8 xl:right-12 bottom-0 z-10 pointer-events-none
             items-end justify-end
-            h-[80%] max-w-[42%] lg:max-w-[45%] xl:max-w-[48%]
+            h-[74%] lg:h-[76%] max-w-[38%] lg:max-w-[42%] xl:max-w-[44%]
             overflow-visible
           "
         >
