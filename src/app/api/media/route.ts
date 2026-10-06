@@ -50,7 +50,6 @@ async function processAndSaveImage(filePath: string, buffer: Buffer) {
     console.error(`Failed to process and optimize image ${filePath}:`, error);
     // Fallback to saving original unmodified buffer if sharp fails
     await writeFile(filePath, buffer);
-    throw error;
   }
 }
 

@@ -69,9 +69,8 @@ async function processAndSaveImage(filePath: string, buffer: Buffer) {
       ]);
     }
   } catch (error) {
-    console.error(`Failed to process image ${filePath}:`, error);
+    console.error(`Failed to process image with sharp ${filePath}, saving original buffer:`, error);
     await writeFile(filePath, buffer);
-    throw error;
   }
 }
 
@@ -236,7 +235,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
         originalName: media.originalName,
         mimeType: file.type || media.mimeType,
         size: finalSize,
-        url: media.url,
+        url: `/uploads/${targetFilename}`,
         updatedAt: new Date(),
       },
     });

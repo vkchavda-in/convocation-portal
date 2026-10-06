@@ -524,12 +524,20 @@ export default function MediaLibraryPage() {
     if (!activeHandle || !imgRef.current) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = imgRef.current!.getBoundingClientRect();
-      const imgWidth = rect.width;
-      const imgHeight = rect.height;
+      const imgEl = imgRef.current;
+      if (!imgEl) return;
+      const imgWidth = imgEl.clientWidth || imgEl.offsetWidth || 1;
+      const imgHeight = imgEl.clientHeight || imgEl.offsetHeight || 1;
 
-      const dx = ((e.clientX - startMousePos.current.x) / imgWidth) * 100;
-      const dy = ((e.clientY - startMousePos.current.y) / imgHeight) * 100;
+      // Project screen delta into rotated coordinate space of the image container
+      const rad = (-viewerRotation * Math.PI) / 180;
+      const screenDx = e.clientX - startMousePos.current.x;
+      const screenDy = e.clientY - startMousePos.current.y;
+      const rotDx = screenDx * Math.cos(rad) - screenDy * Math.sin(rad);
+      const rotDy = screenDx * Math.sin(rad) + screenDy * Math.cos(rad);
+
+      const dx = (rotDx / imgWidth) * 100;
+      const dy = (rotDy / imgHeight) * 100;
 
       setCropRect(prev => {
         let { x, y, w, h } = startCropRect.current;
@@ -538,27 +546,27 @@ export default function MediaLibraryPage() {
           x = Math.max(0, Math.min(100 - w, x + dx));
           y = Math.max(0, Math.min(100 - h, y + dy));
         } else if (activeHandle === 'tl') {
-          const newX = Math.max(0, Math.min(x + w - 10, x + dx));
-          const newY = Math.max(0, Math.min(y + h - 10, y + dy));
+          const newX = Math.max(0, Math.min(x + w - 5, x + dx));
+          const newY = Math.max(0, Math.min(y + h - 5, y + dy));
           w = w - (newX - x);
           h = h - (newY - y);
           x = newX;
           y = newY;
         } else if (activeHandle === 'tr') {
-          const newW = Math.max(10, Math.min(100 - x, w + dx));
-          const newY = Math.max(0, Math.min(y + h - 10, y + dy));
+          const newW = Math.max(5, Math.min(100 - x, w + dx));
+          const newY = Math.max(0, Math.min(y + h - 5, y + dy));
           h = h - (newY - y);
           w = newW;
           y = newY;
         } else if (activeHandle === 'bl') {
-          const newX = Math.max(0, Math.min(x + w - 10, x + dx));
-          const newH = Math.max(10, Math.min(100 - y, h + dy));
+          const newX = Math.max(0, Math.min(x + w - 5, x + dx));
+          const newH = Math.max(5, Math.min(100 - y, h + dy));
           w = w - (newX - x);
           x = newX;
           h = newH;
         } else if (activeHandle === 'br') {
-          w = Math.max(10, Math.min(100 - x, w + dx));
-          h = Math.max(10, Math.min(100 - y, h + dy));
+          w = Math.max(5, Math.min(100 - x, w + dx));
+          h = Math.max(5, Math.min(100 - y, h + dy));
         }
 
         return { x, y, w, h };
@@ -575,7 +583,7 @@ export default function MediaLibraryPage() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [activeHandle]);
+  }, [activeHandle, viewerRotation]);
 
   const handleSaveCrop = async (saveAsCopy: boolean) => {
     if (!viewerFile || !imgRef.current) return;
@@ -583,10 +591,11 @@ export default function MediaLibraryPage() {
     try {
       const img = new Image();
       img.crossOrigin = 'anonymous';
-      img.src = getMediaUrl(viewerFile.url, viewerFile.updatedAt);
+      const cleanUrl = viewerFile.url;
+      img.src = `${cleanUrl}${cleanUrl.includes('?') ? '&' : '?'}crop_ts=${Date.now()}`;
       await new Promise((resolve, reject) => {
         img.onload = resolve;
-        img.onerror = reject;
+        img.onerror = () => reject(new Error('Failed to load image for cropping'));
       });
 
       const canvas = document.createElement('canvas');
@@ -599,14 +608,19 @@ export default function MediaLibraryPage() {
       const rotW = is90 ? origH : origW;
       const rotH = is90 ? origW : origH;
 
-      const cropX = (cropRect.x / 100) * rotW;
-      const cropY = (cropRect.y / 100) * rotH;
-      const cropW = (cropRect.w / 100) * rotW;
-      const cropH = (cropRect.h / 100) * rotH;
+      const cropX = Math.max(0, (cropRect.x / 100) * rotW);
+      const cropY = Math.max(0, (cropRect.y / 100) * rotH);
+      const cropW = Math.max(1, Math.min(rotW - cropX, (cropRect.w / 100) * rotW));
+      const cropH = Math.max(1, Math.min(rotH - cropY, (cropRect.h / 100) * rotH));
 
-      canvas.width = cropW;
-      canvas.height = cropH;
+      canvas.width = Math.round(cropW);
+      canvas.height = Math.round(cropH);
 
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+
+      ctx.save();
       ctx.translate(-cropX, -cropY);
 
       if (viewerRotation !== 0) {
@@ -616,19 +630,31 @@ export default function MediaLibraryPage() {
       }
 
       ctx.drawImage(img, 0, 0);
+      ctx.restore();
+
+      let mimeType = viewerFile.mimeType || 'image/png';
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(mimeType)) {
+        mimeType = 'image/png';
+      }
 
       const blob: Blob = await new Promise((resolve, reject) => {
-        canvas.toBlob(b => {
-          if (b) resolve(b);
-          else reject(new Error('Canvas toBlob failed'));
-        }, viewerFile.mimeType || 'image/png', 0.95);
+        canvas.toBlob(
+          b => {
+            if (b) resolve(b);
+            else reject(new Error('Canvas conversion to blob failed'));
+          },
+          mimeType,
+          0.92
+        );
       });
 
+      const baseOriginal = viewerFile.originalName.replace(/\.[^/.]+$/, '');
+      const finalExt = mimeType === 'image/jpeg' ? '.jpg' : mimeType === 'image/webp' ? '.webp' : '.png';
       const fileName = saveAsCopy 
-        ? `cropped-${Date.now()}-${viewerFile.originalName}` 
-        : viewerFile.originalName;
+        ? `cropped-${Date.now()}-${baseOriginal}${finalExt}` 
+        : `${baseOriginal}${finalExt}`;
       
-      const fileObj = new File([blob], fileName, { type: blob.type });
+      const fileObj = new File([blob], fileName, { type: mimeType });
       const fd = new FormData();
       fd.append('file', fileObj);
       if (viewerFile.folderId) fd.append('folderId', viewerFile.folderId);
@@ -636,12 +662,16 @@ export default function MediaLibraryPage() {
       if (saveAsCopy) {
         const r = await fetch('/api/media', { method: 'POST', body: fd });
         if (r.ok) {
+          const newMedia = await r.json();
           toast.success('Cropped copy saved successfully!');
           setIsEditingViewer(false);
+          setViewerRotation(0);
+          setCropRect({ x: 10, y: 10, w: 80, h: 80 });
+          setViewerFile(newMedia);
           await Promise.all([fetchFiles(currentFolderId), fetchStats()]);
-          setViewerFile(null);
         } else {
-          toast.error('Failed to save cropped copy');
+          const err = await r.json().catch(() => ({}));
+          toast.error(err.error || 'Failed to save cropped copy');
         }
       } else {
         const r = await fetch(`/api/media/${viewerFile.id}`, { method: 'PUT', body: fd });
@@ -649,11 +679,15 @@ export default function MediaLibraryPage() {
           const updated = await r.json();
           toast.success('Image updated successfully!');
           setIsEditingViewer(false);
-          setViewerFile(updated);
-          setFiles(prev => prev.map(f => f.id === updated.id ? updated : f));
+          setViewerRotation(0);
+          setCropRect({ x: 10, y: 10, w: 80, h: 80 });
+          const refreshed = { ...updated, updatedAt: new Date().toISOString() };
+          setViewerFile(refreshed);
+          setFiles(prev => prev.map(f => f.id === updated.id ? refreshed : f));
           await Promise.all([fetchStats(), fetchFolders()]);
         } else {
-          toast.error('Failed to save cropped image');
+          const err = await r.json().catch(() => ({}));
+          toast.error(err.error || 'Failed to save cropped image');
         }
       }
     } catch (err) {
@@ -3397,8 +3431,8 @@ export default function MediaLibraryPage() {
             <div className="h-9 shrink-0 bg-slate-50 border-t border-slate-200 flex items-center justify-between px-4 text-[10px] text-slate-600 font-medium font-sans">
               {isEditingViewer ? (
                 <>
-                  {/* Left: Rotate button (Moved here!) */}
-                  <div className="flex items-center gap-1.5">
+                  {/* Left: Rotate & Aspect Ratio presets */}
+                  <div className="flex items-center gap-2">
                     <button 
                       onClick={() => setViewerRotation(r => (r + 90) % 360)} 
                       className="p-1 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 rounded-md transition-colors flex items-center gap-1.5 text-[11px] border border-slate-200"
@@ -3406,14 +3440,40 @@ export default function MediaLibraryPage() {
                     >
                       <RotateCw className="h-3.5 w-3.5" /> Rotate 90°
                     </button>
+                    <div className="w-px h-3.5 bg-slate-200 mx-0.5" />
+                    <span className="text-[10px] text-slate-400 font-medium">Aspect:</span>
+                    <button
+                      onClick={() => setCropRect({ x: 10, y: 10, w: 80, h: 80 })}
+                      className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-medium transition-colors"
+                    >
+                      Free
+                    </button>
+                    <button
+                      onClick={() => setCropRect({ x: 15, y: 15, w: 70, h: 70 })}
+                      className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-medium transition-colors"
+                    >
+                      1:1
+                    </button>
+                    <button
+                      onClick={() => setCropRect({ x: 5, y: 22, w: 90, h: 56 })}
+                      className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-medium transition-colors"
+                    >
+                      16:9
+                    </button>
+                    <button
+                      onClick={() => setCropRect({ x: 10, y: 16, w: 80, h: 68 })}
+                      className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-medium transition-colors"
+                    >
+                      4:3
+                    </button>
                   </div>
                   {/* Right: Reset Crop */}
-                  <div>
+                  <div className="flex items-center gap-2">
                     <button
                       onClick={() => setCropRect({ x: 0, y: 0, w: 100, h: 100 })}
                       className="p-1 px-2.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded text-[11px]"
                     >
-                      Reset selection
+                      Select All
                     </button>
                   </div>
                 </>

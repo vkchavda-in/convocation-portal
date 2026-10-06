@@ -37,6 +37,7 @@ interface MarqueeItem { text: string; badge: string; link: string; }
 interface AppWidgetSettings {
   topBarEnabled: boolean; topBarType: 'marquee' | 'static';
   topBarEmail: string; topBarPhone: string; topBarAddress: string; topBarWorkingHours: string;
+  topBarCtaLabel?: string; topBarCtaUrl?: string;
   topBarLinks: TopBarLinkItem[]; topBarMarqueeItems: MarqueeItem[];
   widgets: WidgetItem[];
 }
@@ -48,39 +49,42 @@ const sectionHeadingCls = 'text-[10px] font-bold text-slate-400 uppercase tracki
 
 /* ─── Defaults ─────────────────────────────────────────────────────────────── */
 const defaultModalHtml = `<div class="space-y-4">
-  <h3 class="text-lg font-bold text-slate-800">Quick Enquiry</h3>
-  <p class="text-xs text-slate-500">Fill out your details and we will get back to you shortly.</p>
+  <h3 class="text-lg font-bold text-slate-800">Convocation Helpdesk</h3>
+  <p class="text-xs text-slate-500">Submit your query regarding the ceremony, registration, or degree certificates.</p>
   <form id="enquiry-form" class="space-y-3">
     <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Full Name</label>
-    <input type="text" name="name" required class="w-full px-3 py-2 border border-slate-200 rounded text-xs" placeholder="John Doe" /></div>
+    <input type="text" name="name" required class="w-full px-3 py-2 border border-slate-200 rounded text-xs" placeholder="Student Name" /></div>
     <div class="grid grid-cols-2 gap-3">
       <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Email</label>
-      <input type="email" name="email" required class="w-full px-3 py-2 border border-slate-200 rounded text-xs" placeholder="john@example.com" /></div>
+      <input type="email" name="email" required class="w-full px-3 py-2 border border-slate-200 rounded text-xs" placeholder="student@ganpatuniversity.ac.in" /></div>
       <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Phone</label>
       <input type="tel" name="phone" required class="w-full px-3 py-2 border border-slate-200 rounded text-xs" placeholder="+91 9876543210" /></div>
     </div>
-    <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded text-xs font-bold">Submit Enquiry</button>
+    <div><label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Enrollment Number / Query</label>
+    <textarea name="message" rows="2" class="w-full px-3 py-2 border border-slate-200 rounded text-xs" placeholder="Enter your enrollment number or questions here..."></textarea></div>
+    <button type="submit" class="w-full py-2 bg-[#0B2545] text-[#f9c53c] font-bold rounded text-xs hover:brightness-110 transition-all">Submit Query</button>
   </form>
 </div>`;
 
 const defaultSettings: AppWidgetSettings = {
   topBarEnabled: true, topBarType: 'static',
-  topBarEmail: 'admission.goaguni@ganpatuniversity.ac.in',
-  topBarPhone: '+91 92702 92602',
-  topBarAddress: 'Verna, Goa – 403722',
-  topBarWorkingHours: 'Mon–Sat: 9 AM – 6 PM',
+  topBarEmail: 'convocation@ganpatuniversity.ac.in',
+  topBarPhone: '+91 2762 226021',
+  topBarAddress: 'Ganpat Vidyanagar, Mehsana-Gandhinagar Highway, PO - 384012',
+  topBarWorkingHours: 'Mon–Sat: 9:00 AM – 4:00 PM',
+  topBarCtaLabel: 'Watch Live',
+  topBarCtaUrl: 'https://convocation.guni.ac.in/live',
   topBarLinks: [
-    { label: 'Apply Now', url: 'https://admissiongoa.ganpatuniversity.ac.in/' },
-    { label: 'Goa Campus', url: '/about/ganpat-university-goa' }
+    { label: 'Schedule', url: '/schedule-for-gold-medalists-and-phd-awardees' }
   ],
   topBarMarqueeItems: [
-    { text: 'Admissions Open for Academic Year 2026-27!', badge: 'Admissions Open', link: 'https://admissiongoa.ganpatuniversity.ac.in/' },
-    { text: 'Visit our beautiful Ocean Campus in Verna', badge: 'New Campus', link: '/about/ganpat-university-goa' }
+    { text: 'Ganpat University 19th Convocation Ceremony – Watch Live Webcast!', badge: 'Live Stream', link: 'https://convocation.guni.ac.in/live' },
+    { text: 'Schedule & Seating Plan for Gold Medalists & PhD Awardees is now available.', badge: 'Important', link: '/schedule-for-gold-medalists-and-phd-awardees' }
   ],
   widgets: [{
-    id: 'widget_default_1', enabled: true, type: 'modal', text: 'Enquire Now!',
-    link: 'https://admissiongoa.ganpatuniversity.ac.in/', html: '', side: 'right', offset: 50,
-    modalTitle: 'Ganpat University Goa', modalHtml: defaultModalHtml, widgetStyle: 'button',
+    id: 'widget_convocation_1', enabled: true, type: 'modal', text: 'Helpdesk & Queries',
+    link: 'https://convocation.guni.ac.in/live', html: '', side: 'right', offset: 50,
+    modalTitle: 'Ganpat University Convocation Helpdesk', modalHtml: defaultModalHtml, widgetStyle: 'button',
   }],
 };
 
@@ -286,6 +290,33 @@ export default function WidgetsTabPanel({ section }: Props) {
                         className={inputCls} />
                     </div>
                   ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Top Bar Gold Action Button (Watch Live) */}
+            <section className="space-y-4">
+              <h2 className={sectionHeadingCls}>Top Bar Action Button (Watch Live Pill)</h2>
+              <div className="py-1 grid grid-cols-2 gap-4">
+                <div>
+                  <label className={labelCls}>Button Text (e.g. Watch Live)</label>
+                  <input
+                    type="text"
+                    value={settings.topBarCtaLabel ?? 'Watch Live'}
+                    onChange={(e) => update('topBarCtaLabel' as keyof AppWidgetSettings, e.target.value)}
+                    className={inputCls}
+                    placeholder="Watch Live"
+                  />
+                </div>
+                <div>
+                  <label className={labelCls}>Button Destination URL</label>
+                  <input
+                    type="text"
+                    value={settings.topBarCtaUrl ?? 'https://convocation.guni.ac.in/live'}
+                    onChange={(e) => update('topBarCtaUrl' as keyof AppWidgetSettings, e.target.value)}
+                    className={inputCls}
+                    placeholder="https://convocation.guni.ac.in/live"
+                  />
                 </div>
               </div>
             </section>
