@@ -10,8 +10,8 @@ export function optimizeHtmlImages(html: string): string {
   const imgRegex = /<img\b([^>]*)\/?>/gi;
 
   return html.replace(imgRegex, (imgTag) => {
-    // Extract src pointing to local uploads, assets, or tokenized files
-    const srcMatch = imgTag.match(/src=["'](\/(?:uploads|assets\/images)\/[^"']+\.(?:png|jpg|jpeg|webp)|\/files\/[a-f0-9]{32,64}(?:-[a-z0-9]+)?(?:\.[a-z0-9]+)?)["']/i);
+    // Extract src pointing to local uploads, cdn, media, assets, or tokenized files
+    const srcMatch = imgTag.match(/src=["'](\/(?:uploads|cdn|media|assets\/images)\/[^"']+\.(?:png|jpg|jpeg|webp)|\/files\/[a-f0-9]{32,64}(?:-[a-z0-9]+)?(?:\.[a-z0-9]+)?)["']/i);
     if (!srcMatch) return imgTag; // Non-local or unsupported image, render as-is
 
     const src = srcMatch[1];

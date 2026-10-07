@@ -129,14 +129,14 @@ export async function POST(request: Request) {
     // 1. Instantly write raw original file to disk so it can be served immediately
     await writeFile(filePath, buffer);
 
-    // 2. Instantly register in database with canonical /uploads/ URL
+    // 2. Instantly register in database with clean secure /media/ URL
     const media = await (prisma as any).media.create({
       data: {
         filename,
         originalName: file.name,
         mimeType: file.type || 'application/octet-stream',
         size: file.size,
-        url: `/uploads/${filename}`,
+        url: `/media/${filename}`,
         alt,
         folderId: folderId || null,
       },

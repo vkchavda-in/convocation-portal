@@ -191,7 +191,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
         originalName: file.name || media.originalName,
         mimeType: file.type || media.mimeType,
         size: file.size,
-        url: `/uploads/${targetFilename}`,
+        url: `/media/${targetFilename}`,
         updatedAt: new Date(),
       },
     });

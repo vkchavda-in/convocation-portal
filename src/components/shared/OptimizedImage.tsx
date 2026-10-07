@@ -11,9 +11,13 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 export default function OptimizedImage({ src, alt, className, priority, ...props }: OptimizedImageProps) {
   if (!src) return null;
 
-  // Only optimize local uploads and assets (PNG/JPG/JPEG/WEBP)
-  const isLocalImage = (src.startsWith('/uploads/') || src.startsWith('/assets/images/')) &&
-    /\.(png|jpg|jpeg|webp)$/i.test(src);
+  // Only optimize local uploads, cdn, media and assets (PNG/JPG/JPEG/WEBP)
+  const isLocalImage = (
+    src.startsWith('/uploads/') || 
+    src.startsWith('/cdn/') || 
+    src.startsWith('/media/') || 
+    src.startsWith('/assets/images/')
+  ) && /\.(png|jpg|jpeg|webp)$/i.test(src);
 
   if (!isLocalImage) {
     return (
@@ -66,8 +70,8 @@ export function optimizeHtmlImages(html: string): string {
   const imgRegex = /<img\b([^>]*)\/?>/gi;
 
   return html.replace(imgRegex, (imgTag) => {
-    // Extract src pointing to local uploads or assets/images
-    const srcMatch = imgTag.match(/src=["'](\/(?:uploads|assets\/images)\/[^"']+\.(?:png|jpg|jpeg|webp))["']/i);
+    // Extract src pointing to local uploads, cdn, media or assets/images
+    const srcMatch = imgTag.match(/src=["'](\/(?:uploads|cdn|media|assets\/images)\/[^"']+\.(?:png|jpg|jpeg|webp))["']/i);
     if (!srcMatch) return imgTag; // Non-local or unsupported image, render as-is
 
     const src = srcMatch[1];
