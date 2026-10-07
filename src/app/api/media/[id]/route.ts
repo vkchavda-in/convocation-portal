@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { unlink, writeFile, stat } from 'fs/promises';
+import { unlink, writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
-import sharp from 'sharp';
 import { logAction } from '@/lib/audit';
 import { requirePermission } from '@/lib/auth';
+import { processMediaInBackground } from '@/lib/media-processor';
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -34,44 +34,6 @@ async function deleteImageVariants(uploadsDir: string, baseName: string) {
       }
     })
   );
-}
-
-async function processAndSaveImage(filePath: string, buffer: Buffer) {
-  const ext = path.extname(filePath).toLowerCase();
-  const outputDir = path.dirname(filePath);
-  const baseName = path.basename(filePath, ext);
-
-  const isSupportedImage = ['.png', '.jpg', '.jpeg', '.webp'].includes(ext);
-
-  if (!isSupportedImage) {
-    await writeFile(filePath, buffer);
-    return;
-  }
-
-  try {
-    const pipeline = sharp(buffer);
-    if (ext === '.png') {
-      await pipeline.png({ compressionLevel: 6, quality: 90, force: true }).toFile(filePath);
-    } else if (ext === '.jpg' || ext === '.jpeg') {
-      await pipeline.jpeg({ quality: 90, progressive: true, force: true }).toFile(filePath);
-    } else if (ext === '.webp') {
-      await pipeline.webp({ quality: 90, force: true }).toFile(filePath);
-    }
-
-    if (ext === '.png') {
-      await Promise.all([
-        sharp(buffer).webp({ quality: 90 }).toFile(path.join(outputDir, `${baseName}.webp`)),
-      ]);
-    } else {
-      await Promise.all([
-        sharp(buffer).webp({ quality: 90 }).toFile(path.join(outputDir, `${baseName}.webp`)),
-        sharp(buffer).avif({ quality: 88, chromaSubsampling: '4:4:4' }).toFile(path.join(outputDir, `${baseName}.avif`)),
-      ]);
-    }
-  } catch (error) {
-    console.error(`Failed to process image with sharp ${filePath}, saving original buffer:`, error);
-    await writeFile(filePath, buffer);
-  }
 }
 
 // DELETE /api/media/[id]
@@ -179,7 +141,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   }
 }
 
-// PUT /api/media/[id] - Replace physical file contents
+// PUT /api/media/[id] - Replace physical file contents (Instant write + Background processing)
 export async function PUT(request: Request, { params }: RouteParams) {
   const { user, errorResponse } = await requirePermission(request, 'upload_media');
   if (errorResponse) return errorResponse;
@@ -219,26 +181,23 @@ export async function PUT(request: Request, { params }: RouteParams) {
     await deleteImageVariants(uploadsDir, baseName);
 
     const targetFilePath = path.join(uploadsDir, targetFilename);
-    await processAndSaveImage(targetFilePath, buffer);
-
-    let finalSize = file.size;
-    try {
-      if (existsSync(targetFilePath)) {
-        finalSize = (await stat(targetFilePath)).size;
-      }
-    } catch {}
+    // 1. Instantly write raw original file
+    await writeFile(targetFilePath, buffer);
 
     const updatedMedia = await (prisma as any).media.update({
       where: { id },
       data: {
         filename: targetFilename,
-        originalName: media.originalName,
+        originalName: file.name || media.originalName,
         mimeType: file.type || media.mimeType,
-        size: finalSize,
+        size: file.size,
         url: `/uploads/${targetFilename}`,
         updatedAt: new Date(),
       },
     });
+
+    // 2. Trigger asynchronous background processing
+    processMediaInBackground(id, targetFilePath, buffer);
 
     await logAction(request, {
       action: 'UPDATE',
@@ -247,8 +206,8 @@ export async function PUT(request: Request, { params }: RouteParams) {
       details: {
         replaced: true,
         originalName: media.originalName,
-        url: media.url,
-        newSize: finalSize,
+        url: updatedMedia.url,
+        newSize: file.size,
       },
       user,
     });
